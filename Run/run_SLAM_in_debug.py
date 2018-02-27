@@ -145,7 +145,7 @@ class WorkFlow(Preparation):
         :return:
         """
         try:
-            processes_num = 3
+            processes_num = 7
             pool = Pool(processes=processes_num)
             logger.warning(
                 "[%s]START %s and processes nums are %s", mode, mode, processes_num)
