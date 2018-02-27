@@ -151,16 +151,16 @@ class WorkFlow(Preparation):
                 "[%s]START %s and processes nums are %s", mode, mode, processes_num)
             for rtv in self.rtvs:
                 for imu in self.imus:
-                    # for gps in self.gpss:
-                    #     if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu") == os.path.basename(gps).strip(".gps"):
-                    if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu"):
-                        logger.info("[%s]rtv:%s,imu:%s",
-                                    mode, rtv, imu)
-                        output_dir = os.path.join(
-                            self.output_path, mode, os.path.basename(rtv).strip(".rtv"))
-                        pool.apply_async(run_slam,
-                                         (mode, self.exec_path[0], self.ip, self.ic, rtv, imu, self.ivoc, output_dir,
-                                          self.server_path))
+                    for gps in self.gpss:
+                        if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu") == os.path.basename(gps).strip(".gps"):
+                        # if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu"):
+                            logger.info("[%s]rtv:%s,imu:%s,gps:%s",
+                                        mode, rtv, imu,gps)
+                            output_dir = os.path.join(
+                                self.output_path, mode, os.path.basename(rtv).strip(".rtv"))
+                            pool.apply_async(run_slam,
+                                             (mode, self.exec_path[0], self.ip, self.ic, rtv, imu,gps, self.ivoc, output_dir,
+                                              self.server_path))
             pool.close()
             pool.join()
 
@@ -229,7 +229,7 @@ def find_file(file_type, input_path):
         sys.exit()
 
 
-def run_slam(mode, exec_file, ip, ic, rtv, imu, ivoc, path, server_path):
+def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path):
     """
 
     :param mode:
@@ -247,7 +247,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, ivoc, path, server_path):
         idb = path
         os.makedirs(path)
         logger.info("mkdir %s", path)
-        parameter_list = [exec_file, '--ip', ip, '--ic', ic, '--ivg', rtv, '--iimu', imu, '--ivoc', ivoc, '--tmp', path,
+        parameter_list = [exec_file, '--ip', ip, '--ic', ic, '--ivg', rtv, '--iimu', imu, '--igps',gps, '--ivoc', ivoc, '--tmp', path,
                           '--ol', path, '--d', path, '--oqlt', path, '--osp', os.path.join(
                               path, 'slam.out'), '--ivid',
                           '170ca9d4e6b40738',
