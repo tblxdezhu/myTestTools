@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-mkdir ~/bin
-PATH=~/bin:$PATH
-curl https://s3.amazonaws.com/ygomi-hub-rdb/3rd/repo > ~/bin/repo
-chmod a+x ~/bin/repo
+
+#mkdir ~/bin
+#PATH=~/bin:$PATH
+#curl https://s3.amazonaws.com/ygomi-hub-rdb/3rd/repo > ~/bin/repo
+#chmod a+x ~/bin/repo
 
 echo "START PULL THE CODE"
 mkdir sourcescode
