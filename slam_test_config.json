@@ -1,0 +1,60 @@
+{
+  "run_config": {
+    "owner": "zhenxuan",
+    "email": "zhenxuan.xu@ygomi.com",
+    "branch": "master",
+    "sourcecode_path": "/home/test/new_repo",
+    "compile code":"ON",
+    "camera": "65",
+    "bow": "/home/test/",
+    "num": 100,
+    "processes": 4,
+    "backup db": "OFF"
+  },
+  "compile": {
+    "mode": "debug",  
+    "visualization": "OFF",
+    "compile_all_modules": "OFF",
+    "core/algorithm_vehicle_slam": "master",
+    "core/vehicle": "master",
+    "common": "master",
+    "framework/device/gmock": "master",
+    "framework/device/roaddb_logger": "master",
+    "framework/device/roaddb_video": "master",
+    "core/common": "master",
+    "core/algorithm_common": "master",
+    "core/algorithm_sam": "master"
+  },
+  "cases_config": {
+    "tokyo": [
+      "/home/test/filefordebug/tokyo",
+      "/media/psf/Untitled/SLAM_TEST/OSM_DB/tokyo_debug_sectionDB_1118"
+    ]
+  },
+  "result_analyse_config": [
+    {
+      "section_num": "SEGMENT",
+      "high_quality_slam_coverage": "High Quality SLAM Trajectory Coverage Rate",
+      "total_length_slam": "Total Trajectory Length Of SLAM",
+      "total_length_gps": "Total Trajectory Length Of Gps",
+      "time": "TIME",
+      "kf_num": "KF NUMBER",
+      "mp_num": "MP NUMBER",
+      "kf_per_km": "KF NUMBER Per Kilometer",
+      "mp_per_km": "MP NUMBER Per Kilometer",
+      "lost_num": "Total Lost Number"
+    },
+    {
+      "usage_rate_of_mp_in_db": "The Utilization Rate Of Mappoints From Database",
+      "cr_of_new_mp": "The Contribution Rate Of New Mappoints",
+      "cr_of_new_kf": "The Contribution Rate Of New Keyframes",
+      "slam_cost_time": "Total Slam Cost Time",
+      "alignment_cost_time": "Total Alignment Cost Time"
+    },
+    {
+      "slam": "SlamSnippet*",
+      "alignment": "incSnippet*",
+      "rt": "incSnippet*"
+    }
+  ]
+}

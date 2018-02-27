@@ -1,0 +1,92 @@
+
+            <!DOCTYPE html>
+            <html>
+              <head>
+                <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+                <meta charset="utf-8">
+                <title>Simple Polylines</title>
+                <style>
+                  /* Always set the map height explicitly to define the size of the div
+                   * element that contains the map. */
+                  #map {
+                    height: 100%;
+                  }
+                  /* Optional: Makes the sample page fill the window. */
+                  html, body {
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                  }
+                </style>
+              </head>
+              <body>
+                <div id="map"></div>
+                <script>
+                var chicago = {lat:51.5345192 , lng: -2.59189868};
+                function CenterControl(controlDiv, map) {
+
+  // Set CSS for the control border.
+  var controlUI = document.createElement('div');
+  controlUI.style.backgroundColor = '#fff';
+  controlUI.style.border = '2px solid #fff';
+  controlUI.style.borderRadius = '3px';
+  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+  controlUI.style.cursor = 'pointer';
+  controlUI.style.marginBottom = '22px';
+  controlUI.style.textAlign = 'center';
+  controlUI.title = 'Click to recenter the map';
+  controlDiv.appendChild(controlUI);
+
+  // Set CSS for the control interior.
+  var controlText = document.createElement('div');
+  controlText.style.color = 'rgb(25,25,25)';
+  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+  controlText.style.fontSize = '16px';
+  controlText.style.lineHeight = '38px';
+  controlText.style.paddingLeft = '5px';
+  controlText.style.paddingRight = '5px';
+  controlText.innerHTML = '重置';
+  controlUI.appendChild(controlText);
+
+  // Setup the click event listeners: simply set the map to Chicago.
+  controlUI.addEventListener('click', function() {
+    map.setCenter(chicago);
+  });
+
+}
+                  function initMap() {
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                      zoom: 12,
+                      center: chicago,
+                      mapTypeId: 'terrain',
+
+                      });
+                      var centerControlDiv = document.createElement('div');
+  var centerControl = new CenterControl(centerControlDiv, map);
+  centerControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+
+
+
+
+
+
+                    var flightPlanCoordinates = [
+            {lat: 51.5345192 , lng: -2.59189868 },{lat: 51.53450775 , lng: -2.59191203 },{lat: 51.53449631 , lng: -2.5919323 },{lat: 51.53447723 , lng: -2.59195971 },{lat: 51.53443527 , lng: -2.59201455 },{lat: 51.53442383 , lng: -2.59203506 },{lat: 51.53440475 , lng: -2.59206223 },{lat: 51.53439331 , lng: -2.59207582 },{lat: 51.53437424 , lng: -2.592103 },{lat: 51.53436661 , lng: -2.59211636 },{lat: 51.53434753 , lng: -2.5921433 },{lat: 51.53430939 , lng: -2.5921967 },{lat: 51.53429413 , lng: -2.59221697 },{lat: 51.53427124 , lng: -2.59225035 },{lat: 51.53424454 , lng: -2.5922904 },{lat: 51.53423309 , lng: -2.59230399 },{lat: 51.53421783 , lng: -2.5923245 },{lat: 51.53421021 , lng: -2.59233785 },{lat: 51.53417206 , lng: -2.59239173 },{lat: 51.53414154 , lng: -2.59243894 },{lat: 51.5341301 , lng: -2.59245205 },{lat: 51.53411865 , lng: -2.59247231 },{lat: 51.53410339 , lng: -2.59249234 },{lat: 51.53409958 , lng: -2.59249926 },{lat: 51.53408432 , lng: -2.59251952 },{lat: 51.53407669 , lng: -2.59253311 },{lat: 51.5340538 , lng: -2.59256721 },{lat: 51.53404999 , lng: -2.59257412 },{lat: 51.53404617 , lng: -2.59258103 },{lat: 51.53395844 , lng: -2.59271479 },{lat: 51.53394318 , lng: -2.59273505 },{lat: 51.53391647 , lng: -2.59277606 },{lat: 51.53391266 , lng: -2.59278274 },{lat: 51.53390503 , lng: -2.59279656 },{lat: 51.53388977 , lng: -2.59281707 },{lat: 51.53386688 , lng: -2.59285092 },{lat: 51.53385925 , lng: -2.59286427 },{lat: 51.53385544 , lng: -2.59287119 },{lat: 51.53380585 , lng: -2.5929482 },{lat: 51.5337944 , lng: -2.59296942 },{lat: 51.53378296 , lng: -2.59298348 },{lat: 51.53375626 , lng: -2.59302592 },{lat: 51.53374863 , lng: -2.59304047 },{lat: 51.53372955 , lng: -2.59306979 },{lat: 51.53366089 , lng: -2.5931778 },{lat: 51.53364563 , lng: -2.59319949 },{lat: 51.533638 , lng: -2.59321404 },{lat: 51.5336113 , lng: -2.59325695 },{lat: 51.53357697 , lng: -2.59331489 },{lat: 51.53355789 , lng: -2.59334397 },{lat: 51.53353882 , lng: -2.59337354 },{lat: 51.53345871 , lng: -2.59350491 },{lat: 51.53345108 , lng: -2.59351945 },{lat: 51.53343582 , lng: -2.59354162 },{lat: 51.53336334 , lng: -2.59366584 },{lat: 51.53331375 , lng: -2.59374905 },{lat: 51.53324509 , lng: -2.5938499 },{lat: 51.53323746 , lng: -2.59386516 },{lat: 51.53318405 , lng: -2.59395695 },{lat: 51.53316879 , lng: -2.59398746 },{lat: 51.53314209 , lng: -2.59403372 },{lat: 51.53313065 , lng: -2.59405708 },{lat: 51.5330925 , lng: -2.59412622 },{lat: 51.53308487 , lng: -2.59414172 },{lat: 51.5330658 , lng: -2.594172 },{lat: 51.53304672 , lng: -2.59421039 },{lat: 51.53303909 , lng: -2.59422565 },{lat: 51.53302383 , lng: -2.59424853 },{lat: 51.53300476 , lng: -2.59428644 },{lat: 51.53299713 , lng: -2.59430146 },{lat: 51.5329895 , lng: -2.5943172 },{lat: 51.53297424 , lng: -2.59434724 },{lat: 51.53296661 , lng: -2.59435463 },{lat: 51.53295898 , lng: -2.59436965 },{lat: 51.53295517 , lng: -2.59437752 },{lat: 51.53295135 , lng: -2.59438515 },{lat: 51.53294754 , lng: -2.59439301 },{lat: 51.53293991 , lng: -2.59440851 },{lat: 51.53292084 , lng: -2.59443927 },{lat: 51.53291321 , lng: -2.59445477 },{lat: 51.53290558 , lng: -2.5944705 },{lat: 51.53289413 , lng: -2.59449387 },{lat: 51.53288269 , lng: -2.59450936 },{lat: 51.53287888 , lng: -2.59451723 },{lat: 51.53287506 , lng: -2.59452462 },{lat: 51.53286743 , lng: -2.59454012 },{lat: 51.5328598 , lng: -2.59455562 },{lat: 51.53284073 , lng: -2.59458613 },{lat: 51.53282928 , lng: -2.5946095 },{lat: 51.53280258 , lng: -2.59465504 },{lat: 51.53279495 , lng: -2.5946703 },{lat: 51.53277588 , lng: -2.5947082 },{lat: 51.53277206 , lng: -2.59471583 },{lat: 51.53276825 , lng: -2.59472346 },{lat: 51.53274918 , lng: -2.59475446 },{lat: 51.53273392 , lng: -2.59478474 },{lat: 51.53272247 , lng: -2.59480786 },{lat: 51.53269958 , lng: -2.59484601 },{lat: 51.53269196 , lng: -2.59486127 },{lat: 51.53267288 , lng: -2.59489965 },{lat: 51.53265381 , lng: -2.59493065 },{lat: 51.53263855 , lng: -2.5949614 },{lat: 51.53262711 , lng: -2.59498453 },{lat: 51.53261566 , lng: -2.59500003 },{lat: 51.5326004 , lng: -2.5950315 },{lat: 51.53259659 , lng: -2.59503937 },{lat: 51.53258514 , lng: -2.59505534 },{lat: 51.53255463 , lng: -2.59511065 },{lat: 51.53253555 , lng: -2.59514999 },{lat: 51.53252411 , lng: -2.59516597 },{lat: 51.53251266 , lng: -2.59518957 },{lat: 51.53250122 , lng: -2.59520531 },{lat: 51.53248596 , lng: -2.59523702 },{lat: 51.53246689 , lng: -2.59526873 },{lat: 51.53245163 , lng: -2.59529257 },{lat: 51.53244019 , lng: -2.59531665 },{lat: 51.53242111 , lng: -2.59534764 },{lat: 51.53241348 , lng: -2.59536409 },{lat: 51.53240967 , lng: -2.59537172 },{lat: 51.53239059 , lng: -2.59540415 },{lat: 51.53238678 , lng: -2.59541225 },{lat: 51.53238297 , lng: -2.59542012 },{lat: 51.53236771 , lng: -2.59544444 },{lat: 51.53236389 , lng: -2.59545231 },{lat: 51.53236008 , lng: -2.59546065 },{lat: 51.53234863 , lng: -2.59547663 },{lat: 51.532341 , lng: -2.59549308 },{lat: 51.53233719 , lng: -2.59550095 },{lat: 51.53232956 , lng: -2.59551764 },{lat: 51.53232193 , lng: -2.59552622 },{lat: 51.53231812 , lng: -2.59553432 },{lat: 51.53231049 , lng: -2.59555221 },{lat: 51.53230667 , lng: -2.59556055 },{lat: 51.53229523 , lng: -2.59557748 },{lat: 51.5322876 , lng: -2.59559488 },{lat: 51.53228378 , lng: -2.59560347 },{lat: 51.53227615 , lng: -2.59562039 },{lat: 51.53226471 , lng: -2.59563756 },{lat: 51.53225708 , lng: -2.59565496 },{lat: 51.53225327 , lng: -2.59566355 },{lat: 51.53224564 , lng: -2.59568071 },{lat: 51.53223801 , lng: -2.59569788 },{lat: 51.53222656 , lng: -2.59571528 },{lat: 51.53222275 , lng: -2.59572411 },{lat: 51.53221893 , lng: -2.59573293 },{lat: 51.5322113 , lng: -2.59575009 },{lat: 51.53220367 , lng: -2.59576797 },{lat: 51.53219223 , lng: -2.59579396 },{lat: 51.53218079 , lng: -2.59581137 },{lat: 51.53217316 , lng: -2.59582877 },{lat: 51.53216934 , lng: -2.59583735 },{lat: 51.53216171 , lng: -2.59585571 },{lat: 51.5321579 , lng: -2.59586501 },{lat: 51.53214264 , lng: -2.59589171 },{lat: 51.53213882 , lng: -2.5959003 },{lat: 51.5321312 , lng: -2.59591794 },{lat: 51.53212357 , lng: -2.59593606 },{lat: 51.53211975 , lng: -2.59594464 },{lat: 51.53211594 , lng: -2.59595346 },{lat: 51.53210831 , lng: -2.59597111 },{lat: 51.53210449 , lng: -2.59598017 },{lat: 51.53210068 , lng: -2.59598899 },{lat: 51.53208923 , lng: -2.59600616 },{lat: 51.53207779 , lng: -2.59603286 },{lat: 51.53207397 , lng: -2.59604168 },{lat: 51.53205109 , lng: -2.59609389 },{lat: 51.53204346 , lng: -2.59611106 },{lat: 51.53203201 , lng: -2.59612823 },{lat: 51.53202438 , lng: -2.59614539 },{lat: 51.53202057 , lng: -2.59615397 },{lat: 51.53201294 , lng: -2.59617114 },{lat: 51.53200531 , lng: -2.59618878 },{lat: 51.5320015 , lng: -2.59619808 },
+            ];
+                    var flightPath = new google.maps.Polyline({
+                      path: flightPlanCoordinates,
+                      geodesic: true,
+                      strokeColor: '#FF0000',
+                      strokeOpacity: 1.0,
+                      strokeWeight: 2
+                    });           
+                    flightPath.setMap(map);
+                  }
+                </script>
+                <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap">
+                </script>
+              </body>
+            </html>
+            
