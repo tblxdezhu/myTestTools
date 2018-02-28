@@ -253,9 +253,8 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path):
                           '170ca9d4e6b40738',
                           '--ort', os.path.join(path, 'rt.out'), '--idb', idb]
         if mode == 'alignment':
-            # db_path = os.path.join(server_path, "serverExampleSlam/build/section_out")
-            # db_path = os.path.join(server_path, "section_out")
-            db_path = os.path.join("/home/roaddb/query_out",os.path.basename(rtv))
+            db_path = os.path.join(server_path, "section_out")
+            # db_path = os.path.join("/home/roaddb/query_out",os.path.basename(rtv))
             parameter_list.extend(['--dso', db_path])
         elif mode == "rt":
             # db_path = os.path.join(server_path, "serverExampleResetConfidence/build/alter_db")
