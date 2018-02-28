@@ -204,6 +204,7 @@ class WorkFlow(Preparation):
         query_cmd = ' '.join(query_cmd_list)
         logger.info("%s", query_cmd)
         execute_cmd(query_cmd, debug_switch)
+        print os.path.curdir
         for file in os.listdir("./section"):
             print file
         # for file in os.listdir(path):
