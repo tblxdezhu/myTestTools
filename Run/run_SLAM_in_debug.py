@@ -204,6 +204,25 @@ class WorkFlow(Preparation):
         query_cmd = ' '.join(query_cmd_list)
         logger.info("%s", query_cmd)
         execute_cmd(query_cmd, debug_switch)
+        for file in os.listdir("./section"):
+            print file
+        # for file in os.listdir(path):
+        #     file_path = os.path.join(path,file)
+        #     with open(file_path,'r') as f:
+        #         print file_path
+        #         rtv = "2017-10" + file.split("gps")[1].rstrip(".")
+        #         print rtv
+        #         out = os.path.join(out_path,rtv)
+        #         cmd = "mkdir "+out
+        #         print cmd
+        #         os.system(cmd)
+        #         dbs = f.readlines()
+        #         for db in dbs:
+        #             print db.strip("\n")
+        #             db_path = os.path.join(dbs_path,db.strip("\n"))
+        #             cmd_db = "cp "+db_path+".bin "+out
+        #             print cmd_db
+        #             os.system(cmd_db)
 
     def reset_confidence(self):
         """
