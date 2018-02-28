@@ -211,7 +211,7 @@ class WorkFlow(Preparation):
         :return:
         """
         logger.warning("START RESET CONFIDENCE")
-        reset_confidence_cmd_list = [self.exec_path[3], os.path.join(self.serverExampleSLAM_build_path, 'section_out'),
+        reset_confidence_cmd_list = [self.exec_path[3], os.path.join(self.server_path, 'section_out'),
                                      '105']
         reset_confidence_cmd = ' '.join(reset_confidence_cmd_list)
         logger.info("reset_confidence_cmd:%s", reset_confidence_cmd)
