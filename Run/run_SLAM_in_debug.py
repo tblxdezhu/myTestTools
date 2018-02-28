@@ -199,11 +199,11 @@ class WorkFlow(Preparation):
         :return:
         """
         logger.warning("START QUERY:")
-        query_cmd_list = [self.exec_path[2], gpgga_path, self.serverExampleSLAM_build_path + "/section_out/"]
+        query_cmd_list = [self.exec_path[2], gpgga_path,
+                          os.path.join(self.server_path, "/section_out/")]
         query_cmd = ' '.join(query_cmd_list)
         logger.info("%s", query_cmd)
         execute_cmd(query_cmd, debug_switch)
-
 
     def reset_confidence(self):
         """
