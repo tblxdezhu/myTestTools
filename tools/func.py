@@ -44,3 +44,10 @@ def get_parser():
     if options.config_file == None:
         print parser.error("You must specify a configuration file")
     return options.mode, options.config_file, options.output_path, options.debug_switch
+
+
+def rtv2gpggagps(rtv_path,gpgga_path,extractor_path):
+    rtv2gpggagps_cmd_list = ["find", rtv_path, "-name *.rtv -exec", extractor_path, "-f {} -d", gpgga_path, "-g \\;"]
+    rtv2gpggagps_cmd = ' '.join(rtv2gpggagps_cmd_list)
+    print rtv2gpggagps_cmd
+    return gpgga_path

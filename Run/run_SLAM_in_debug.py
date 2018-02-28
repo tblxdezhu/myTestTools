@@ -54,12 +54,18 @@ class Check:
                 server_path = os.path.join(path, "core/algorithm_sam/example/")
                 serverExampleSLAM_path = os.path.join(path, "core/algorithm_sam/build/example/serverExampleSlam")
                 # TODO 下面两个可执行文件路径待定，暂时全部设定为存在
-                querySection_path = os.path.join(path, "core/algorithm_sam/build/example/serverExampleSlam")
+                extractor_path = os.path.join(path, "framework/device/rdb-tools-debug-tools/dist/x64/bin/rtv-extractor")
+                querySection_path = os.path.join(path,
+                                                 "core/algorithm_sam/example/serverExampleQueryDivision/build/querySectionByGps")
                 reset_confidence_path = os.path.join(path, "core/algorithm_sam/build/example/serverExampleSlam")
                 if os.path.exists(serverExampleSLAM_path):
                     logger.info("serverExampleSLAM: PASS")
                 else:
                     raise MyException(err="serverExampleSLAM is not exist")
+                if os.path.exists(extractor_path):
+                    logger.info("rtv-extractor: PASS")
+                else:
+                    raise MyException(err="rtv-extractor is not exist")
                 if os.path.exists(querySection_path):
                     logger.info("querySection_path: PASS")
                 else:
@@ -70,7 +76,7 @@ class Check:
                     else:
                         raise MyException(
                             err="serverExampleResetConfidence is not exist")
-                return executable_path, serverExampleSLAM_path, querySection_path, reset_confidence_path
+                return executable_path, serverExampleSLAM_path, querySection_path, reset_confidence_path, extractor_path
         except MyException, e:
             logger.error(e)
             sys.exit()
@@ -152,14 +158,16 @@ class WorkFlow(Preparation):
             for rtv in self.rtvs:
                 for imu in self.imus:
                     for gps in self.gpss:
-                        if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu") == os.path.basename(gps).strip(".gps"):
-                        # if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu"):
+                        if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(
+                                ".imu") == os.path.basename(gps).strip(".gps"):
+                            # if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu"):
                             logger.info("[%s]rtv:%s,imu:%s,gps:%s",
-                                        mode, rtv, imu,gps)
+                                        mode, rtv, imu, gps)
                             output_dir = os.path.join(
                                 self.output_path, mode, os.path.basename(rtv).strip(".rtv"))
                             pool.apply_async(run_slam,
-                                             (mode, self.exec_path[0], self.ip, self.ic, rtv, imu,gps, self.ivoc, output_dir,
+                                             (mode, self.exec_path[0], self.ip, self.ic, rtv, imu, gps, self.ivoc,
+                                              output_dir,
                                               self.server_path))
             pool.close()
             pool.join()
@@ -184,6 +192,13 @@ class WorkFlow(Preparation):
         logger.info("[%s] serverExampleSLAM_cmd:%s",
                     mode, serverExampleSLAM_cmd)
         execute_cmd(serverExampleSLAM_cmd, debug_switch)
+
+    def query(self, gpgga_path):
+        """
+
+        :return:
+        """
+        logger.warning("START QUERY:")
 
     def reset_confidence(self):
         """
@@ -247,9 +262,10 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path):
         idb = path
         os.makedirs(path)
         logger.info("mkdir %s", path)
-        parameter_list = [exec_file, '--ip', ip, '--ic', ic, '--ivg', rtv, '--iimu', imu, '--igps',gps, '--ivoc', ivoc, '--tmp', path,
+        parameter_list = [exec_file, '--ip', ip, '--ic', ic, '--ivg', rtv, '--iimu', imu, '--igps', gps, '--ivoc', ivoc,
+                          '--tmp', path,
                           '--ol', path, '--d', path, '--oqlt', path, '--osp', os.path.join(
-                              path, 'slam.out'), '--ivid',
+                path, 'slam.out'), '--ivid',
                           '170ca9d4e6b40738',
                           '--ort', os.path.join(path, 'rt.out'), '--idb', idb]
         if mode == 'alignment':
@@ -336,7 +352,7 @@ def execute_cmd(cmd, mode):
             logger.error(output)
         return output
     else:
-        pass
+        logger.info("%s", cmd)
 
 
 def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, output_dir):
@@ -362,7 +378,9 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 work.vehicle_slam("slam")
             elif script_mode == "alignment":
                 work.output_path = os.path.dirname(work.output_path)
-                # work.server_process("slam")
+                work.server_process("slam")
+                func.rtv2gpggagps(cases[0], cases[0] + "/gpggagps", work.exec_path[4])
+                work.query()
                 work.vehicle_slam("alignment")
                 # work.server_process("alignment")
                 # work.reset_confidence()
@@ -371,6 +389,8 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
             elif script_mode == "whole":
                 work.vehicle_slam("slam")
                 work.server_process("slam")
+                func.rtv2gpggagps(cases[0], cases[0] + "/gpggagps", work.exec_path[4])
+                work.query()
                 work.vehicle_slam("alignment")
                 work.server_process("alignment")
                 # work.reset_confidence()
