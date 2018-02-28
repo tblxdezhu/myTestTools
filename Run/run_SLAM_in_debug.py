@@ -220,8 +220,9 @@ class WorkFlow(Preparation):
                 dbs = f.readlines()
                 for db in dbs:
                     print db
+                    db = db+".bin"
                     try:
-                        cmd_cp_db = "cp " + os.path.join(self.db_path, db + ".bin") + " " + query_out_rtv_path
+                        cmd_cp_db = "cp " + os.path.join(self.db_path, db) + " " + query_out_rtv_path
                         print cmd_cp_db
                         os.system(cmd_cp_db)
                     except Exception:
