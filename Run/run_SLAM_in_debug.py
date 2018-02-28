@@ -221,6 +221,7 @@ class WorkFlow(Preparation):
                 for db in dbs:
                     print db
                     db = db+".bin"
+                    print db
                     try:
                         cmd_cp_db = "cp " + os.path.join(self.db_path, db) + " " + query_out_rtv_path
                         print cmd_cp_db
