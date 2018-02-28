@@ -5,6 +5,7 @@
 # @Last Modified by:   zhenxuan.xu
 # @Last Modified time: 2018-01-31 10:39:20
 
+import os
 import sys
 import json
 from optparse import OptionParser
@@ -48,6 +49,9 @@ def get_parser():
 
 def rtv2gpggagps(rtv_path,gpgga_path,extractor_path):
     rtv2gpggagps_cmd_list = ["find", rtv_path, "-name *.rtv -exec", extractor_path, "-f {} -d", gpgga_path, "-g \\;"]
+    if not os.path.exists(gpgga_path):
+        # os.mkdir(gpgga_path)
+        print "mkdir ",gpgga_path
     rtv2gpggagps_cmd = ' '.join(rtv2gpggagps_cmd_list)
     print rtv2gpggagps_cmd
     return gpgga_path
