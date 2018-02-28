@@ -293,8 +293,8 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path):
                           '170ca9d4e6b40738',
                           '--ort', os.path.join(path, 'rt.out'), '--idb', idb]
         if mode == 'alignment':
-            db_path = os.path.join(server_path, "section_out")
-            # db_path = os.path.join("/home/roaddb/query_out",os.path.basename(rtv))
+            # db_path = os.path.join(server_path, "section_out")
+            db_path = os.path.join(server_path,"query_out",os.path.basename(rtv))
             parameter_list.extend(['--dso', db_path])
         elif mode == "rt":
             # db_path = os.path.join(server_path, "serverExampleResetConfidence/build/alter_db")
@@ -412,13 +412,13 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 # TODO 跑rt时注意修改进程数
                 # work.vehicle_slam("rt")
             elif script_mode == "whole":
-                # work.vehicle_slam("slam")
-                # work.server_process("slam")
+                work.vehicle_slam("slam")
+                work.server_process("slam")
                 gpgga_path = cases[0] + "/gpggagps"
                 func.rtv2gpggagps(cases[0], gpgga_path, work.exec_path[4])
                 work.query(gpgga_path)
-                # work.vehicle_slam("alignment")
-                # work.server_process("alignment")
+                work.vehicle_slam("alignment")
+                work.server_process("alignment")
                 # work.reset_confidence()
                 # TODO 跑rt时注意修改进程数
                 # work.vehicle_slam("rt")
