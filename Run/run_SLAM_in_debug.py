@@ -130,6 +130,7 @@ class Preparation(Check):
         self.exec_path = self.check_executable_file(self.sourcecode_path)
         # self.server_path = self.sourcecode_path + "/core/algorithm_sam/example"
         self.server_path = self.sourcecode_path + "/core/algorithm_sam/build/example"
+        self.db_path = os.path.join(self.server_path, "section_out")
 
     def check_preparation(self):
         """
@@ -204,9 +205,20 @@ class WorkFlow(Preparation):
         query_cmd = ' '.join(query_cmd_list)
         logger.info("%s", query_cmd)
         execute_cmd(query_cmd, debug_switch)
-        print os.path.curdir
+        query_out_path = os.path.join(self.server_path, "query_out")
+        if os.path.exists(query_out_path):
+            os.system("rm -rf " + query_out_path + "/*")
+        else:
+            os.mkdir(query_out_path)
         for file in os.listdir("./section"):
             print file
+            with open(os.path.join("./section", file), 'r') as f:
+                print os.path.join("./section", file)
+                rtv = file.strip(".gps")
+                os.mkdir(os.path.join(query_out_path, rtv))
+                dbs = f.readlines()
+                for db in dbs:
+                    print db
         # for file in os.listdir(path):
         #     file_path = os.path.join(path,file)
         #     with open(file_path,'r') as f:
