@@ -215,13 +215,13 @@ class WorkFlow(Preparation):
             with open(os.path.join("./section", file), 'r') as f:
                 print os.path.join("./section", file)
                 # rtv = file.strip(".gps")
-                query_out_rtv_path = os.path.join(query_out_path,file.strip(".gps"))
+                query_out_rtv_path = os.path.join(query_out_path, file.strip(".gps"))
                 os.mkdir(query_out_rtv_path)
                 dbs = f.readlines()
                 for db in dbs:
                     print db
                     try:
-                        cmd_cp_db = "cp "+self.db_path+".bin "+query_out_rtv_path
+                        cmd_cp_db = "cp " + os.path.join(self.db_path, db + ".bin") + " " + query_out_rtv_path
                         print cmd_cp_db
                         os.system(cmd_cp_db)
                     except Exception:
