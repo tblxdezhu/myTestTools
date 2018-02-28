@@ -220,7 +220,7 @@ class WorkFlow(Preparation):
                 dbs = f.readlines()
                 for db in dbs:
                     print db
-                    db = db+".bin"
+                    db = db.strip("\n")+".bin"
                     print db
                     try:
                         cmd_cp_db = "cp " + os.path.join(self.db_path, db) + " " + query_out_rtv_path
