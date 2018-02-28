@@ -40,18 +40,18 @@ def get_parser():
                       help="Select whether open the debug mode of script OFF or ON,default is OFF",
                       default="OFF")
     (options, args) = parser.parse_args()
-    if len(sys.argv) == 1 or options.mode not in ["slam", "alignment", "whole"] or options.debug_switch not in ['ON', 'OFF']:
+    if len(sys.argv) == 1 or options.mode not in ["slam", "alignment", "whole"] or options.debug_switch not in ['ON',
+                                                                                                                'OFF']:
         print parser.error("You can enter '-h' to see the detailed usage")
     if options.config_file == None:
         print parser.error("You must specify a configuration file")
     return options.mode, options.config_file, options.output_path, options.debug_switch
 
 
-def rtv2gpggagps(rtv_path,gpgga_path,extractor_path):
+def rtv2gpggagps(rtv_path, gpgga_path, extractor_path):
     rtv2gpggagps_cmd_list = ["find", rtv_path, "-name *.rtv -exec", extractor_path, "-f {} -d", gpgga_path, "-g \\;"]
     if not os.path.exists(gpgga_path):
-        # os.mkdir(gpgga_path)
-        print "mkdir ",gpgga_path
+        print "mkdir ", gpgga_path
+        os.mkdir(gpgga_path)
     rtv2gpggagps_cmd = ' '.join(rtv2gpggagps_cmd_list)
     print rtv2gpggagps_cmd
-    return gpgga_path

@@ -199,6 +199,8 @@ class WorkFlow(Preparation):
         :return:
         """
         logger.warning("START QUERY:")
+        query_cmd_list = [self.exec_path[3],gpgga_path,self.exec_path[1]+"/section_out/"]
+        logger.info("%s",' '.join(query_cmd_list))
 
     def reset_confidence(self):
         """
@@ -379,8 +381,9 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
             elif script_mode == "alignment":
                 work.output_path = os.path.dirname(work.output_path)
                 work.server_process("slam")
-                func.rtv2gpggagps(cases[0], cases[0] + "/gpggagps", work.exec_path[4])
-                work.query()
+                gpgga_path = cases[0] + "/gpggagps"
+                func.rtv2gpggagps(cases[0], gpgga_path, work.exec_path[4])
+                work.query(gpgga_path)
                 work.vehicle_slam("alignment")
                 # work.server_process("alignment")
                 # work.reset_confidence()
@@ -389,8 +392,9 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
             elif script_mode == "whole":
                 work.vehicle_slam("slam")
                 work.server_process("slam")
-                func.rtv2gpggagps(cases[0], cases[0] + "/gpggagps", work.exec_path[4])
-                work.query()
+                gpgga_path = cases[0] + "/gpggagps"
+                func.rtv2gpggagps(cases[0], gpgga_path, work.exec_path[4])
+                work.query(gpgga_path)
                 work.vehicle_slam("alignment")
                 work.server_process("alignment")
                 # work.reset_confidence()
