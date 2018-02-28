@@ -55,3 +55,4 @@ def rtv2gpggagps(rtv_path, gpgga_path, extractor_path):
         os.mkdir(gpgga_path)
     rtv2gpggagps_cmd = ' '.join(rtv2gpggagps_cmd_list)
     print rtv2gpggagps_cmd
+    os.system(rtv2gpggagps_cmd)

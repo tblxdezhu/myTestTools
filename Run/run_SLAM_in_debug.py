@@ -199,8 +199,11 @@ class WorkFlow(Preparation):
         :return:
         """
         logger.warning("START QUERY:")
-        query_cmd_list = [self.exec_path[2],gpgga_path,self.serverExampleSLAM_build_path+"/section_out/"]
-        logger.info("%s",' '.join(query_cmd_list))
+        query_cmd_list = [self.exec_path[2], gpgga_path, self.serverExampleSLAM_build_path + "/section_out/"]
+        query_cmd = ' '.join(query_cmd_list)
+        logger.info("%s", query_cmd)
+        execute_cmd(query_cmd, debug_switch)
+
 
     def reset_confidence(self):
         """
@@ -390,13 +393,13 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 # TODO 跑rt时注意修改进程数
                 # work.vehicle_slam("rt")
             elif script_mode == "whole":
-                work.vehicle_slam("slam")
-                work.server_process("slam")
+                # work.vehicle_slam("slam")
+                # work.server_process("slam")
                 gpgga_path = cases[0] + "/gpggagps"
                 func.rtv2gpggagps(cases[0], gpgga_path, work.exec_path[4])
                 work.query(gpgga_path)
-                work.vehicle_slam("alignment")
-                work.server_process("alignment")
+                # work.vehicle_slam("alignment")
+                # work.server_process("alignment")
                 # work.reset_confidence()
                 # TODO 跑rt时注意修改进程数
                 # work.vehicle_slam("rt")
