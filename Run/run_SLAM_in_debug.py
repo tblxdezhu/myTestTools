@@ -211,40 +211,18 @@ class WorkFlow(Preparation):
         else:
             os.mkdir(query_out_path)
         for file in os.listdir("./section"):
-            print file
             with open(os.path.join("./section", file), 'r') as f:
-                print os.path.join("./section", file)
-                # rtv = file.strip(".gps")
                 query_out_rtv_path = os.path.join(query_out_path, file.strip(".gps"))
                 os.mkdir(query_out_rtv_path)
                 dbs = f.readlines()
                 for db in dbs:
-                    print db
-                    db = db.strip("\n")+".bin"
-                    print db
+                    db = db.strip("\n") + ".bin"
                     try:
                         cmd_cp_db = "cp " + os.path.join(self.db_path, db) + " " + query_out_rtv_path
-                        print cmd_cp_db
-                        os.system(cmd_cp_db)
+                        logger.info("%s", cmd_cp_db)
+                        execute_cmd(cmd_cp_db, debug_switch)
                     except Exception:
                         pass
-        # for file in os.listdir(path):
-        #     file_path = os.path.join(path,file)
-        #     with open(file_path,'r') as f:
-        #         print file_path
-        #         rtv = "2017-10" + file.split("gps")[1].rstrip(".")
-        #         print rtv
-        #         out = os.path.join(out_path,rtv)
-        #         cmd = "mkdir "+out
-        #         print cmd
-        #         os.system(cmd)
-        #         dbs = f.readlines()
-        #         for db in dbs:
-        #             print db.strip("\n")
-        #             db_path = os.path.join(dbs_path,db.strip("\n"))
-        #             cmd_db = "cp "+db_path+".bin "+out
-        #             print cmd_db
-        #             os.system(cmd_db)
 
     def reset_confidence(self):
         """
