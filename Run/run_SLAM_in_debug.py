@@ -123,6 +123,7 @@ class Preparation(Check):
         self.gps_skeleton_path = self.cases[1]
         self.output_path = output_path
         self.sourcecode_path = self.run_configs["sourcecode_path"]
+        self.processes_num = self.run_configs["processes"]
         self.ip = self.sourcecode_path + "/core/vehicle/config/slamConfig.json"
         self.ic = self.sourcecode_path + "/core/vehicle/config/camera65.json"
         self.ivoc = self.sourcecode_path + "/core/vehicle/config/Highway_Detroit_Downtown_sum--0--1799-4_voc"
@@ -152,10 +153,9 @@ class WorkFlow(Preparation):
         :return:
         """
         try:
-            processes_num = 7
-            pool = Pool(processes=processes_num)
+            pool = Pool(processes=self.processes_num)
             logger.warning(
-                "[%s]START %s and processes nums are %s", mode, mode, processes_num)
+                "[%s]START %s and processes nums are %s", mode, mode, self.processes_num)
             for rtv in self.rtvs:
                 for imu in self.imus:
                     for gps in self.gpss:
