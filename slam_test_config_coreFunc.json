@@ -26,9 +26,41 @@
     "core/algorithm_sam": "master"
   },
   "cases_config": {
-    "tokyo": [
-      "/home/test/filefordebug/tokyo",
+    "22208": [
+      "/media/psf/Untitled/SLAM_TEST/coreFunction/RDB-22208",
+      "/media/psf/Untitled/SLAM_TEST/OSM_DB/ccdemo_debug_sectionDB_026"
+    ],
+    "22209":[
+      "/media/psf/Untitled/SLAM_TEST/coreFunction/RDB-22209",
       "/media/psf/Untitled/SLAM_TEST/OSM_DB/tokyo_debug_sectionDB_1118"
+    ],
+    "22210":[
+      "/media/psf/Untitled/SLAM_TEST/coreFunction/RDB-22210",
+      "/media/psf/Untitled/SLAM_TEST/OSM_DB/fushi_debug_sectionDB_1121"
+    ],
+    "22211":[
+      "/media/psf/Untitled/SLAM_TEST/coreFunction/RDB-22211",
+      "/media/psf/Untitled/SLAM_TEST/OSM_DB/fushi_debug_sectionDB_1121"
+    ],
+    "22215":[
+      "/media/psf/Untitled/SLAM_TEST/coreFunction/RDB-22215",
+      "/media/psf/Untitled/SLAM_TEST/OSM_DB/milford_debug_sectionDB_1104"
+    ],
+    "22216":[
+      "/media/psf/Untitled/SLAM_TEST/coreFunction/RDB-22216",
+      "/media/psf/Untitled/SLAM_TEST/OSM_DB/milford_debug_sectionDB_1104"
+    ],
+    "22219":[
+      "/media/psf/Untitled/SLAM_TEST/coreFunction/RDB-22219",
+      "/media/psf/Untitled/SLAM_TEST/OSM_DB/memmingen_debug_sectionDB_1102"
+    ],
+    "22220":[
+      "/media/psf/Untitled/SLAM_TEST/coreFunction/RDB-22220",
+      "/media/psf/Untitled/SLAM_TEST/OSM_DB/fushi_debug_sectionDB_1121"
+    ],
+    "22221":[
+      "/media/psf/Untitled/SLAM_TEST/coreFunction/RDB-22221",
+      "/media/psf/Untitled/SLAM_TEST/OSM_DB/milford_debug_sectionDB_1104"
     ]
   },
   "result_analyse_config": [
