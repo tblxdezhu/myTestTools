@@ -49,6 +49,13 @@ def get_parser():
 
 
 def rtv2gpggagps(rtv_path, gpgga_path, extractor_path):
+    """
+
+    :param rtv_path:
+    :param gpgga_path:
+    :param extractor_path:
+    :return:
+    """
     rtv2gpggagps_cmd_list = ["find", rtv_path, "-name *.rtv -exec", extractor_path, "-f {} -d", gpgga_path, "-g \\;"]
     if not os.path.exists(gpgga_path):
         print "mkdir ", gpgga_path
