@@ -102,6 +102,12 @@ class Check:
         gpss = find_file("*.gps", input_path)
         diff_list = list(set(rtvs) ^ set(
             [imu.replace(".imu", ".rtv") for imu in imus]))
+        touch_gps_list = list(set(gpss) ^ set([rtv.replace(".rtv", ".gps") for rtv in rtvs]))
+        for touch_gps in touch_gps_list:
+            cmd_touch_gps = "touch " + touch_gps
+            logger.info("%s", cmd_touch_gps)
+            execute_cmd(cmd_touch_gps, debug_switch)
+
         try:
             if diff_list:
                 raise ValueError
@@ -294,7 +300,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path):
                           '--ort', os.path.join(path, 'rt.out'), '--idb', idb]
         if mode == 'alignment':
             # db_path = os.path.join(server_path, "section_out")
-            db_path = os.path.join(server_path,"query_out",os.path.basename(rtv))
+            db_path = os.path.join(server_path, "query_out", os.path.basename(rtv))
             parameter_list.extend(['--dso', db_path])
         elif mode == "rt":
             # db_path = os.path.join(server_path, "serverExampleResetConfidence/build/alter_db")
