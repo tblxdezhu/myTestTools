@@ -101,7 +101,7 @@ def data_process():
 def draw():
     data, center_data = data_process()
     for k in get_all_kmls(folder_path):
-        path = os.path.join(sys.path[0], k + ".html")
+        path = os.path.join(sys.path[0], "webKmls", k + ".html")
         with open(path, 'w') as f:
             f.write(
                 '''
@@ -159,4 +159,3 @@ def draw():
 if __name__ == '__main__':
     folder_path = sys.argv[1]
     draw()
-
