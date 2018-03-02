@@ -55,6 +55,7 @@ def main():
         os.chdir(sys.path[0])
         cases_set_dict = func.config_from_json(config_file, "cases_config")
         for k in cases_set_dict:
+            os.chdir(sys.path[0])
             log_file_name = ''.join([time.strftime('%Y-%m-%d_%H_%M_%S', time.localtime(
                 time.time())), '_', os.path.basename(cases_set_dict[k][0]), '.log'])
             logger = log.Logger(log_name=log_file_name, logger=k).get_log()
