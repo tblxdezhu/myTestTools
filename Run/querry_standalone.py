@@ -60,9 +60,9 @@ def query(self, gpgga_path, debug_switch):
 
 
 if __name__ == '__main__':
-    query_result_path = sys.argv[0]
-    need_query_dbs_path = sys.argv[1]
-    query_out_path = sys.argv[2]
+    query_result_path = sys.argv[1]
+    need_query_dbs_path = sys.argv[2]
+    query_out_path = sys.argv[3]
 
     for file in os.listdir(query_result_path):
         file_path = os.path.join(query_result_path, file)
