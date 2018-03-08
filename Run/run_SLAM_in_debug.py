@@ -408,10 +408,11 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 func.rtv2gpggagps(cases[0], gpgga_path, work.exec_path[4])
                 work.query(gpgga_path)
                 work.vehicle_slam("alignment")
-                # work.server_process("alignment")
-                # work.reset_confidence()
-                # TODO 跑rt时注意修改进程数
-                # work.vehicle_slam("rt")
+                work.server_process("alignment")
+                work.reset_confidence()
+                work.query(gpgga_path)
+                work.processes_num = 1
+                work.vehicle_slam("rt")
             elif script_mode == "whole":
                 work.vehicle_slam("slam")
                 work.server_process("slam")
@@ -422,7 +423,6 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 work.server_process("alignment")
                 work.reset_confidence()
                 work.query(gpgga_path)
-                # TODO 跑rt时注意修改进程数
                 work.processes_num = 1
                 work.vehicle_slam("rt")
             else:
