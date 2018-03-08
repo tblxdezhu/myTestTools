@@ -297,13 +297,9 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path):
                 path, 'slam.out'), '--ivid',
                           '170ca9d4e6b40738',
                           '--ort', os.path.join(path, 'rt.out'), '--idb', idb]
-        if mode == 'alignment':
+        if mode == 'alignment'or mode == "rt":
             # db_path = os.path.join(server_path, "section_out")
             db_path = os.path.join(server_path, "query_out", os.path.basename(rtv))
-            parameter_list.extend(['--dso', db_path])
-        elif mode == "rt":
-            # db_path = os.path.join(server_path, "serverExampleResetConfidence/build/alter_db")
-            db_path = os.path.join(server_path, "serverExampleResetConfidence/build/alter_db")
             parameter_list.extend(['--dso', db_path])
         else:
             pass
