@@ -236,8 +236,7 @@ class WorkFlow(Preparation):
         :return:
         """
         logger.warning("START RESET CONFIDENCE")
-        reset_confidence_cmd_list = [self.exec_path[3], os.path.join(self.server_path, 'section_out'),
-                                     '105']
+        reset_confidence_cmd_list = [self.exec_path[3], '3', self.server_path, self.server_path, '105']
         reset_confidence_cmd = ' '.join(reset_confidence_cmd_list)
         logger.info("reset_confidence_cmd:%s", reset_confidence_cmd)
         execute_cmd(reset_confidence_cmd, debug_switch)
@@ -425,9 +424,11 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 work.query(gpgga_path)
                 work.vehicle_slam("alignment")
                 work.server_process("alignment")
-                # work.reset_confidence()
+                work.reset_confidence()
+                work.query(gpgga_path)
                 # TODO 跑rt时注意修改进程数
-                # work.vehicle_slam("rt")
+                work.processes_num = 1
+                work.vehicle_slam("rt")
             else:
                 raise MyException
         except Exception, e:
