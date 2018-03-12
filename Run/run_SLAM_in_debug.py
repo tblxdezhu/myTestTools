@@ -132,6 +132,7 @@ class Preparation(Check):
         self.processes_num = self.run_configs["processes"]
         self.ip = self.sourcecode_path + "/core/vehicle/config/slamConfig.json"
         self.ic = self.sourcecode_path + "/core/vehicle/config/camera65.json"
+        self.ic = self.sourcecode_path + "/core/vehicle/config/" + self.run_configs["camera"]
         self.ivoc = self.sourcecode_path + "/core/vehicle/config/Highway_Detroit_Downtown_sum--0--1799-4_voc"
         self.rtvs, self.imus, self.gpss = self.check_cases(self.cases[0])
         self.exec_path = self.check_executable_file(self.sourcecode_path)
