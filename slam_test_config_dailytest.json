@@ -5,7 +5,7 @@
     "branch": "master",
     "sourcecode_path": "/home/test/new_repo",
     "compile code":"OFF",
-    "camera": "65",
+    "camera": "camera65.json",
     "bow": "/home/test/",
     "num": 100,
     "processes": 4,
