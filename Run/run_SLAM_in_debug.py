@@ -298,7 +298,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path):
                 path, 'slam.out'), '--ivid',
                           '170ca9d4e6b40738',
                           '--ort', os.path.join(path, 'rt.out'), '--idb', idb]
-        if mode == 'alignment'or mode == "rt":
+        if mode == 'alignment'or mode == 'alignment2' or mode == "rt":
             # db_path = os.path.join(server_path, "section_out")
             db_path = os.path.join(server_path, "query_out", os.path.basename(rtv))
             parameter_list.extend(['--dso', db_path])
@@ -422,6 +422,9 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 work.query(gpgga_path)
                 work.vehicle_slam("alignment")
                 work.server_process("alignment")
+                work.query(gpgga_path)
+                work.vehicle_slam("alignment2")
+                work.server_process("alignment2")
                 work.reset_confidence()
                 work.query(gpgga_path)
                 work.processes_num = 1
