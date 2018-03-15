@@ -190,7 +190,7 @@ class WorkFlow(Preparation):
         :return:
         """
         logger.warning("START SERVER PROCESS: %s", mode)
-        mode_type = {'slam': '1', 'alignment': '2'}
+        mode_type = {'slam': '1', 'alignment': '2', 'alignment2': '2'}
         self.serverExampleSLAM_build_path = os.path.dirname(self.exec_path[1])
         copy_files(os.path.join(self.output_path, mode),
                    self.serverExampleSLAM_build_path, mode)
@@ -298,7 +298,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path):
                 path, 'slam.out'), '--ivid',
                           '170ca9d4e6b40738',
                           '--ort', os.path.join(path, 'rt.out'), '--idb', idb]
-        if mode == 'alignment'or mode == 'alignment2' or mode == "rt":
+        if mode == 'alignment' or mode == 'alignment2' or mode == "rt":
             # db_path = os.path.join(server_path, "section_out")
             db_path = os.path.join(server_path, "query_out", os.path.basename(rtv))
             parameter_list.extend(['--dso', db_path])
