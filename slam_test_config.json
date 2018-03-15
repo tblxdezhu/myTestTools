@@ -28,7 +28,7 @@
   "cases_config": {
     "gm": [
       "/home/ubuntu/gm_0315",
-      "/media/psf/Untitled/SLAM_TEST/OSM_DB/tokyo_debug_sectionDB_1118"
+      "/home/ubuntu/debug_sectionDB"
     ]
   },
   "result_analyse_config": [
