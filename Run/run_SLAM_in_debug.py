@@ -340,8 +340,8 @@ def copy_files(files_path, output_path, mode):
     :return:
     """
     mode_snippet_type = {"slam": "SlamSnippet*",
-                         "alignment": "incSnippet*", "rt": "incSnippet*"}
-    mode_file_type = {"slam": "maplist.txt", "alignment": "inclist.txt"}
+                         "alignment": "incSnippet*", "rt": "incSnippet*","alignment2": "incSnippet*"}
+    mode_file_type = {"slam": "maplist.txt", "alignment": "inclist.txt","alignment2": "inclist.txt"}
     try:
         output_path = os.path.join(output_path, mode + "out")
         if os.path.exists(output_path):
