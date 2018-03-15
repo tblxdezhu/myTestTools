@@ -2,13 +2,13 @@
   "run_config": {
     "owner": "zhenxuan",
     "email": "zhenxuan.xu@ygomi.com",
-    "branch": "master",
-    "sourcecode_path": "/home/test/new_repo",
+    "branch": "release231x",
+    "sourcecode_path": "/home/ubuntu/sourcescode",
     "compile code":"OFF",
-    "camera": "camera65.json",
+    "camera": "camera.json",
     "bow": "/home/test/",
     "num": 100,
-    "processes": 4,
+    "processes": 7,
     "backup db": "OFF"
   },
   "compile": {
@@ -26,8 +26,8 @@
     "core/algorithm_sam": "master"
   },
   "cases_config": {
-    "tokyo": [
-      "/home/test/filefordebug/tokyo",
+    "gm": [
+      "/home/ubuntu/gm_0315",
       "/media/psf/Untitled/SLAM_TEST/OSM_DB/tokyo_debug_sectionDB_1118"
     ]
   },
