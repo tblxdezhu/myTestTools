@@ -4,15 +4,16 @@
     "email": "zhenxuan.xu@ygomi.com",
     "branch": "release231x",
     "sourcecode_path": "/home/ubuntu/sourcescode",
-    "compile code":"OFF",
+    "compile code": "OFF",
     "camera": "camera.json",
+    "raw gps": "yes",
     "bow": "/home/test/",
     "num": 100,
     "processes": 7,
     "backup db": "OFF"
   },
   "compile": {
-    "mode": "debug",  
+    "mode": "debug",
     "visualization": "OFF",
     "compile_all_modules": "OFF",
     "core/algorithm_vehicle_slam": "master",

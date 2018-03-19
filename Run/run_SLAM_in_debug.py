@@ -100,14 +100,14 @@ class Check:
         rtvs = find_file("*.rtv", input_path)
         imus = find_file("*.imu", input_path)
         gpss = find_file("*.gps", input_path)
-        diff_list = list(set(rtvs) ^ set(
-            [imu.replace(".imu", ".rtv") for imu in imus]))
-        touch_gps_list = list(set(gpss) ^ set([rtv.replace(".rtv", ".gps") for rtv in rtvs]))
-        for touch_gps in touch_gps_list:
-            cmd_touch_gps = "touch " + touch_gps
-            logger.info("%s", cmd_touch_gps)
-            execute_cmd(cmd_touch_gps, debug_switch)
-
+        if gpss:
+            diff_list = list(set(rtvs) ^ set(
+                [imu.replace(".imu", ".rtv") for imu in imus]))
+            touch_gps_list = list(set(gpss) ^ set([rtv.replace(".rtv", ".gps") for rtv in rtvs]))
+            for touch_gps in touch_gps_list:
+                cmd_touch_gps = "touch " + touch_gps
+                logger.info("%s", cmd_touch_gps)
+                execute_cmd(cmd_touch_gps, debug_switch)
         try:
             if diff_list:
                 raise ValueError
@@ -139,6 +139,7 @@ class Preparation(Check):
         # self.server_path = self.sourcecode_path + "/core/algorithm_sam/example"
         self.server_path = self.sourcecode_path + "/core/algorithm_sam/build/example"
         self.db_path = os.path.join(self.server_path, "section_out")
+        self.if_raw_gps = self.run_configs["raw gps"]
 
     def check_preparation(self):
         """
@@ -165,18 +166,18 @@ class WorkFlow(Preparation):
                 "[%s]START %s and processes nums are %s", mode, mode, self.processes_num)
             for rtv in self.rtvs:
                 for imu in self.imus:
-                    for gps in self.gpss:
-                        if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(
-                                ".imu") == os.path.basename(gps).strip(".gps"):
-                            # if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu"):
-                            logger.info("[%s]rtv:%s,imu:%s,gps:%s",
-                                        mode, rtv, imu, gps)
-                            output_dir = os.path.join(
-                                self.output_path, mode, os.path.basename(rtv).strip(".rtv"))
-                            pool.apply_async(run_slam,
-                                             (mode, self.exec_path[0], self.ip, self.ic, rtv, imu, gps, self.ivoc,
-                                              output_dir,
-                                              self.server_path))
+                    # for gps in self.gpss:
+                    if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu"):
+                        # if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu"):
+                        gps = rtv.replace('.rtv', '.gps')
+                        logger.info("[%s]rtv:%s,imu:%s,gps:%s",
+                                    mode, rtv, imu, gps)
+                        output_dir = os.path.join(
+                            self.output_path, mode, os.path.basename(rtv).strip(".rtv"))
+                        pool.apply_async(run_slam,
+                                         (mode, self.exec_path[0], self.ip, self.ic, rtv, imu, gps, self.ivoc,
+                                          output_dir,
+                                          self.server_path, self.if_raw_gps))
             pool.close()
             pool.join()
 
@@ -274,7 +275,7 @@ def find_file(file_type, input_path):
         sys.exit()
 
 
-def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path):
+def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path, if_raw_gps):
     """
 
     :param mode:
@@ -286,6 +287,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path):
     :param ivoc:
     :param path:
     :param server_path:
+    :param if_raw_gps:
     :return:
     """
     try:
@@ -302,6 +304,11 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path):
             # db_path = os.path.join(server_path, "section_out")
             db_path = os.path.join(server_path, "query_out", os.path.basename(rtv))
             parameter_list.extend(['--dso', db_path])
+        else:
+            pass
+        if if_raw_gps == 'no':
+            parameter_list.remove('--igps')
+            parameter_list.remove(gps)
         else:
             pass
         cmd_vehicleSlam = ' '.join(parameter_list)
@@ -340,8 +347,8 @@ def copy_files(files_path, output_path, mode):
     :return:
     """
     mode_snippet_type = {"slam": "SlamSnippet*",
-                         "alignment": "incSnippet*", "rt": "incSnippet*","alignment2": "incSnippet*"}
-    mode_file_type = {"slam": "maplist.txt", "alignment": "inclist.txt","alignment2": "inclist.txt"}
+                         "alignment": "incSnippet*", "rt": "incSnippet*", "alignment2": "incSnippet*"}
+    mode_file_type = {"slam": "maplist.txt", "alignment": "inclist.txt", "alignment2": "inclist.txt"}
     try:
         output_path = os.path.join(output_path, mode + "out")
         if os.path.exists(output_path):
