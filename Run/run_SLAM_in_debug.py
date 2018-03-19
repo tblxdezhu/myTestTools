@@ -104,6 +104,7 @@ class Check:
         diff_list = list(set(rtvs) ^ set(
                 [imu.replace(".imu", ".rtv") for imu in imus]))
         touch_gps_list = list(set(gpss) ^ set([rtv.replace(".rtv", ".gps") for rtv in rtvs]))
+        print touch_gps_list
         gpss = gpss.extend(touch_gps_list)
         print gpss
         # for touch_gps in touch_gps_list:
