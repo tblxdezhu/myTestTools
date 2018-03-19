@@ -100,10 +100,12 @@ class Check:
         rtvs = find_file("*.rtv", input_path)
         imus = find_file("*.imu", input_path)
         gpss = find_file("*.gps", input_path)
+        print gpss
         diff_list = list(set(rtvs) ^ set(
                 [imu.replace(".imu", ".rtv") for imu in imus]))
         touch_gps_list = list(set(gpss) ^ set([rtv.replace(".rtv", ".gps") for rtv in rtvs]))
         gpss = gpss.extend(touch_gps_list)
+        print gpss
         # for touch_gps in touch_gps_list:
         #     cmd_touch_gps = "touch " + touch_gps
         #     logger.info("%s", cmd_touch_gps)
