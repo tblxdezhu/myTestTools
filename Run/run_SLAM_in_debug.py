@@ -99,14 +99,14 @@ class Check:
         """
         rtvs = find_file("*.rtv", input_path)
         imus = find_file("*.imu", input_path)
-        gpss = find_file("*.gps", input_path)
-        print gpss
+        # gpss = find_file("*.gps", input_path)
         diff_list = list(set(rtvs) ^ set(
                 [imu.replace(".imu", ".rtv") for imu in imus]))
-        touch_gps_list = list(set(gpss) ^ set([rtv.replace(".rtv", ".gps") for rtv in rtvs]))
-        print touch_gps_list
-        gpss = gpss + touch_gps_list
-        print gpss
+        # touch_gps_list = list(set(gpss) ^ set([rtv.replace(".rtv", ".gps") for rtv in rtvs]))
+        # print touch_gps_list
+        # if gpss == ['']:
+        #     gpss = touch_gps_list
+        # print gpss
         # for touch_gps in touch_gps_list:
         #     cmd_touch_gps = "touch " + touch_gps
         #     logger.info("%s", cmd_touch_gps)
@@ -121,7 +121,7 @@ class Check:
                 "There are some files not match(rtv-imu):%s", diff_list)
         else:
             # TODO 这里的返回值还没有去掉不匹配的
-            return rtvs, imus, gpss
+            return rtvs, imus
 
 
 class Preparation(Check):
@@ -137,7 +137,7 @@ class Preparation(Check):
         self.ic = self.sourcecode_path + "/core/vehicle/config/camera65.json"
         self.ic = self.sourcecode_path + "/core/vehicle/config/" + self.run_configs["camera"]
         self.ivoc = self.sourcecode_path + "/core/vehicle/config/Highway_Detroit_Downtown_sum--0--1799-4_voc"
-        self.rtvs, self.imus, self.gpss = self.check_cases(self.cases[0])
+        self.rtvs, self.imus = self.check_cases(self.cases[0])
         self.exec_path = self.check_executable_file(self.sourcecode_path)
         # self.server_path = self.sourcecode_path + "/core/algorithm_sam/example"
         self.server_path = self.sourcecode_path + "/core/algorithm_sam/build/example"
