@@ -15,7 +15,8 @@ IP_LIST = ['10.74.24.183', '10.74.24.246', '10.74.24.216']
 def exec_scp(rtv_path, ip):
     case_path = rtv_path.replace(".rtv", "*")
     cmd_list = ['scp', case_path, 'ubuntu@' + ip + ":/home/ubuntu/"]
-    print cmd_list
+    cmd = ' '.join(cmd_list)
+    print cmd
 
 
 def main():
