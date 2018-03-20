@@ -2,14 +2,14 @@
   "run_config": {
     "owner": "zhenxuan",
     "email": "zhenxuan.xu@ygomi.com",
-    "branch": "release231x",
-    "sourcecode_path": "/home/ubuntu/sourcescode",
+    "branch": "23990",
+    "sourcecode_path": "/home/ubuntu/sources",
     "compile code": "OFF",
     "camera": "camera.json",
-    "raw gps": "yes",
+    "raw gps": "no",
     "bow": "/home/test/",
     "num": 100,
-    "processes": 7,
+    "processes": 2,
     "backup db": "OFF"
   },
   "compile": {
@@ -28,7 +28,7 @@
   },
   "cases_config": {
     "gm": [
-      "/home/ubuntu/gm_0315",
+      "/home/ubuntu/gm_0320",
       "/home/ubuntu/debug_sectionDB"
     ]
   },
