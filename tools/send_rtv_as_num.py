@@ -29,7 +29,7 @@ def main():
         global i
         i = 0
         print ip
-        for files in files_list[i * num:]:
+        for files in files_list[i * int(num):]:
             if files.endswith(".rtv"):
                 print files
                 rtv_path = os.path.join(files_path, files)
