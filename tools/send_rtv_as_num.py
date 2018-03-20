@@ -24,11 +24,15 @@ def main():
     files_path = sys.argv[1]
     num = sys.argv[2]
     files_list = os.listdir(files_path)
+    for i in files_list:
+        if not i.endswith(".rtv"):
+            files_list.remove(i)
     for ip in IP_LIST:
         index = 0
         global i
         i = 0
         print ip
+        print i
         for files in files_list[i * int(num):]:
             if files.endswith(".rtv"):
                 print files
