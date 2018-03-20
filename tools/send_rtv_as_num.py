@@ -26,8 +26,10 @@ def main():
     files_list = os.listdir(files_path)
     for ip in IP_LIST:
         index = 0
+        global i
+        i = 0
         print ip
-        for files in files_list:
+        for files in files_list[i * num:]:
             if files.endswith(".rtv"):
                 print files
                 rtv_path = os.path.join(files_path, files)
@@ -35,6 +37,7 @@ def main():
                 index = index + 1
                 print index
                 if index > int(num):
+                    i = i + 1
                     break
 
 
