@@ -33,3 +33,6 @@ def main():
                 print index
                 if index > num:
                     break
+
+if __name__ == '__main__':
+    main()
