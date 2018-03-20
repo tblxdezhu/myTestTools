@@ -19,8 +19,8 @@ def exec_scp(rtv_path, ip):
 
 
 def main():
-    files_path = sys.path[1]
-    num = sys.path[2]
+    files_path = sys.path[2]
+    num = sys.path[3]
     files_list = os.listdir(files_path)
     for ip in IP_LIST:
         index = 0
