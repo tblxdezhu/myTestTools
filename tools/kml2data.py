@@ -138,7 +138,6 @@ def draw():
                           center: 
             '''
         )
-        print center_data[center_data.keys()[0]]
         f.write(center_data[center_data.keys()[0]])
         f.write(
             '''
@@ -147,9 +146,7 @@ def draw():
             '''
         )
         for k in get_all_kmls(folder_path):
-            print k
             for key in sorted(data[k].keys()):
-                print data[k][key]
                 f.write(data[k][key])
             f.write(
                 '''
