@@ -148,17 +148,17 @@ def draw():
         for k in get_all_kmls(folder_path):
             for key in sorted(data[k].keys()):
                 f.write(data[k][key])
-            f.write(
-                '''
-                      }
-                    </script>
-                    <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap">
-                    </script>
-                  </body>
-                </html>
-                '''
-            )
+        f.write(
+            '''
+                  }
+                </script>
+                <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap">
+                </script>
+              </body>
+            </html>
+            '''
+        )
     for k in get_all_kmls(folder_path):
         path = os.path.join(sys.path[0], "webkmls", k + ".html")
         with open(path, 'w') as f:
