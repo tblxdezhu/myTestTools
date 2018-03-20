@@ -5,7 +5,7 @@
     "branch": "23990",
     "sourcecode_path": "/home/ubuntu/sources",
     "compile code": "OFF",
-    "camera": "camera.json",
+    "camera": "slamConfig_2.2_stm.json",
     "raw gps": "no",
     "bow": "/home/test/",
     "num": 100,
