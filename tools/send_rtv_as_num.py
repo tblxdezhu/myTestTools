@@ -17,6 +17,7 @@ def exec_scp(rtv_path, ip):
     cmd_list = ['scp', case_path, 'ubuntu@' + ip + ":/home/ubuntu/"]
     cmd = ' '.join(cmd_list)
     print cmd
+    os.system(cmd)
 
 
 def main():
@@ -34,7 +35,6 @@ def main():
                 index = index + 1
                 print index
                 if index > int(num):
-                    print index, ">", num
                     break
 
 
