@@ -33,9 +33,7 @@ def main():
                 exec_scp(rtv_path, ip)
                 index = index + 1
                 print index
-                print num
-                print type(num)
-                if index > num:
+                if index > int(num):
                     print index, ">", num
                     break
 
