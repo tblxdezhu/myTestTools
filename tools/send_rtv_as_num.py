@@ -26,6 +26,7 @@ def main():
         index = 0
         print ip
         for files in files_list:
+            print files
             if files.endswith(".rtv"):
                 rtv_path = os.path.join(files_path, files)
                 exec_scp(rtv_path, ip)
@@ -33,6 +34,7 @@ def main():
                 print index
                 if index > num:
                     break
+
 
 if __name__ == '__main__':
     main()
