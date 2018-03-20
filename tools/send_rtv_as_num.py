@@ -34,6 +34,7 @@ def main():
                 index = index + 1
                 print index
                 if index > num:
+                    print index, ">", num
                     break
 
 
