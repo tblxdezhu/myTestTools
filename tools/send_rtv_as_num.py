@@ -27,10 +27,10 @@ def main():
     for fil in files_list:
         if not fil.endswith(".rtv"):
             files_list.remove(fil)
+    global i
+    i = 0
     for ip in IP_LIST:
         index = 0
-        global i
-        i = 0
         print ip
         print i
         for files in files_list[i * int(num):]:
