@@ -100,11 +100,65 @@ def data_process():
 
 def draw():
     data, center_data = data_process()
-    backup_path = os.path.join(sys.path[0],"webkmls")
+    backup_path = os.path.join(sys.path[0], "webkmls")
     if os.path.exists(backup_path):
-        os.system("rm -rf "+backup_path+"/*")
+        os.system("rm -rf " + backup_path + "/*")
     else:
-        os.system("mkdir "+backup_path)
+        os.system("mkdir " + backup_path)
+    allinone_path = os.path.join(sys.path[0], "webkmls", "all_in.html")
+    with open(allinone_path,'w') as f:
+        f.write(
+            '''
+            <!DOCTYPE html>
+                <html>
+                  <head>
+                    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+                    <meta charset="utf-8">
+                    <title>Trajectory Online</title>
+                    <style>
+                      /* Always set the map height explicitly to define the size of the div
+                       * element that contains the map. */
+                      #map {
+                        height: 100%;
+                      }
+                      /* Optional: Makes the sample page fill the window. */
+                      html, body {
+                        height: 100%;
+                        margin: 0;
+                        padding: 0;
+                      }
+                    </style>
+                  </head>
+                  <body>
+                    <div id="map"></div>
+                    <script>
+                      function initMap() {
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 12,
+                          center: 
+            '''
+        )
+        f.write(center_data[center_data.keys()[0]])
+        f.write(
+            '''
+                mapTypeId: 'terrain'
+                });
+            '''
+        )
+        for k in get_all_kmls(folder_path):
+            for key in sorted(data[k].keys()):
+                f.write(data[k][key])
+            f.write(
+                '''
+                      }
+                    </script>
+                    <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap">
+                    </script>
+                  </body>
+                </html>
+                '''
+            )
     for k in get_all_kmls(folder_path):
         path = os.path.join(sys.path[0], "webkmls", k + ".html")
         with open(path, 'w') as f:
