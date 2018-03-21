@@ -85,13 +85,15 @@ def data_process():
     for k, v in get_all_kmls(folder_path).items():
         data[k] = {}
         for kml in v:
+            print "kml"
+            print kml
             kml_type = 'slam'
             is_show = True
             kml_name = os.path.basename(kml)
             coordinate = kml2coordinates(kml)
             if 'gps' in kml_name:
                 kml_type = 'gps'
-                is_show = True
+                is_show = False
             trajectory = Trajectory(k, kml_name, coordinate, kml_type, is_show)
             data[k][trajectory.name] = trajectory.string_builder()
             center[k] = trajectory.data_processed[0]
