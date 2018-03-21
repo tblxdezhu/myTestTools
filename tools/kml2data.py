@@ -218,5 +218,3 @@ def draw():
 if __name__ == '__main__':
     folder_path = sys.argv[1]
     draw()
-    for html_file in os.listdir(os.path.join(sys.path[0], 'webkmls')):
-        print html_file
