@@ -5,7 +5,7 @@
     "branch": "23990",
     "sourcecode_path": "/home/ubuntu/sources",
     "compile code": "OFF",
-    "camera": "camera.json",
+    "camera": "camera65.json",
     "slam_config":"slamConfig.json",
     "raw gps": "no",
     "bow": "/home/test/",
@@ -30,7 +30,7 @@
   },
   "cases_config": {
     "gm": [
-      "/home/ubuntu/gm_0320",
+      "/home/ubuntu/ccdemo_0321",
       "/home/ubuntu/debug_sectionDB"
     ]
   },
