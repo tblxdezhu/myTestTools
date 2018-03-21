@@ -29,7 +29,7 @@
     "core/algorithm_sam": "master"
   },
   "cases_config": {
-    "gm": [
+    "ccdemo": [
       "/home/ubuntu/ccdemo_0321",
       "/home/ubuntu/debug_sectionDB"
     ]
