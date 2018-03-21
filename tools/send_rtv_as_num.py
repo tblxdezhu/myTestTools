@@ -17,7 +17,7 @@ def exec_scp(rtv_path, ip):
     cmd_list = ['scp', case_path, 'ubuntu@' + ip + ":/home/ubuntu/ccdemo_0321"]
     cmd = ' '.join(cmd_list)
     print cmd
-    # os.system(cmd)
+    os.system(cmd)
 
 
 def main():
