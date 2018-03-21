@@ -73,6 +73,7 @@ def get_all_kmls(path):
             if file.endswith("hq_slam.kml") or file.endswith("process_gps.kml"):
                 if os.path.basename(root) == "segment":
                     case_name = os.path.dirname(root).split('/')[-3]+"_"+os.path.basename(os.path.dirname(root))
+                    print case_name
                     if not case_name == tmp:
                         data_set[case_name] = []
                     data_set[case_name].append(os.path.join(root, file))
