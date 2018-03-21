@@ -6,7 +6,7 @@
     "sourcecode_path": "/home/ubuntu/sources",
     "compile code": "OFF",
     "camera": "camera.json",
-    "slam_config":"slamConfig.json",
+    "slam_config":"slamConfig_2.2_stm.json",
     "raw gps": "no",
     "bow": "/home/test/",
     "num": 100,
