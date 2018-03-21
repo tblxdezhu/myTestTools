@@ -9,12 +9,12 @@
 import sys
 import os
 
-IP_LIST = ['10.74.24.192', '10.74.24.183', '10.74.24.246', '10.74.24.166', '10.74.24.166']
+IP_LIST = ['10.74.24.199', '10.74.24.197', '10.74.24.201', '10.74.24.216']
 
 
 def exec_scp(rtv_path, ip):
     case_path = rtv_path.replace(".rtv", "*")
-    cmd_list = ['scp', case_path, 'ubuntu@' + ip + ":/home/ubuntu/gm_0320"]
+    cmd_list = ['scp', case_path, 'ubuntu@' + ip + ":/home/ubuntu/ccdemo_0321"]
     cmd = ' '.join(cmd_list)
     print cmd
     # os.system(cmd)
