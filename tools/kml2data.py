@@ -12,8 +12,7 @@ import re
 
 
 class Trajectory:
-    def __init__(self, case, kml_name, mode, fill_data, data_type, is_show=True):
-        self.mode = mode
+    def __init__(self, case, kml_name, fill_data, data_type, is_show=True):
         self.is_show = is_show
         self.name = ''.join(re.findall('[a-zA-Z0-9]+', kml_name + case))
         self.var_name = "co_" + self.name
@@ -73,7 +72,6 @@ def get_all_kmls(path):
             if file.endswith("hq_slam.kml") or file.endswith("process_gps.kml"):
                 if os.path.basename(root) == "segment":
                     case_name = os.path.dirname(root).split('/')[-3]+"_"+os.path.basename(os.path.dirname(root))
-                    print case_name
                     if not case_name == tmp:
                         data_set[case_name] = []
                     data_set[case_name].append(os.path.join(root, file))
@@ -87,13 +85,6 @@ def data_process():
     for k, v in get_all_kmls(folder_path).items():
         data[k] = {}
         for kml in v:
-            try:
-                mode = kml.split('/')[-5]
-                if mode not in ['slam', 'alignment', 'alignment2', 'rt']:
-                    raise Exception
-            except Exception:
-                print "please check the index of kml[-5]"
-                sys.exit(0)
             kml_type = 'slam'
             is_show = True
             kml_name = os.path.basename(kml)
@@ -101,14 +92,14 @@ def data_process():
             if 'gps' in kml_name:
                 kml_type = 'gps'
                 is_show = False
-            trajectory = Trajectory(k, kml_name,mode, coordinate, kml_type, is_show)
+            trajectory = Trajectory(k, kml_name, coordinate, kml_type, is_show)
             data[k][trajectory.name] = trajectory.string_builder()
             center[k] = trajectory.data_processed[0]
     return data, center
 
 
 def draw():
-    data, center_data, mode = data_process()
+    data, center_data = data_process()
     backup_path = os.path.join(sys.path[0], "webkmls")
     if os.path.exists(backup_path):
         os.system("rm -rf " + backup_path + "/*")
