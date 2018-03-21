@@ -143,6 +143,7 @@ class Preparation(Check):
         self.server_path = self.sourcecode_path + "/core/algorithm_sam/build/example"
         self.db_path = os.path.join(self.server_path, "section_out")
         self.if_raw_gps = self.run_configs["raw gps"]
+        self.slam_db_path = self.run_configs["db path"]
 
     def check_preparation(self):
         """
@@ -180,7 +181,7 @@ class WorkFlow(Preparation):
                         pool.apply_async(run_slam,
                                          (mode, self.exec_path[0], self.ip, self.ic, rtv, imu, gps, self.ivoc,
                                           output_dir,
-                                          self.server_path, self.if_raw_gps))
+                                          self.server_path, self.if_raw_gps, self.slam_db_path))
             pool.close()
             pool.join()
 
@@ -278,7 +279,7 @@ def find_file(file_type, input_path):
         sys.exit()
 
 
-def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path, if_raw_gps):
+def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path, if_raw_gps,slam_db_path):
     """
 
     :param mode:
@@ -303,6 +304,9 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path, if
                 path, 'slam.out'), '--ivid',
                           '170ca9d4e6b40738',
                           '--ort', os.path.join(path, 'rt.out'), '--idb', idb]
+        if mode == "slamwithdb":
+            db_path = slam_db_path
+            parameter_list.extend(['--dso', db_path])
         if mode == 'alignment' or mode == 'alignment2' or mode == "rt":
             # db_path = os.path.join(server_path, "section_out")
             db_path = os.path.join(server_path, "query_out", os.path.basename(rtv))
@@ -412,6 +416,8 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
         try:
             if script_mode == "slam":
                 work.vehicle_slam("slam")
+            elif script_mode == "slamwithdb":
+                work.vehicle_slam()
             elif script_mode == "alignment":
                 work.output_path = os.path.dirname(work.output_path)
                 work.server_process("slam")

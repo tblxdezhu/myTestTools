@@ -10,7 +10,8 @@
     "bow": "/home/test/",
     "num": 100,
     "processes": 2,
-    "backup db": "OFF"
+    "backup db": "OFF",
+    "db path":"/home/ubuntu/sources/core/algorithm_sam/build/example/section_out/"
   },
   "compile": {
     "mode": "debug",
