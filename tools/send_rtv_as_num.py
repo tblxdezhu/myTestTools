@@ -17,33 +17,38 @@ def exec_scp(rtv_path, ip):
     cmd_list = ['scp', case_path, 'ubuntu@' + ip + ":/home/ubuntu/gm_0320"]
     cmd = ' '.join(cmd_list)
     print cmd
-    os.system(cmd)
+    # os.system(cmd)
 
 
 def main():
     files_path = sys.argv[1]
     num = sys.argv[2]
     files_list = os.listdir(files_path)
-    for fil in files_list:
-        if not fil.endswith(".rtv"):
-            files_list.remove(fil)
-    global i
-    i = 0
+    flag = 0
     for ip in IP_LIST:
         index = 0
-        print ip
-        print i
-        for files in files_list[i * int(num):]:
-            if files.endswith(".rtv"):
-                print files
-                rtv_path = os.path.join(files_path, files)
-                exec_scp(rtv_path, ip)
-                index = index + 1
-                print index
-                if index > int(num):
-                    i = i + 1
-                    break
+        for files in files_list[flag * int(num):]:
+            rtv_path = os.path.join(files_path, files)
+            exec_scp(rtv_path, ip)
+            index = index + 1
+            print index
+            if index >= int(num):
+                flag = flag + 1
+                break
 
 
 if __name__ == '__main__':
     main()
+    # a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    # b = [216, 199, 197, 201]
+    # flag = 0
+    # for ip in b:
+    #     index = 0
+    #     print ip
+    #     print a[flag * 3:]
+    #     for i in a[flag * 3:]:
+    #         print "scp", i, "to", ip
+    #         index = index + 1
+    #         if index >= 3:
+    #             flag = flag + 1
+    #             break
