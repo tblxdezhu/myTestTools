@@ -87,6 +87,8 @@ def data_process():
         for kml in v:
             print "kml"
             print kml
+            mode = kml.split('/')[-5]
+            print "mode",mode
             kml_type = 'slam'
             is_show = True
             kml_name = os.path.basename(kml)
