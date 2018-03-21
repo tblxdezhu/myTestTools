@@ -417,7 +417,7 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
             if script_mode == "slam":
                 work.vehicle_slam("slam")
             elif script_mode == "slamwithdb":
-                work.vehicle_slam()
+                work.vehicle_slam("slamwithdb")
             elif script_mode == "alignment":
                 work.output_path = os.path.dirname(work.output_path)
                 work.server_process("slam")
