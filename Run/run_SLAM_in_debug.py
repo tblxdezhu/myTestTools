@@ -133,7 +133,7 @@ class Preparation(Check):
         self.output_path = output_path
         self.sourcecode_path = self.run_configs["sourcecode_path"]
         self.processes_num = self.run_configs["processes"]
-        self.ip = self.sourcecode_path + "/core/vehicle/config/slamConfig_2.2_stm.json"
+        self.ip = self.sourcecode_path + "/core/vehicle/config/slamConfig.json"
         self.ic = self.sourcecode_path + "/core/vehicle/config/camera65.json"
         self.ic = self.sourcecode_path + "/core/vehicle/config/" + self.run_configs["camera"]
         self.ivoc = self.sourcecode_path + "/core/vehicle/config/Highway_Detroit_Downtown_sum--0--1799-4_voc"
@@ -294,7 +294,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path, if
     :return:
     """
     try:
-        idb = "/home/ubuntu/sources/core/algorithm_sam/build/example/section_out"
+        idb = path
         os.makedirs(path)
         logger.info("mkdir %s", path)
         parameter_list = [exec_file, '--ip', ip, '--ic', ic, '--ivg', rtv, '--iimu', imu, '--igps', gps, '--ivoc', ivoc,
@@ -302,7 +302,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path, if
                           '--ol', path, '--d', path, '--oqlt', path, '--osp', os.path.join(
                 path, 'slam.out'), '--ivid',
                           '170ca9d4e6b40738',
-                          '--ort', os.path.join(path, 'rt.out'), '--idb', idb, '--dso', idb]
+                          '--ort', os.path.join(path, 'rt.out'), '--idb', idb]
         if mode == 'alignment' or mode == 'alignment2' or mode == "rt":
             # db_path = os.path.join(server_path, "section_out")
             db_path = os.path.join(server_path, "query_out", os.path.basename(rtv))
