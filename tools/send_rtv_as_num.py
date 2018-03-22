@@ -13,17 +13,18 @@ IP_LIST = ['10.74.24.199', '10.74.24.197', '10.74.24.201', '10.74.24.216']
 
 
 def exec_scp(rtv_path, ip):
-    case_path = rtv_path.replace(".imu", "*")
+    case_path = rtv_path
     cmd_list = ['scp', case_path, 'ubuntu@' + ip + ":/home/ubuntu/ccdemo_0321"]
     cmd = ' '.join(cmd_list)
     print cmd
-    os.system(cmd)
+    # os.system(cmd)
 
 
 def main():
     files_path = sys.argv[1]
     num = sys.argv[2]
     files_list = os.listdir(files_path)
+    print files_list
     flag = 0
     for ip in IP_LIST:
         index = 0
