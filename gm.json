@@ -2,11 +2,11 @@
   "run_config": {
     "owner": "zhenxuan",
     "email": "zhenxuan.xu@ygomi.com",
-    "branch": "23990",
+    "branch": "2.3.1.x",
     "sourcecode_path": "/home/ubuntu/sources",
     "compile code": "OFF",
     "camera": "camera.json",
-    "slam_config":"slamConfig_2.2_stm.json",
+    "slam_config":"slamConfig.json",
     "raw gps": "no",
     "bow": "/home/test/",
     "num": 100,
