@@ -106,6 +106,7 @@ def draw(mode):
     else:
         os.system("mkdir " + backup_path)
     allinone_path = os.path.join(sys.path[0], "webkmls", mode + "_all_in.html")
+    print allinone_path
     with open(allinone_path, 'w') as f:
         f.write(
             '''
