@@ -105,7 +105,7 @@ def draw(mode):
         os.system("rm -rf " + backup_path + "/*")
     else:
         os.system("mkdir " + backup_path)
-    allinone_path = os.path.join(sys.path[0], "webkmls", mode+"_all_in.html")
+    allinone_path = os.path.join(sys.path[0], "webkmls", mode + "_all_in.html")
     with open(allinone_path, 'w') as f:
         f.write(
             '''
@@ -221,5 +221,6 @@ if __name__ == '__main__':
         draw(os.path.basename(folder_path))
     else:
         for mode in os.listdir(folder_path):
-            print mode
+            folder_path = os.path.join(folder_path, mode)
+            print folder_path
             draw(mode)
