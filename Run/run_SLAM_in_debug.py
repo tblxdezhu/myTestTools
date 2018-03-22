@@ -151,7 +151,7 @@ class Preparation(Check):
         :return:
         """
         # check_existence_of_path(self.output_path, level='high')
-        if not self.mode == 'slam':
+        if self.mode != 'slam' and self.mode != 'slamwithdb':
             check_existence_of_path(self.gps_skeleton_path, level='high')
         self.check_necessary()
         return True
