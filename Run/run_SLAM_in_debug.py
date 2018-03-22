@@ -48,7 +48,7 @@ class Check:
                 logger.info("algoSlamExe : PASS")
             else:
                 raise MyException(err="algoSlamExe is not exist")
-            if self.mode == "slam":
+            if self.mode == "slam" or self.mode == "slamwithdb":
                 return executable_path, None, None
             else:
                 server_path = os.path.join(path, "core/algorithm_sam/example/")
@@ -62,10 +62,10 @@ class Check:
                     logger.info("serverExampleSLAM: PASS")
                 else:
                     raise MyException(err="serverExampleSLAM is not exist")
-                # if os.path.exists(extractor_path):
-                #     logger.info("rtv-extractor: PASS")
-                # else:
-                #     raise MyException(err="rtv-extractor is not exist")
+                if os.path.exists(extractor_path):
+                    logger.info("rtv-extractor: PASS")
+                else:
+                    raise MyException(err="rtv-extractor is not exist")
                 if os.path.exists(querySection_path):
                     logger.info("querySection_path: PASS")
                 else:
