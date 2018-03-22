@@ -39,16 +39,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    # a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    # b = [216, 199, 197, 201]
-    # flag = 0
-    # for ip in b:
-    #     index = 0
-    #     print ip
-    #     print a[flag * 3:]
-    #     for i in a[flag * 3:]:
-    #         print "scp", i, "to", ip
-    #         index = index + 1
-    #         if index >= 3:
-    #             flag = flag + 1
-    #             break

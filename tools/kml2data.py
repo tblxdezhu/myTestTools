@@ -71,7 +71,7 @@ def get_all_kmls(path):
         for file in files:
             if file.endswith("hq_slam.kml") or file.endswith("process_gps.kml"):
                 if os.path.basename(root) == "segment":
-                    case_name = os.path.dirname(root).split('/')[-3]+"_"+os.path.basename(os.path.dirname(root))
+                    case_name = os.path.dirname(root).split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
                     if not case_name == tmp:
                         data_set[case_name] = []
                     data_set[case_name].append(os.path.join(root, file))
@@ -98,14 +98,14 @@ def data_process():
     return data, center
 
 
-def draw():
+def draw(mode):
     data, center_data = data_process()
     backup_path = os.path.join(sys.path[0], "webkmls")
     if os.path.exists(backup_path):
         os.system("rm -rf " + backup_path + "/*")
     else:
         os.system("mkdir " + backup_path)
-    allinone_path = os.path.join(sys.path[0], "webkmls", "all_in.html")
+    allinone_path = os.path.join(sys.path[0], "webkmls", mode+"_all_in.html")
     with open(allinone_path, 'w') as f:
         f.write(
             '''
@@ -217,4 +217,8 @@ def draw():
 
 if __name__ == '__main__':
     folder_path = sys.argv[1]
-    draw()
+    if os.path.basename(folder_path) in ["slam", "alignment", "alignment2", "rt"]:
+        draw(os.path.basename(folder_path))
+    else:
+        for mode in os.listdir(folder_path):
+            print mode
