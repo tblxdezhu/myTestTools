@@ -45,8 +45,10 @@ def main():
                 logger = log.Logger(log_name=log_file_name, logger=k).get_log()
                 coloredlogs.install(level='DEBUG', logger=logger)
                 date_now = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-                output_dir = os.path.join(output_path, date_now + "_debug_" + func.config_from_json(config_file, "run_config")[
-                    "owner"] + "_" + func.config_from_json(config_file, "run_config")["branch"] + "_" + k)
+                output_dir = os.path.join(output_path,
+                                          date_now + "_debug_" + func.config_from_json(config_file, "run_config")[
+                                              "owner"] + "_" + func.config_from_json(config_file, "run_config")[
+                                              "branch"] + "_" + k)
                 run_SLAM_in_debug.main_flow(
                     cases_set_dict[k], logger, script_mode, config_file, output_path, debug_switch, output_dir)
         else:
@@ -67,6 +69,7 @@ def main():
                                           "branch"] + "_" + k)
             run_SLAM_in_debug.main_flow(
                 cases_set_dict[k], logger, script_mode, config_file, output_path, debug_switch, output_dir)
+    send_email.send_email(config_file, "msg")
 
 
 if __name__ == '__main__':

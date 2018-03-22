@@ -1,7 +1,7 @@
 {
   "run_config": {
     "owner": "zhenxuan",
-    "email": "zhenxuan.xu@ygomi.com",
+    "email": ["zhenxuan.xu@ygomi.com","zixing.deng@ygomi.com"],
     "branch": "23990",
     "sourcecode_path": "/home/ubuntu/sources",
     "compile code": "OFF",

@@ -31,9 +31,9 @@ def send_email(config_file, mode):
     from_addr = "zhenxuan.xu@ygomi.com"
     to_addr = func.config_from_json(config_file, "run_config")["email"]
     if mode == 'msg':
-        msg = MIMEText('SLAM 有代码提交，已触发自动测试', 'plain', 'utf-8')
+        msg = MIMEText('批量测试已经完成，请检查10.74.24.35\n自动发送，请勿回复', 'plain', 'utf-8')
         msg['Subject'] = Header(
-            u'Notifications for triggering automated tests', 'utf-8').encode()
+            u'Notifications for automated tests', 'utf-8').encode()
     else:
         msg = MIMEMultipart()
         msg['Subject'] = Header(u'Your test report', 'utf-8').encode()
