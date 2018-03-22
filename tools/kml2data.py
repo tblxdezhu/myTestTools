@@ -100,7 +100,7 @@ def data_process():
 
 def draw(mode):
     data, center_data = data_process()
-    backup_path = os.path.join(sys.path[0], "webkmls")
+    backup_path = os.path.join(sys.path[0], "webkmls", mode)
     if os.path.exists(backup_path):
         os.system("rm -rf " + backup_path + "/*")
     else:
@@ -160,7 +160,7 @@ def draw(mode):
             </html>
             '''
         )
-    print "all_in done",mode
+    print "all_in done", mode
     for k in get_all_kmls(folder_path):
         path = os.path.join(sys.path[0], "webkmls", k + ".html")
         with open(path, 'w') as f:
