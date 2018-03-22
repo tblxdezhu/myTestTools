@@ -222,3 +222,4 @@ if __name__ == '__main__':
     else:
         for mode in os.listdir(folder_path):
             print mode
+            draw(mode)
