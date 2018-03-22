@@ -216,11 +216,12 @@ def draw(mode):
 
 
 if __name__ == '__main__':
-    folder_path = sys.argv[1]
-    if os.path.basename(folder_path) in ["slam", "alignment", "alignment2", "rt"]:
+    folder_path_input = sys.argv[1]
+    if os.path.basename(folder_path_input) in ["slam", "alignment", "alignment2", "rt"]:
+        folder_path = folder_path_input
         draw(os.path.basename(folder_path))
     else:
-        for mode in os.listdir(folder_path):
-            folder_path = os.path.join(folder_path, mode)
+        for mode in os.listdir(folder_path_input):
+            folder_path = os.path.join(folder_path_input, mode)
             print folder_path
             draw(mode)
