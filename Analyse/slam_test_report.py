@@ -227,8 +227,8 @@ class DataProcess(ResultCheck):
             num = len(self.data_standard[mode]["kf_num"])
             # TODO 这个地方的自适应还没修改
             schema = [
-                ("kf数量", 3000 * num), ("lost数量", 450), ("分段数", 30),
-                ("3D点数量", 70000 * num), ("耗时", 20000), ("lost_num", 25000)
+                ("kf数量", 10000 * num), ("lost数量", 30 * num), ("分段数", 30 * num),
+                ("3D点数量", 100000 * num), ("耗时", 4000 * num), ("lost_num", 50 * num)
             ]
             v1 = [[s2i(self.data_standard[mode]["kf_num"]), s2i(self.data_standard[mode]["lost_num"]),
                    sum(self.data_standard[mode]["section_num"]), s2i(self.data_standard[mode]["mp_num"]),
@@ -238,8 +238,8 @@ class DataProcess(ResultCheck):
                    s2i(self.data_develop[mode]["time"]), 19000]]
             radar = Radar()
             radar.config(schema)
-            radar.add("Master", v1, is_splitline=True, is_axisline_show=True)
-            radar.add("20926", v2, label_color=["#4e79a7"], is_area_show=False,
+            radar.add(sys.argv[1].split("_")[-2], v1, is_splitline=True, is_axisline_show=True)
+            radar.add(sys.argv[2].split("_")[-2], v2, label_color=["#4e79a7"], is_area_show=False,
                       legend_selectedmode='normal')
             page.add(radar)
             for key in self.performance_criteria:
@@ -254,7 +254,6 @@ def s2i(str_list):
 
 def draw_in_type(v1, v2, attr, page, key):
     bar = Bar(key)
-    # TODO 图标名称自适应传参未完成
     bar.add(sys.argv[1].split("_")[-2], attr, v1, is_label_show=True)
     bar.add(sys.argv[2].split("_")[-2], attr, v2, is_datazoom_show=True, is_label_show=True, is_random=False,
             is_more_utils=True)
