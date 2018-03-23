@@ -144,7 +144,7 @@ class QualityAnalyse(ResultCheck):
                     self.kf_per_km = self.grep_data_in_quality(self.performance_criteria["kf_per_km"])
                     self.mp_per_km = self.grep_data_in_quality(self.performance_criteria["mp_per_km"])
                     self.lost_num = self.grep_data_in_quality(self.performance_criteria["lost_num"])
-                    if self.mode == 'alignment':
+                    if self.mode == 'alignment' or self.mode == 'alignment2':
                         self.usage_rate_of_mp_in_db = self.grep_data_in_quality(
                             self.performance_alignment_criteria["usage_rate_of_mp_in_db"])
                         self.cr_of_new_mp = self.grep_data_in_quality(
@@ -172,11 +172,11 @@ class DataProcess(ResultCheck):
         self.standard_set_names = {}
         self.develop_set_names = {}
         self.list_diff = {}
-        self.data_standard = {"slam": {}, "alignment": {}, "rt": {}}
-        self.data_develop = {"slam": {}, "alignment": {}, "rt": {}}
+        self.data_standard = {"slam": {}, "alignment": {}, "alignment2": {}, "rt": {}}
+        self.data_develop = {"slam": {}, "alignment": {}, "alignment2": {}, "rt": {}}
 
     def check_case_if_in_common(self):
-        for mode in ["slam", "alignment", "rt"]:
+        for mode in ["slam", "alignment", "alignment2", "rt"]:
             self.standard_set_names[mode] = []
             self.develop_set_names[mode] = []
             self.list_diff[mode] = []
@@ -208,7 +208,7 @@ class DataProcess(ResultCheck):
 
     def data_process(self):
         self.read_json()
-        for mode in ["slam", "alignment", "rt"]:
+        for mode in ["slam", "alignment", "alignment2" "rt"]:
             for key in self.performance_criteria:
                 self.data_standard[mode][key] = []
                 self.data_develop[mode][key] = []
@@ -222,13 +222,13 @@ class DataProcess(ResultCheck):
                             self.data_develop[mode][key].append(case[key])
 
     def draw(self):
-        for mode in ["slam", "alignment", "rt"]:
+        for mode in ["slam", "alignment", "alignment2", "rt"]:
             page = Page(page_title="(%s) SLAM Performance Test Report" % mode)
             num = len(self.data_standard[mode]["kf_num"])
             # TODO 这个地方的自适应还没修改
             schema = [
-                ("kf数量", 3000*num), ("lost数量", 450), ("分段数", 30),
-                ("3D点数量", 70000*num), ("耗时", 20000), ("lost_num", 25000)
+                ("kf数量", 3000 * num), ("lost数量", 450), ("分段数", 30),
+                ("3D点数量", 70000 * num), ("耗时", 20000), ("lost_num", 25000)
             ]
             v1 = [[s2i(self.data_standard[mode]["kf_num"]), s2i(self.data_standard[mode]["lost_num"]),
                    sum(self.data_standard[mode]["section_num"]), s2i(self.data_standard[mode]["mp_num"]),
@@ -256,7 +256,8 @@ def draw_in_type(v1, v2, attr, page, key):
     bar = Bar(key)
     # TODO 图标名称自适应传参未完成
     bar.add(sys.argv[1].split("_")[-2], attr, v1, is_label_show=True)
-    bar.add(sys.argv[2].split("_")[-2], attr, v2, is_datazoom_show=True, is_label_show=True, is_random=False, is_more_utils=True)
+    bar.add(sys.argv[2].split("_")[-2], attr, v2, is_datazoom_show=True, is_label_show=True, is_random=False,
+            is_more_utils=True)
     page.add(bar)
 
 
