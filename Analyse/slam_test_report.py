@@ -227,8 +227,8 @@ class DataProcess(ResultCheck):
             num = len(self.data_standard[mode]["kf_num"])
             # TODO 这个地方的自适应还没修改
             schema = [
-                ("kf数量", 5000 * num), ("lost数量", 30 * num), ("分段数", 10 * num),
-                ("3D点数量", 100000 * num), ("耗时", 4000 * num)
+                ("kf数量", 3000 * num), ("lost数量", 30 * num), ("分段数", 10 * num),
+                ("3D点数量", 70000 * num), ("耗时", 4000 * num)
             ]
             v1 = [[s2i(self.data_standard[mode]["kf_num"]), s2i(self.data_standard[mode]["lost_num"]),
                    sum(self.data_standard[mode]["section_num"]), s2i(self.data_standard[mode]["mp_num"]),
