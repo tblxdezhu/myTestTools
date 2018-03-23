@@ -28,6 +28,7 @@ class ResultCheck:
         :param str_path: test set path
         """
         self.set_path = str_path
+        print self.set_path
         self.is_have_snippet = False
         basename = os.path.basename(self.set_path)
         # TODO 这个地方需要加入越界异常判断
