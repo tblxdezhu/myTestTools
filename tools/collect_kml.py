@@ -50,7 +50,7 @@ def gather():
                         if not case_name.endswith(".rtv"):
                             raise IndexError
                         mode = kml.split("/")[-5]
-                        if mode not in ['slam', 'alignment', 'rt']:
+                        if mode not in ['slam', 'slamwithdb', 'alignment', 'rt']:
                             raise IndexError
                         new_kml_name = mode + "_" + case_name + "_" + os.path.basename(kml)
                         os.system("cp " + kml + " ./kmls/" + new_kml_name)

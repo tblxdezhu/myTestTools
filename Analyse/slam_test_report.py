@@ -54,7 +54,7 @@ class ResultCheck:
         read config from config.json
         :return: config dic
         """
-        with open("common.json", 'r') as f:
+        with open("../common.json", 'r') as f:
             data = json.load(f)
             self.performance_criteria = data["result_analyse_config"][0]
             self.performance_alignment_criteria = data["result_analyse_config"][1]
@@ -244,7 +244,7 @@ class DataProcess(ResultCheck):
             for key in self.performance_criteria:
                 draw_in_type(self.data_standard[mode][key], self.data_develop[mode][key], self.standard_set_names[mode],
                              page, key)
-            page.render(path="Reports/SLAM_Performance_%s.html" % mode)
+            page.render(path="../Reports/SLAM_Performance_%s.html" % mode)
 
 
 def s2i(str_list):
@@ -254,8 +254,8 @@ def s2i(str_list):
 def draw_in_type(v1, v2, attr, page, key):
     bar = Bar(key)
     # TODO 图标名称自适应传参未完成
-    bar.add("master", attr, v1, is_label_show=True)
-    bar.add("20926", attr, v2, is_datazoom_show=True, is_label_show=True, is_random=False, is_more_utils=True)
+    bar.add(sys.argv[1].split("_")[-2], attr, v1, is_label_show=True)
+    bar.add(sys.argv[2].split("_")[-2], attr, v2, is_datazoom_show=True, is_label_show=True, is_random=False, is_more_utils=True)
     page.add(bar)
 
 
@@ -268,15 +268,15 @@ def send_email():
     pass
 
 
-# def main():
-#     cases_standard = ResultCheck("/Users/test1/Documents/tools/test_data/20171211_220431_debug_feiyang_master_ccdemo")
-#     cases_develop = ResultCheck("/Users/test1/Documents/tools/test_data/20171211_215334_debug_feiyang_20238_ccdemo")
-#
-#     data_preprocessing = DataProcess(cases_standard.check_have_snippet(), cases_develop.check_have_snippet())
-#     data_preprocessing.check_case_if_in_common()
-#     data_preprocessing.data_process()
-#     data_preprocessing.draw()
-#
-#
-# if __name__ == '__main__':
-#     main()
+def main():
+    cases_standard = ResultCheck(sys.argv[1])
+    cases_develop = ResultCheck(sys.argv[2])
+
+    data_preprocessing = DataProcess(cases_standard.check_have_snippet(), cases_develop.check_have_snippet())
+    data_preprocessing.check_case_if_in_common()
+    data_preprocessing.data_process()
+    data_preprocessing.draw()
+
+
+if __name__ == '__main__':
+    main()
