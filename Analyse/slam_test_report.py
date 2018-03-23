@@ -237,7 +237,7 @@ class DataProcess(ResultCheck):
                    s2i(self.data_develop[mode]["time"]), 19000]]
             radar = Radar()
             radar.config(schema)
-            radar.add(sys.argv[1].split("_")[-2], v1, is_splitline=True, is_axisline_show=True)
+            radar.add(sys.argv[1].split("_")[-2], v1, is_splitline=True, is_axisline_show=True,)
             radar.add(sys.argv[2].split("_")[-2], v2, label_color=["#4e79a7"], is_area_show=False,
                       legend_selectedmode='normal')
             page.add(radar)
@@ -255,7 +255,7 @@ def draw_in_type(v1, v2, attr, page, key):
     bar = Bar(key)
     bar.add(sys.argv[1].split("_")[-2], attr, v1, is_label_show=True)
     bar.add(sys.argv[2].split("_")[-2], attr, v2, is_datazoom_show=True, is_label_show=True, is_random=False,
-            is_more_utils=True)
+            is_more_utils=True,mark_line=["average"], mark_point=["max", "min"])
     page.add(bar)
 
 
