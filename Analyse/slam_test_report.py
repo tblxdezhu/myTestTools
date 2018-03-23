@@ -208,7 +208,7 @@ class DataProcess(ResultCheck):
 
     def data_process(self):
         self.read_json()
-        for mode in ["slam", "alignment", "alignment2" "rt"]:
+        for mode in ["slam", "alignment", "alignment2", "rt"]:
             for key in self.performance_criteria:
                 self.data_standard[mode][key] = []
                 self.data_develop[mode][key] = []
