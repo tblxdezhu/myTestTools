@@ -361,7 +361,6 @@ def copy_files(files_path, output_path, mode):
     try:
         if mode == "alignment2":
             mode = "alignment"
-            shutil.rmtree(os.path.join(output_path, mode + "out"))
         output_path = os.path.join(output_path, mode + "out")
         if os.path.exists(output_path):
             shutil.rmtree(output_path)
