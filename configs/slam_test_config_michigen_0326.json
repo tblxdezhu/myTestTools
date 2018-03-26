@@ -12,7 +12,7 @@
     "num": 100,
     "processes": 1,
     "backup db": "OFF",
-    "db path":"/home/ubuntu/sources/core/algorithm_sam/build/example/section_out/"
+    "db path":"/home/test/new_repo/core/algorithm_sam/build/example/section_out"
   },
   "compile": {
     "mode": "debug",
