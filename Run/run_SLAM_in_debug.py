@@ -177,10 +177,9 @@ class WorkFlow(Preparation):
                         logger.info("[%s]rtv:%s,imu:%s,gps:%s",
                                     mode, rtv, imu, gps)
                         output_dir = os.path.join(self.output_path, mode, os.path.basename(rtv).strip(".rtv"))
-                        if os.path.exists(os.path.join((self.output_path, mode))):
-                            # TODO 这里可以改进下
-                            os.mkdir(os.path.join((self.output_path, mode + "2")))
-                            output_dir = os.path.join(self.output_path, mode + "2", os.path.basename(rtv).strip(".rtv"))
+                        # if os.path.exists(os.path.join((self.output_path, mode))):
+                        #     os.mkdir(os.path.join((self.output_path, mode + "2")))
+                        #     output_dir = os.path.join(self.output_path, mode + "2", os.path.basename(rtv).strip(".rtv"))
                         pool.apply_async(run_slam,
                                          (mode, self.exec_path[0], self.ip, self.ic, rtv, imu, gps, self.ivoc,
                                           output_dir,
@@ -198,7 +197,7 @@ class WorkFlow(Preparation):
         :return:
         """
         logger.warning("START SERVER PROCESS: %s", mode)
-        mode_type = {'slam': '1', 'alignment': '2'}
+        mode_type = {'slam': '1', 'alignment': '2', 'alignment2': '2'}
         self.serverExampleSLAM_build_path = os.path.dirname(self.exec_path[1])
         copy_files(os.path.join(self.output_path, mode),
                    self.serverExampleSLAM_build_path, mode)
@@ -310,7 +309,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path, if
         if mode == "slamwithdb":
             db_path = slam_db_path
             parameter_list.extend(['--dso', db_path])
-        if mode == 'alignment' or mode == "rt":
+        if mode == 'alignment' or mode == 'alignment2' or mode == "rt":
             # db_path = os.path.join(server_path, "section_out")
             db_path = os.path.join(server_path, "query_out", os.path.basename(rtv))
             parameter_list.extend(['--dso', db_path])
@@ -357,9 +356,12 @@ def copy_files(files_path, output_path, mode):
     :return:
     """
     mode_snippet_type = {"slam": "SlamSnippet*",
-                         "alignment": "incSnippet*", "rt": "incSnippet*"}
-    mode_file_type = {"slam": "maplist.txt", "alignment": "inclist.txt"}
+                         "alignment": "incSnippet*", "rt": "incSnippet*", "alignment2": "incSnippet*"}
+    mode_file_type = {"slam": "maplist.txt", "alignment": "inclist.txt", "alignment2": "inclist.txt"}
     try:
+        if mode == "alignment2":
+            mode = "alignment"
+            shutil.rmtree(os.path.join(output_path, mode + "out"))
         output_path = os.path.join(output_path, mode + "out")
         if os.path.exists(output_path):
             shutil.rmtree(output_path)
@@ -430,8 +432,8 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 work.vehicle_slam("alignment")
                 work.server_process("alignment")
                 work.query(gpgga_path)
-                work.vehicle_slam("alignment")
-                work.server_process("alignment")
+                work.vehicle_slam("alignment2")
+                work.server_process("alignment2")
                 work.reset_confidence()
                 work.query(gpgga_path)
                 work.processes_num = 1
