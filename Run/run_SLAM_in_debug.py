@@ -446,8 +446,8 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 work.vehicle_slam("alignment")
                 work.server_process("alignment")
                 work.query(gpgga_path)
-                work.vehicle_slam("alignment")
-                work.server_process("alignment")
+                work.vehicle_slam("alignment2")
+                work.server_process("alignment2")
                 work.reset_confidence()
                 work.query(gpgga_path)
                 work.processes_num = 1
