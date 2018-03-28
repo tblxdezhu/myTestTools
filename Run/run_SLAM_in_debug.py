@@ -356,7 +356,7 @@ def copy_files(files_path, output_path, mode):
     :return:
     """
     mode_snippet_type = {"slam": "SlamSnippet*",
-                         "alignment": "incSnippet*", "rt": "incSnippet*", "alignment2": "incSnippet*"}
+                         "alignment": "incSnippet.bin", "rt": "incSnippet.bin", "alignment2": "incSnippet.bin"}
     mode_file_type = {"slam": "maplist.txt", "alignment": "inclist.txt", "alignment2": "inclist.txt"}
     try:
         if mode == "alignment2":
@@ -433,6 +433,14 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 work.query(gpgga_path)
                 work.vehicle_slam("alignment2")
                 work.server_process("alignment2")
+                work.reset_confidence()
+                work.query(gpgga_path)
+                work.processes_num = 1
+                work.vehicle_slam("rt")
+            elif script_mode == "rt":
+                work.output_path = os.path.dirname(work.output_path)
+                work.server_process("alignment2")
+                gpgga_path = cases[0] + "/gpggagps"
                 work.reset_confidence()
                 work.query(gpgga_path)
                 work.processes_num = 1
