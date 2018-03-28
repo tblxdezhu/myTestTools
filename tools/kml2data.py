@@ -71,12 +71,12 @@ def get_parser():
     :return:
     """
     parser = OptionParser(usage="%prog [-gps] ", version="%prog 1.0")
-    parser.add_option("-gps", dest="gps_switch",
+    parser.add_option("-g", dest="gps_switch",
                       help="Select if draw gps",
                       default="off")
     parser.add_option("-i", dest="folder_path_input", help="input path")
     (options, args) = parser.parse_args()
-    if len(sys.argv) >= 1 or options.gps_switch not in ["on", "off"]:
+    if len(sys.argv) <= 1 or options.gps_switch not in ["on", "off"]:
         print parser.error("You can enter '-h' to see the detailed usage")
     if options.gps_switch == "off":
         return False, options.folder_path_input
