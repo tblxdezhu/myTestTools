@@ -30,7 +30,7 @@ def get_parser():
     """
     parser = OptionParser(usage="%prog [-m] [-f] [-o]", version="%prog 1.0")
     parser.add_option("-m", dest="mode",
-                      help="Select the run mode of script: slam (default), slamwithdb, alignment or whole",
+                      help="Select the run mode of script: slam (default), slamwithdb, alignment ,rt or whole",
                       default="slam")
     parser.add_option("-f", dest="config_file",
                       help="Select your config file (necessary!)")
@@ -41,7 +41,7 @@ def get_parser():
                       help="Select whether open the debug mode of script OFF or ON,default is OFF",
                       default="OFF")
     (options, args) = parser.parse_args()
-    if len(sys.argv) == 1 or options.mode not in ["slam", "slamwithdb", "alignment",
+    if len(sys.argv) == 1 or options.mode not in ["slam", "slamwithdb", "alignment", "rt",
                                                   "whole"] or options.debug_switch not in ['ON',
                                                                                            'OFF']:
         print parser.error("You can enter '-h' to see the detailed usage")
