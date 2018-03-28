@@ -443,7 +443,7 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 gpgga_path = cases[0] + "/gpggagps"
                 work.reset_confidence()
                 work.query(gpgga_path)
-                work.processes_num = 1
+                work.processes_num = 2
                 work.vehicle_slam("rt")
             elif script_mode == "whole":
                 work.vehicle_slam("slam")
