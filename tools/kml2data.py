@@ -9,6 +9,7 @@
 import sys
 import os
 import re
+from optparse import OptionParser
 
 
 class Trajectory:
@@ -64,6 +65,25 @@ def kml2coordinates(file_path):
     return coordinates
 
 
+def get_parser():
+    """
+
+    :return:
+    """
+    parser = OptionParser(usage="%prog [-gps] ", version="%prog 1.0")
+    parser.add_option("-gps", dest="gps_switch",
+                      help="Select if draw gps",
+                      default="off")
+    parser.add_option("-i", dest="folder_path_input", help="input path")
+    (options, args) = parser.parse_args()
+    if len(sys.argv) >= 1 or options.gps_switch not in ["on", "off"]:
+        print parser.error("You can enter '-h' to see the detailed usage")
+    if options.gps_switch == "off":
+        return False, options.folder_path_input
+    else:
+        return True, options.folder_path_input
+
+
 def get_all_kmls(path):
     data_set = {}
     tmp = ''
@@ -91,7 +111,7 @@ def data_process():
             coordinate = kml2coordinates(kml)
             if 'gps' in kml_name:
                 kml_type = 'gps'
-                is_show = False
+                is_show = gps_switch
             trajectory = Trajectory(k, kml_name, coordinate, kml_type, is_show)
             data[k][trajectory.name] = trajectory.string_builder()
             center[k] = trajectory.data_processed[0]
@@ -216,7 +236,9 @@ def draw(mode):
 
 
 if __name__ == '__main__':
-    folder_path_input = sys.argv[1]
+    # folder_path_input = sys.argv[1]
+    global gps_switch
+    gps_switch, folder_path_input = get_parser()
     if os.path.basename(folder_path_input) in ["slam", "alignment", "alignment2", "rt"]:
         folder_path = folder_path_input
         draw(os.path.basename(folder_path))
