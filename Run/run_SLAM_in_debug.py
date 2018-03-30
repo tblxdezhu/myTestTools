@@ -39,7 +39,6 @@ class Check:
         """
         logger.warning("START CHECK EXECUTABLE FILES")
         try:
-            # TODO 根据配置文件中不同增加产品接口和debug接口适配
             # core/vehicle/dist/x64/bin/vehicleSlam
             # core/algorithm_vehicle_slam/example/debug/algoSlamExe
             relative_path = "core/algorithm_vehicle_slam/example/debug/algoSlamExe"
@@ -53,7 +52,6 @@ class Check:
             else:
                 server_path = os.path.join(path, "core/algorithm_sam/example/")
                 serverExampleSLAM_path = os.path.join(path, "core/algorithm_sam/build/example/serverExampleSlam")
-                # TODO 下面两个可执行文件路径待定，暂时全部设定为存在
                 extractor_path = os.path.join(path, "framework/device/rdb-tools-debug-tools/dist/x64/bin/rtv-extractor")
                 querySection_path = os.path.join(path,
                                                  "core/algorithm_sam/example/serverExampleQueryDivision/build/querySectionByGps")
@@ -134,16 +132,15 @@ class Preparation(Check):
         self.sourcecode_path = self.run_configs["sourcecode_path"]
         self.processes_num = self.run_configs["processes"]
         self.ip = self.sourcecode_path + "/core/vehicle/config/" + self.run_configs["slam_config"]
-        # self.ic = self.sourcecode_path + "/core/vehicle/config/camera65.json"
         self.ic = self.sourcecode_path + "/core/vehicle/config/" + self.run_configs["camera"]
         self.ivoc = self.sourcecode_path + "/core/vehicle/config/Highway_Detroit_Downtown_sum--0--1799-4_voc"
         self.rtvs, self.imus = self.check_cases(self.cases[0])
         self.exec_path = self.check_executable_file(self.sourcecode_path)
-        # self.server_path = self.sourcecode_path + "/core/algorithm_sam/example"
         self.server_path = self.sourcecode_path + "/core/algorithm_sam/build/example"
         self.db_path = os.path.join(self.server_path, "section_out")
         self.if_raw_gps = self.run_configs["raw gps"]
         self.slam_db_path = self.run_configs["db path"]
+        self.nums = len(self.rtvs)
 
     def check_preparation(self):
         """
@@ -166,24 +163,21 @@ class WorkFlow(Preparation):
         """
         try:
             pool = Pool(processes=self.processes_num)
-            logger.warning(
-                "[%s]START %s and processes nums are %s", mode, mode, self.processes_num)
+            logger.warning("[%s]START %s and processes nums are %s", mode, mode, self.processes_num)
             for rtv in self.rtvs:
                 for imu in self.imus:
                     # for gps in self.gpss:
                     if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu"):
                         # if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu"):
                         gps = rtv.replace('.rtv', '.gps')
-                        logger.info("[%s]rtv:%s,imu:%s,gps:%s",
-                                    mode, rtv, imu, gps)
+                        logger.info("[%s]rtv:%s,imu:%s,gps:%s", mode, rtv, imu, gps)
+                        logger.info("Now there are %s cases", self.nums)
                         output_dir = os.path.join(self.output_path, mode, os.path.basename(rtv).strip(".rtv"))
-                        # if os.path.exists(os.path.join((self.output_path, mode))):
-                        #     os.mkdir(os.path.join((self.output_path, mode + "2")))
-                        #     output_dir = os.path.join(self.output_path, mode + "2", os.path.basename(rtv).strip(".rtv"))
                         pool.apply_async(run_slam,
                                          (mode, self.exec_path[0], self.ip, self.ic, rtv, imu, gps, self.ivoc,
                                           output_dir,
                                           self.server_path, self.if_raw_gps, self.slam_db_path))
+                        self.nums = self.nums - 1
             pool.close()
             pool.join()
 
@@ -310,7 +304,6 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path, if
             db_path = slam_db_path
             parameter_list.extend(['--dso', db_path])
         if mode == 'alignment' or mode == 'alignment2' or mode == "rt":
-            # db_path = os.path.join(server_path, "section_out")
             db_path = os.path.join(server_path, "query_out", os.path.basename(rtv))
             parameter_list.extend(['--dso', db_path])
         else:
@@ -324,7 +317,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path, if
     except Exception, e:
         logger.error("%s\n%s", e, traceback.print_exc())
     logger.info("[%s] cmd_vehicleSlam:\n%s", mode, cmd_vehicleSlam)
-    logger.warning("Processing...")
+    logger.warning("[%s] %s ,Processing...", mode, rtv)
     execute_cmd(cmd_vehicleSlam, debug_switch)
     # TODO 可以考虑在这里加上一个日志，打印出已经跑完多少case
 
@@ -435,7 +428,7 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 work.server_process("alignment2")
                 work.reset_confidence()
                 work.query(gpgga_path)
-                work.processes_num = 1
+                work.processes_num = 2
                 work.vehicle_slam("rt")
             elif script_mode == "rt":
                 work.output_path = os.path.dirname(work.output_path)
@@ -458,7 +451,7 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 work.server_process("alignment2")
                 work.reset_confidence()
                 work.query(gpgga_path)
-                work.processes_num = 1
+                work.processes_num = 2
                 work.vehicle_slam("rt")
             else:
                 raise MyException
