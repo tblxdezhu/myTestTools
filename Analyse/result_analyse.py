@@ -204,9 +204,11 @@ def draw(datas, keys, names):
             radar.add(data, values, is_splitline=True, is_axisline_show=True, is_area_show=False,
                       legend_selectedmode='normal')
             print datas[data][mode]
+        page.add(radar)
+        for data in datas:
+            print data
             for key in keys:
                 draw_in_type(version=data, value=datas[data][mode][key], attr=names[mode], page=page, key_name=key)
-        page.add(radar)
         page.render(path="../Reports/SLAM_Performance_%s.html" % mode)
 
 
