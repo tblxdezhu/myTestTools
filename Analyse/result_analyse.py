@@ -286,6 +286,7 @@ def main():
         performance_criteria = data_processing.performance_criteria
         attr = data_processing.case_set_names
     print performance_criteria
+    print attr
     draw(data_for_draw, performance_criteria, attr)
 
 
