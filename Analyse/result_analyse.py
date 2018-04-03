@@ -202,7 +202,7 @@ def draw(datas, keys, names):
                        sum(datas[data][mode]["section_num"]), s2i(datas[data][mode]["mp_num"]),
                        s2i(datas[data][mode]["time"]), 19000]]
             radar.add(data, values, is_splitline=True, is_axisline_show=True, is_area_show=False, is_label_show=True,
-                      legend_selectedmode='normal')
+                      legend_selectedmode='single', label_color=["#4e79a7"])
         page.add(radar)
         for key in keys:
             bar = Bar(key)
