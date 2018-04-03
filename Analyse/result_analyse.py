@@ -194,7 +194,7 @@ def draw(datas, keys, names):
         for data in datas:
             num = len(datas[data][mode]["kf_num"])
             schema = [
-                ("kf数量", 3000 * num), ("lost数量", 100 * num), ("分段数", 10 * num),
+                ("kf数量", 7000 * num), ("lost数量", 100 * num), ("分段数", 10 * num),
                 ("3D点数量", 70000 * num), ("耗时", 4000 * num)
             ]
             radar.config(schema)
@@ -218,7 +218,9 @@ def s2i(str_list):
 
 def draw_in_type(version, value, attr, page, key_name):
     bar = Bar(key_name)
-    bar.add(version, attr, value, is_datazoom_show=True, datazoom_range=[10, 13], is_label_show=True,
+    # datazoom_range = [10, 13]
+    print version
+    bar.add(version, attr, value, is_datazoom_show=True, is_label_show=True,
             is_random=False, is_more_utils=True, mark_line=["average"], mark_point=["max", "min"])
     page.add(bar)
 
