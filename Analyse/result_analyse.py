@@ -190,8 +190,8 @@ class DataProcess(ResultCheck):
 def draw(datas, keys, names):
     for mode in ["slam", "alignment", "alignment2", "rt", "slamwithdb"]:
         page = Page(page_title="(%s) SLAM Performance Test Report" % mode)
-        radar = Radar()
         for data in datas:
+            radar = Radar()
             num = len(datas[data][mode]["kf_num"])
             schema = [
                 ("kf数量", 10000 * num), ("lost数量", 100 * num), ("分段数", 10 * num),
@@ -203,28 +203,19 @@ def draw(datas, keys, names):
                        s2i(datas[data][mode]["time"]), 19000]]
             radar.add(data, values, is_splitline=True, is_axisline_show=True, is_area_show=False,
                       legend_selectedmode='normal')
-            print datas[data][mode]
-        page.add(radar)
+            page.add(radar)
         for key in keys:
             bar = Bar(key)
             for data in datas:
+                # mark_point = ["max", "min"]
                 bar.add(data, names[mode], datas[data][mode][key], is_datazoom_show=True, is_label_show=True,
-                        is_random=False, is_more_utils=True, mark_line=["average"], mark_point=["max", "min"])
-                # draw_in_type(version=data, value=datas[data][mode][key], attr=names[mode], page=page, key_name=key)
+                        is_random=False, is_more_utils=True, mark_line=["average"])
             page.add(bar)
         page.render(path="../Reports/SLAM_Performance_%s.html" % mode)
 
 
 def s2i(str_list):
     return sum(map(eval, str_list))
-
-
-def draw_in_type(version, value, attr, page, key_name):
-    bar = Bar(key_name)
-    # datazoom_range = [10, 13]
-    print version
-    bar.add(version, attr, value, is_datazoom_show=True, is_label_show=True,
-            is_random=False, is_more_utils=True, mark_line=["average"], mark_point=["max", "min"])
 
 
 def mylist(in_list):
