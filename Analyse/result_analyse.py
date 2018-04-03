@@ -194,7 +194,7 @@ def draw(datas, keys, names):
         for data in datas:
             num = len(datas[data][mode]["kf_num"])
             schema = [
-                ("kf数量", 7000 * num), ("lost数量", 100 * num), ("分段数", 10 * num),
+                ("kf数量", 10000 * num), ("lost数量", 100 * num), ("分段数", 10 * num),
                 ("3D点数量", 70000 * num), ("耗时", 4000 * num)
             ]
             radar.config(schema)
@@ -208,7 +208,11 @@ def draw(datas, keys, names):
         for data in datas:
             print data
             for key in keys:
-                draw_in_type(version=data, value=datas[data][mode][key], attr=names[mode], page=page, key_name=key)
+                bar = Bar(key)
+                bar.add(data, names[mode], datas[data][mode][key], is_datazoom_show=True, is_label_show=True,
+                        is_random=False, is_more_utils=True, mark_line=["average"], mark_point=["max", "min"])
+                # draw_in_type(version=data, value=datas[data][mode][key], attr=names[mode], page=page, key_name=key)
+                page.add(bar)
         page.render(path="../Reports/SLAM_Performance_%s.html" % mode)
 
 
@@ -222,7 +226,6 @@ def draw_in_type(version, value, attr, page, key_name):
     print version
     bar.add(version, attr, value, is_datazoom_show=True, is_label_show=True,
             is_random=False, is_more_utils=True, mark_line=["average"], mark_point=["max", "min"])
-    page.add(bar)
 
 
 def mylist(in_list):
@@ -252,7 +255,7 @@ def backup_diff(cases_path, diff_dic):
                         if not os.path.exists(backup_path):
                             print "mkdir ", backup_path
                             os.system("mkdir " + backup_path)
-                        mv_cmd = "mv " + os.path.join(cases_path, case_set, mode, case)+" "+backup_path
+                        mv_cmd = "mv " + os.path.join(cases_path, case_set, mode, case) + " " + backup_path
                         print mv_cmd
                         os.system(mv_cmd)
 
