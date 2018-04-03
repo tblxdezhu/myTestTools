@@ -243,8 +243,10 @@ def backup_diff(cases_path, diff_dic):
                     else:
                         if cases_path.endswith("/"):
                             cases_path = os.path.dirname(cases_path)
-                        print "mkdir ", os.path.join(os.path.dirname(cases_path), "backup_diff_cases")
-                        # os.system("mkdir " + os.path.join(os.path.dirname(cases_path), "backup_diff_cases")
+                        backup_path = os.path.join(os.path.dirname(cases_path), "backup_diff_cases")
+                        print "mkdir ", backup_path
+                        os.system("mkdir " + backup_path)
+                        os.system("mv " + os.path.join(cases_path, case_set, mode, case)+" "+backup_path)
 
 
 def make_cases_in_common(cases_path):
