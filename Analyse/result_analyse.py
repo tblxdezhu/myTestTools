@@ -238,8 +238,11 @@ def backup_diff(cases_path, diff_dic):
         for case_set in os.listdir(cases_path):
             if os.path.exists(os.path.join(cases_path, case_set, mode)):
                 for case in os.listdir(os.path.join(cases_path, case_set, mode)):
-                    print case_set, case
-                    # for case_name in diff_dic[mode]:
+                    if case in diff_dic[mode]:
+                        pass
+                    else:
+                        print "mkdir ", os.path.join(os.path.dirname(cases_path), "backup_diff_cases")
+                        # os.system("mkdir " + os.path.join(os.path.dirname(cases_path), "backup_diff_cases")
 
 
 def make_cases_in_common(cases_path):
