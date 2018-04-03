@@ -203,6 +203,7 @@ def draw(datas, keys, names):
                        s2i(datas[data][mode]["time"]), 19000]]
             radar.add(data, values, is_splitline=True, is_axisline_show=True, is_area_show=False,
                       legend_selectedmode='normal')
+            print datas[data][mode]
             for key in keys:
                 draw_in_type(version=data, value=datas[data][mode][key], attr=names[mode], page=page, key_name=key)
         page.add(radar)
