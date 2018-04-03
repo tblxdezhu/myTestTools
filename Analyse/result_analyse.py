@@ -206,12 +206,12 @@ def draw(datas, keys, names):
             print datas[data][mode]
         page.add(radar)
         for key in keys:
+            bar = Bar(key)
             for data in datas:
-                bar = Bar(key)
                 bar.add(data, names[mode], datas[data][mode][key], is_datazoom_show=True, is_label_show=True,
                         is_random=False, is_more_utils=True, mark_line=["average"], mark_point=["max", "min"])
                 # draw_in_type(version=data, value=datas[data][mode][key], attr=names[mode], page=page, key_name=key)
-                page.add(bar)
+            page.add(bar)
         page.render(path="../Reports/SLAM_Performance_%s.html" % mode)
 
 
