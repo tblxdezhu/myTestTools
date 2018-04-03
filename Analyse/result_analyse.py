@@ -236,9 +236,10 @@ def mylist(in_list):
 def backup_diff(cases_path, diff_dic):
     for mode in ["slam", "alignment", "alignment2", "rt", "slamwithdb"]:
         for case_set in os.listdir(cases_path):
-            for case in os.listdir(os.path.join(cases_path, case_set, mode)):
-                print case
-                # for case_name in diff_dic[mode]:
+            if os.path.exists(os.path.join(cases_path, case_set, mode)):
+                for case in os.listdir(os.path.join(cases_path, case_set, mode)):
+                    print case
+                    # for case_name in diff_dic[mode]:
 
 
 def make_cases_in_common(cases_path):
