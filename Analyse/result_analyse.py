@@ -256,6 +256,7 @@ def make_cases_in_common(cases_path):
         for case in case_dic:
             diff_dic[mode] = mylist(case_dic[case][mode])
     print diff_dic
+    backup_diff(cases_path, diff_dic)
 
 
 def main():
