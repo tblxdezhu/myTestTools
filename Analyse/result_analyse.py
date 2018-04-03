@@ -204,7 +204,7 @@ def draw(datas, keys, names):
             radar.add(data, values, is_splitline=True, is_axisline_show=True, is_area_show=False,
                       legend_selectedmode='normal')
             for key in keys:
-                draw_in_type(version=data, value=datas[data][mode][key], attr=names[mode], page=page, key=key)
+                draw_in_type(version=data, value=datas[data][mode][key], attr=names[mode], page=page, key_name=key)
         page.add(radar)
         page.render(path="../Reports/SLAM_Performance_%s.html" % mode)
 
@@ -213,8 +213,8 @@ def s2i(str_list):
     return sum(map(eval, str_list))
 
 
-def draw_in_type(version, value, attr, page, key):
-    bar = Bar(key)
+def draw_in_type(version, value, attr, page, key_name):
+    bar = Bar(key_name)
     bar.add(version, attr, value, is_datazoom_show=True, datazoom_range=[10, 13], is_label_show=True,
             is_random=False, is_more_utils=True, mark_line=["average"], mark_point=["max", "min"])
     page.add(bar)
@@ -244,26 +244,25 @@ def backup_diff(cases_path, diff_dic):
                         if cases_path.endswith("/"):
                             cases_path = os.path.dirname(cases_path)
                         backup_path = os.path.join(os.path.dirname(cases_path), "backup_diff_cases")
-                        print "mkdir ", backup_path
-                        os.system("mkdir " + backup_path)
-                        os.system("mv " + os.path.join(cases_path, case_set, mode, case)+" "+backup_path)
+                        if not os.path.exists(backup_path):
+                            print "mkdir ", backup_path
+                            os.system("mkdir " + backup_path)
+                        mv_cmd = "mv " + os.path.join(cases_path, case_set, mode, case)+" "+backup_path
+                        print mv_cmd
+                        os.system(mv_cmd)
 
 
 def make_cases_in_common(cases_path):
     case_dic = {}
     diff_dic = {}
     for case in os.listdir(cases_path):
-        case_set_num = len(os.listdir(cases_path))
         case_path = os.path.join(cases_path, case)
-        print case_path
         data_preprocess = DataProcess(ResultCheck(case_path).check_have_snippet())
         data_preprocess.check_case_in_common()
         case_dic[case] = data_preprocess.case_set_names
-    print case_dic
     for mode in ["slam", "alignment", "alignment2", "rt", "slamwithdb"]:
         for case in case_dic:
             diff_dic[mode] = mylist(case_dic[case][mode])
-    print diff_dic
     backup_diff(cases_path, diff_dic)
 
 
@@ -281,7 +280,6 @@ def main():
         version = case_set.split("_")[-2] + "_" + case_set.split("_")[1]
         case_set_path = os.path.join(case_sets, case_set)
         data_processing = DataProcess(ResultCheck(case_set_path).check_have_snippet())
-        # print ResultCheck(case_set_path).check_have_snippet()
         data_processing.data_process()
         data_for_draw[version] = data_processing.data
         performance_criteria = data_processing.performance_criteria
