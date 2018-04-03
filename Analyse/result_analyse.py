@@ -241,6 +241,7 @@ def backup_diff(cases_path, diff_dic):
                     if case in diff_dic[mode]:
                         pass
                     else:
+                        print os.path.dirname(cases_path)
                         print "mkdir ", os.path.join(os.path.dirname(cases_path), "backup_diff_cases")
                         # os.system("mkdir " + os.path.join(os.path.dirname(cases_path), "backup_diff_cases")
 
