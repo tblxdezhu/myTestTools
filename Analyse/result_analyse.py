@@ -281,6 +281,7 @@ def main():
         version = case_set.split("_")[-2] + "_" + case_set.split("_")[1]
         case_set_path = os.path.join(case_sets, case_set)
         data_processing = DataProcess(ResultCheck(case_set_path).check_have_snippet())
+        data_processing.check_case_in_common()
         data_processing.data_process()
         data_for_draw[version] = data_processing.data
         performance_criteria = data_processing.performance_criteria
