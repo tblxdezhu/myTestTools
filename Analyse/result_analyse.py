@@ -190,20 +190,20 @@ class DataProcess(ResultCheck):
 def draw(datas, keys, names):
     for mode in ["slam", "alignment", "alignment2", "rt", "slamwithdb"]:
         page = Page(page_title="(%s) SLAM Performance Test Report" % mode)
+        radar = Radar()
+        num = len(names[mode])
+        schema = [
+            ("kf数量", 10000 * num), ("lost数量", 100 * num), ("分段数", 10 * num),
+            ("3D点数量", 70000 * num), ("耗时", 4000 * num)
+        ]
+        radar.config(schema)
         for data in datas:
-            radar = Radar()
-            num = len(datas[data][mode]["kf_num"])
-            schema = [
-                ("kf数量", 10000 * num), ("lost数量", 100 * num), ("分段数", 10 * num),
-                ("3D点数量", 70000 * num), ("耗时", 4000 * num)
-            ]
-            radar.config(schema)
             values = [[s2i(datas[data][mode]["kf_num"]), s2i(datas[data][mode]["lost_num"]),
                        sum(datas[data][mode]["section_num"]), s2i(datas[data][mode]["mp_num"]),
                        s2i(datas[data][mode]["time"]), 19000]]
             radar.add(data, values, is_splitline=True, is_axisline_show=True, is_area_show=False,
                       legend_selectedmode='normal')
-            page.add(radar)
+        page.add(radar)
         for key in keys:
             bar = Bar(key)
             for data in datas:
