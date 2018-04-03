@@ -233,6 +233,14 @@ def mylist(in_list):
     return intersection_list
 
 
+def backup_diff(cases_path, diff_dic):
+    for mode in ["slam", "alignment", "alignment2", "rt", "slamwithdb"]:
+        for case_set in os.listdir(cases_path):
+            for case in os.listdir(os.path.join(cases_path, case_set, mode)):
+                print case
+                # for case_name in diff_dic[mode]:
+
+
 def make_cases_in_common(cases_path):
     case_dic = {}
     diff_dic = {}
@@ -249,6 +257,7 @@ def make_cases_in_common(cases_path):
             diff_dic[mode] = mylist(case_dic[case][mode])
     print diff_dic
 
+
 def main():
     case_sets = sys.argv[1]
     data_for_draw = {}
@@ -259,7 +268,6 @@ def main():
     global n
     n = 0
     make_cases_in_common(case_sets)
-    print "intersection_list:", intersection_list
     for case_set in os.listdir(case_sets):
         version = case_set.split("_")[-2] + "_" + case_set.split("_")[1]
         case_set_path = os.path.join(case_sets, case_set)
