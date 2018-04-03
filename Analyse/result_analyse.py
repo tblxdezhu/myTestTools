@@ -205,9 +205,8 @@ def draw(datas, keys, names):
                       legend_selectedmode='normal')
             print datas[data][mode]
         page.add(radar)
-        for data in datas:
-            print data
-            for key in keys:
+        for key in keys:
+            for data in datas:
                 bar = Bar(key)
                 bar.add(data, names[mode], datas[data][mode][key], is_datazoom_show=True, is_label_show=True,
                         is_random=False, is_more_utils=True, mark_line=["average"], mark_point=["max", "min"])
