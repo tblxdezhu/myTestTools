@@ -202,7 +202,7 @@ def draw(datas, keys, names):
                        sum(datas[data][mode]["section_num"]), s2i(datas[data][mode]["mp_num"]),
                        s2i(datas[data][mode]["time"]), 19000]]
             radar.add(data, values, is_splitline=True, is_axisline_show=True, is_area_show=False, is_label_show=True,
-                      legend_selectedmode='single', label_color=["#4e79a7"])
+                      legend_selectedmode='normal')
         page.add(radar)
         for key in keys:
             bar = Bar(key)
@@ -283,9 +283,6 @@ def main():
         data_for_draw[version] = data_processing.data
         performance_criteria = data_processing.performance_criteria
         attr = data_processing.case_set_names
-        print attr
-    print performance_criteria
-
     draw(data_for_draw, performance_criteria, attr)
 
 
