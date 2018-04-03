@@ -201,8 +201,8 @@ def draw(datas, keys, names):
             values = [[s2i(datas[data][mode]["kf_num"]), s2i(datas[data][mode]["lost_num"]),
                        sum(datas[data][mode]["section_num"]), s2i(datas[data][mode]["mp_num"]),
                        s2i(datas[data][mode]["time"]), 19000]]
-            radar.add(data, values, is_splitline=True, is_axisline_show=True, is_area_show=False,
-                      legend_selectedmode='normal', is_random=True)
+            radar.add(data, values, is_splitline=True, is_axisline_show=True, is_area_show=False, is_label_show=True,
+                      legend_selectedmode='normal')
         page.add(radar)
         for key in keys:
             bar = Bar(key)
