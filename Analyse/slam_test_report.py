@@ -224,7 +224,6 @@ class DataProcess(ResultCheck):
         for mode in ["slam", "alignment", "alignment2", "rt"]:
             page = Page(page_title="(%s) SLAM Performance Test Report" % mode)
             num = len(self.data_standard[mode]["kf_num"])
-            # TODO 这个地方的自适应还没修改
             schema = [
                 ("kf数量", 3000 * num), ("lost数量", 30 * num), ("分段数", 10 * num),
                 ("3D点数量", 70000 * num), ("耗时", 4000 * num)

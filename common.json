@@ -21,6 +21,7 @@
     },
     {
       "slam": "SlamSnippet*",
+      "slamwithdb":"SLAMRT*",
       "alignment": "incSnippet*",
       "alignment2": "incSnippet*",
       "rt": "incSnippet*"
