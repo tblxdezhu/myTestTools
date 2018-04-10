@@ -2,15 +2,15 @@
   "run_config": {
     "owner": "zhenxuan",
     "email": ["zhenxuan.xu@ygomi.com","zixing.deng@ygomi.com"],
-    "branch": "23990",
-    "sourcecode_path": "/home/ubuntu/sources",
+    "branch": "master",
+    "sourcecode_path": "/home/ubuntu/ygomi",
     "compile code": "OFF",
     "camera": "camera.json",
     "slam_config":"slamConfig.json",
     "raw gps": "no",
     "bow": "/home/test/",
     "num": 100,
-    "processes": 2,
+    "processes": 5,
     "backup db": "OFF",
     "db path":"/home/ubuntu/sources/core/algorithm_sam/build/example/section_out/"
   },
@@ -29,8 +29,8 @@
     "core/algorithm_sam": "master"
   },
   "cases_config": {
-    "gm": [
-      "/home/ubuntu/gm_0320",
+    "gm32": [
+      "/home/ubuntu/filefortest/gm_32",
       "/home/ubuntu/debug_sectionDB"
     ]
   },
