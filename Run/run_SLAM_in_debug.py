@@ -87,7 +87,7 @@ class Check:
         # TODO 应该在log中打印出配置信息
         check_existence_of_path(self.ip, 'high')
         check_existence_of_path(self.ic, 'high')
-        check_existence_of_path(self.ivoc, 'high')
+        # check_existence_of_path(self.ivoc, 'high')
 
     def check_cases(self, input_path):
         """
@@ -133,7 +133,7 @@ class Preparation(Check):
         self.processes_num = self.run_configs["processes"]
         self.ip = self.sourcecode_path + "/core/vehicle/config/" + self.run_configs["slam_config"]
         self.ic = self.sourcecode_path + "/core/vehicle/config/" + self.run_configs["camera"]
-        self.ivoc = self.sourcecode_path + "/core/vehicle/config/Highway_Detroit_Downtown_sum--0--1799-4_voc"
+        # self.ivoc = self.sourcecode_path + "/core/vehicle/config/Highway_Detroit_Downtown_sum--0--1799-4_voc"
         self.rtvs, self.imus = self.check_cases(self.cases[0])
         self.exec_path = self.check_executable_file(self.sourcecode_path)
         self.server_path = self.sourcecode_path + "/core/algorithm_sam/build/example"
@@ -174,7 +174,7 @@ class WorkFlow(Preparation):
                         logger.info("Now there are %s cases", self.nums)
                         output_dir = os.path.join(self.output_path, mode, os.path.basename(rtv).strip(".rtv"))
                         pool.apply_async(run_slam,
-                                         (mode, self.exec_path[0], self.ip, self.ic, rtv, imu, gps, self.ivoc,
+                                         (mode, self.exec_path[0], self.ip, self.ic, rtv, imu, gps,
                                           output_dir,
                                           self.server_path, self.if_raw_gps, self.slam_db_path))
                         self.nums = self.nums - 1
@@ -294,7 +294,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path, if
         idb = path
         os.makedirs(path)
         logger.info("mkdir %s", path)
-        parameter_list = [exec_file, '--ip', ip, '--ic', ic, '--ivg', rtv, '--iimu', imu, '--igps', gps, '--ivoc', ivoc,
+        parameter_list = [exec_file, '--ip', ip, '--ic', ic, '--ivg', rtv, '--iimu', imu, '--igps', gps,
                           '--tmp', path,
                           '--ol', path, '--d', path, '--oqlt', path, '--osp', os.path.join(
                 path, 'slam.out'), '--ivid',
@@ -451,7 +451,7 @@ def main_flow(cases, logger_in, script_mode, config_file, output_path, switch, o
                 work.server_process("alignment2")
                 work.reset_confidence()
                 work.query(gpgga_path)
-                work.processes_num = 2
+                work.processes_num = 1
                 work.vehicle_slam("rt")
             else:
                 raise MyException
