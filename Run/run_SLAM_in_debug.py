@@ -275,7 +275,7 @@ def find_file(file_type, input_path):
         sys.exit()
 
 
-def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, ivoc, path, server_path, if_raw_gps, slam_db_path):
+def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, path, server_path, if_raw_gps, slam_db_path):
     """
 
     :param mode:
