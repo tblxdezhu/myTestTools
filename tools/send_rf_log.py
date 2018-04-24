@@ -68,7 +68,8 @@ def _format_addr(s):
 
 def send_email(length, suits, group, failed, sumary):
     from_addr = "ygomi\RoadDB_TSRP@ygomi.com "
-    to_addr = ["zhenxuan.xu@ygomi.com", "xianlong.wan@ygomi.com", "yu.zhou@ygomi.com", "zixing.deng@ygomi.com"]
+    to_addr = ["zhenxuan.xu@ygomi.com"]
+    # to_addr = ["zhenxuan.xu@ygomi.com", "xianlong.wan@ygomi.com", "yu.zhou@ygomi.com", "zixing.deng@ygomi.com"]
     total_num_info = "<br>Total Time Cost: %s<br>Total Cases: %s <br>Passed Cases: %s <br><b><font color=\"red\">Failed Cases: %s</font></b></br></br></br>" % (
         sumary["time"], sumary["pass"] + sumary["fail"], sumary["pass"], sumary["fail"])
     email_msg = """
@@ -83,7 +84,7 @@ def send_email(length, suits, group, failed, sumary):
     len_info = "<th rowspan=%s>%s</th>" % (length + 2, group)
     suit_info = ""
     for suit in suits:
-        suit_info = suit_info + "<tr><td width=\"10%%\" height=30px\"><div align=\"center\">%s</td><td><div align=\"center\">%s</td><td><div align=\"center\">%s</td><td><div align=\"center\">%s</td><td><div align=\"center\">%s</td></tr>" % (
+        suit_info = suit_info + """<tr><td width=\"10%%\" height=30px\"><div align=\"center\">%s</td><td><div align=\"center\">%s</td><td><div align=\"center\">%s</td><td><div align=\"center\"><a href="https://bamboo-aws.ygomi.com:8443/browse/RDB-DAILINTERETEST-14/artifact"><font color=\"green\">%s</front></a></td><td><div align=\"center\"><a href="https://bamboo-aws.ygomi.com:8443/browse/RDB-DAILINTERETEST-14/artifact"><font color=\"red\">%s</front></a></td></tr>""" % (
             suit, suits[suit][2], sum(suits[suit][0:2]), suits[suit][0], suits[suit][1])
     end_info = """
     <td><div align=\"center\">total:</td><td><div align=\"center\">%s</td><td><div align=\"center\">%s</td><td><div align=\"center\">%s</td><td><div align=\"center\">%s</td></tr></table>
