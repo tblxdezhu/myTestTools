@@ -32,7 +32,7 @@ do
     case $opt in
         c|common)
             echo "common branch is $OPTARG"
-            COMMON_BARNCH=$OPTARG
+            COMMON_BRANCH=$OPTARG
         ;;
         v|vehicle)
             echo "algo_vehicle_slam branch is $OPTARG"
@@ -40,7 +40,7 @@ do
         ;;
         s|server)
             echo "algo_sam branch is $OPTARG"
-            ALGO_SAM_BARNCH=$OPTARG
+            ALGO_SAM_BRANCH=$OPTARG
         ;;
         h|help)
             usage
@@ -87,9 +87,9 @@ do
         cd $module && git checkout $ALGO_VEHICLE_SLAM_BRANCH && git pull
     elif [ $module = $ALGO_SAM_PATH ]
     then
-        cd $module && git checkout $ALGO_SAM_BARNCH && git pull
+        cd $module && git checkout $ALGO_SAM_BRANCH && git pull
     else
-        cd $module && git checkout $COMMON && git pull
+        cd $module && git checkout $COMMON_BRANCH && git pull
     fi
     get_status "git pull" ${module##*/}
 done
