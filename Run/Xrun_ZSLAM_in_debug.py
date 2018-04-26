@@ -28,11 +28,14 @@ def vehcile_slam(path):
             if os.path.basename(rtv).strip('.rtv') == os.path.basename(imu).strip(".imu"):
                 #print  os.path.basename(rtv)
                 #print os.path.join(path,os.path.basename(rtv).strip(".rtv"))
-                os.mkdir(os.path.join(path,os.path.basename(rtv).strip(".rtv")))
-                output_dir=os.path.join(path,os.path.basename(rtv).strip(".rtv"))
-                #os.chdir(output_dir)
-                #print output_dir
-                pool.apply_async(run_cmd,(rtv,imu,gps,output_dir))
+                if os.path.exists(os.path.join(path,os.path.basename(rtv).strip(".rtv"))):
+                    continue
+                else:
+                    os.mkdir(os.path.join(path,os.path.basename(rtv).strip(".rtv")))
+                    output_dir=os.path.join(path,os.path.basename(rtv).strip(".rtv"))
+                    # os.chdir(output_dir)
+                    # print output_dir
+                    pool.apply_async(run_cmd,(rtv,imu,gps,output_dir))
                 # print rtv
                 # print imu
     pool.close()
@@ -47,12 +50,12 @@ def get_files(type,path_rtv):
 
 def run_cmd(rtv,imu,gps,path):
     os.chdir(path)
-    exe='/home/roaddb/source/core/algorithm_vehicle/vehicle/offlineSLAM/bin/ZSLAMExe'
-    config='/home/roaddb/source/core/algorithm_vehicle/vehicle/offlineSLAM/config/config65.yaml'
+    exe=os.path.join('/home/',user_name,'/source/core/algorithm_vehicle/vehicle/offlineSLAM/bin/ZSLAMExe')
+    config=os.path.join('/home/',user_name,'/source/core/algorithm_vehicle/vehicle/offlineSLAM/config/config65.yaml')
     run_cmd_list = [exe,'--rtv',rtv,'--iimu',imu,'--igps',gps,'--ip',config,'--ic',path,'--d',path]
     run_cmds=' '.join(run_cmd_list)
     print run_cmds
-    status,results=commands.getstatusoutput(run_cmds)
+    b=os.system(run_cmds)
 
 
 
@@ -64,10 +67,12 @@ if __name__ == '__main__':
     global imus
     global path
     global gps
-    rtvs=get_files('*.rtv',sys.argv[1])
-    imus=get_files('*.imu',sys.argv[1])
-    path=sys.argv[2]
-    gps = '/home/roaddb/myTestTools/Run/a.txt'
+    global user_name
+    rtvs=get_files('*.rtv',sys.argv[2])
+    imus=get_files('*.imu',sys.argv[2])
+    path=sys.argv[3]
+    user_name = sys.argv[1]
+    gps = os.path.join('home',user_name,'/myTestTools/Run/a.txt')
     vehcile_slam(path)
     #print rtvs
     #print imus
