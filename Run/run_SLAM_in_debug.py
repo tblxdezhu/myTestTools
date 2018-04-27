@@ -54,7 +54,7 @@ class Check:
                 serverExampleSLAM_path = os.path.join(path, "core/algorithm_sam/build/example/serverExampleSlam")
                 extractor_path = os.path.join(path, "framework/device/rdb-tools-debug-tools/dist/x64/bin/rtv-extractor")
                 querySection_path = os.path.join(path,
-                                                 "core/algorithm_sam/example/serverExampleQueryDivision/build/querySectionByGps")
+                                                 "core/algorithm_tools/server/serverExampleQueryDivision/build/querySectionByGps")
                 reset_confidence_path = os.path.join(path, "core/algorithm_sam/build/example/serverExampleSlam")
                 if os.path.exists(serverExampleSLAM_path):
                     logger.info("serverExampleSLAM: PASS")
