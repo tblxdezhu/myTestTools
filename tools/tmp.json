@@ -1,0 +1,114 @@
+[
+  {
+    'name': 'Intergration Auto Test',
+    'label': 'Intergration Auto Test',
+    'pass': 22,
+    'fail': 0,
+    'elapsed': '00:07:26',
+    'id': 's1'
+  },
+  {
+    'name': 'DB',
+    'label': 'Intergration Auto Test.DB',
+    'pass': 1,
+    'fail': 0,
+    'elapsed': '00:01:36',
+    'id': 's1-s1'
+  },
+  {
+    'name': 'DB API Test',
+    'label': 'Intergration Auto Test.DB.DB API Test',
+    'pass': 1,
+    'fail': 0,
+    'elapsed': '00:01:36',
+    'id': 's1-s1-s1'
+  },
+  {
+    'name': 'Framework Server',
+    'label': 'Intergration Auto Test.Framework Server',
+    'pass': 7,
+    'fail': 0,
+    'elapsed': '00:02:07',
+    'id': 's1-s2'
+  },
+  {
+    'name': 'Backend Server',
+    'label': 'Intergration Auto Test.Framework Server.Backend Server',
+    'pass': 7,
+    'fail': 0,
+    'elapsed': '00:02:07',
+    'id': 's1-s2-s1'
+  },
+  {
+    'name': 'Data Process',
+    'label': 'Intergration Auto Test.Framework Server.Backend Server.Data Process',
+    'pass': 7,
+    'fail': 0,
+    'elapsed': '00:02:07',
+    'id': 's1-s2-s1-s1'
+  },
+  {
+    'name': 'Data Process API Test',
+    'label': 'Intergration Auto Test.Framework Server.Backend Server.Data Process.Data Process API Test',
+    'pass': 7,
+    'fail': 0,
+    'elapsed': '00:02:07',
+    'id': 's1-s2-s1-s1-s1'
+  },
+  {
+    'name': 'System',
+    'label': 'Intergration Auto Test.System',
+    'pass': 14,
+    'fail': 0,
+    'elapsed': '00:03:42',
+    'id': 's1-s3'
+  },
+  {
+    'name': 'foregroundDBMerger',
+    'label': 'Intergration Auto Test.System.foregroundDBMerger',
+    'pass': 2,
+    'fail': 0,
+    'elapsed': '00:00:34',
+    'id': 's1-s3-s1'
+  },
+  {
+    'name': 'foregroundDBUpdater',
+    'label': 'Intergration Auto Test.System.foregroundDBUpdater',
+    'pass': 2,
+    'fail': 0,
+    'elapsed': '00:00:39',
+    'id': 's1-s3-s2'
+  },
+  {
+    'name': 'LogicInfoExtract',
+    'label': 'Intergration Auto Test.System.LogicInfoExtract',
+    'pass': 1,
+    'fail': 0,
+    'elapsed': '00:00:16',
+    'id': 's1-s3-s3'
+  },
+  {
+    'name': 'RepairDivisionTool',
+    'label': 'Intergration Auto Test.System.RepairDivisionTool',
+    'pass': 3,
+    'fail': 0,
+    'elapsed': '00:00:39',
+    'id': 's1-s3-s4'
+  },
+  {
+    'name': 'SnippetAnalyzer',
+    'label': 'Intergration Auto Test.System.SnippetAnalyzer',
+    'pass': 4,
+    'fail': 0,
+    'elapsed': '00:01:03',
+    'id': 's1-s3-s5'
+  },
+  {
+    'name': 'vehicleDBGenerator',
+    'label': 'Intergration Auto Test.System.vehicleDBGenerator',
+    'pass': 2,
+    'fail': 0,
+    'elapsed': '00:00:31',
+    'id': 's1-s3-s6'
+  }
+]
