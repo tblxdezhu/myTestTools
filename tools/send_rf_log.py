@@ -25,6 +25,7 @@ class Analyse:
         self.len_of_suit = 0
 
     def process_data(self):
+        print self.data
         for suit in self.data[2:]:
             self.suits[suit["name"]] = [suit["pass"], suit["fail"], suit["elapsed"]]
         self.sumary["pass"] = 0
@@ -38,14 +39,14 @@ class Analyse:
 
 
 def get_info():
-    with open(os.path.join(path, "Intergration_ubuntu.table.tmp"), "r") as f:
+    with open(os.path.join(path, "test.table.tmp"), "r") as f:
         contents = f.readlines()
         return eval(contents[1])
 
 
 def get_failed_info():
     failed_info = []
-    with open(os.path.join(path, "Intergration_ubuntu.testcase.tmp"), "r") as f:
+    with open(os.path.join(path, "test.testcase.tmp"), "r") as f:
         contents = f.readlines()
         for content in contents:
             failed_info.append(content.split(">")[1].split("<")[0])
@@ -114,7 +115,8 @@ def main():
     path = sys.argv[1]
     analyse = Analyse()
     analyse.process_data()
-    send_email(analyse.len_of_suit, analyse.suits, analyse.group_name, analyse.failed_data, analyse.sumary)
+    print analyse.suits
+    # send_email(analyse.len_of_suit, analyse.suits, analyse.group_name, analyse.failed_data, analyse.sumary)
 
 
 if __name__ == '__main__':
