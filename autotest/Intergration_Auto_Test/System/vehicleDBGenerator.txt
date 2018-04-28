@@ -1,0 +1,46 @@
+*** Settings ***
+Documentation     | Description | test normal veicleDBGenerater of slam/align |
+...               | Input | 1.input json |
+...               | | 2.DB |
+...               | Execute | call the command line to process veicleDBGenerater |
+...               | Expect result | 1.output json,with status. |
+...               | | 2.vehicle_foregrounddb.divisions with data |
+Suite Setup
+Resource          ../Resource/RFresource/System/lib_res_var.txt
+
+*** Test Cases ***
+Slam VehicleDBGenerator
+    [Documentation]    | Description | test normal veicleDBGenerater of \ slam |
+    ...    | Input | 1.input json |
+    ...    | | 2.DB |
+    ...    | Execute | call the command line to process veicleDBGenerater |
+    ...    | Expect result | 1.output json,with status. |
+    ...    | | 2.vehicle_foregrounddb.divisions with data |
+    [Tags]    level 1    normal
+    [Setup]    utilities.Check Environment
+    Log    Log ***************************************************************************************input***************************************************************************************
+    Prepare Snippet/DB/Json for T1/T2/T3/DBgenerator    cp -r ${sfilefortest}/VehicleDBGenerate/slam/WorkflowManager/* /opt/ygomi/roadDB/file_storage/WorkflowManager/    mysql -udba -pmysql<${sfilefortest}/VehicleDBGenerate/slam/dbbak.sql    cp ${sfilefortest}/VehicleDBGenerate/slam/vehicleDBGen-1490154494078484481-1524733383459.json /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenJson/
+    Log    Log ***************************************************************************************execute***************************************************************************************
+    Execute My Command    /opt/ygomi/roadDB/bin/vehicleDBGenerator \ --ijson \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenJson/vehicleDBGen-1490154494078484481-1524733383459.json \ --d \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenDebug \ --ojson \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenDebugResult/result-1490160614406881281-1520578465515.json \ --pcfg \ /opt/ygomi/roadDB/etc/config \ --manual \ --ol ${sOutput}/VehicleDBGenerator
+    Log    Log ***************************************************************************************result check***************************************************************************************
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenDebugResult/result-1490160614406881281-1520578465515.json    "Status"
+    Varify KeyValue    ${0}    @{rKeyValueList}
+    Query ForegroundvehicleDB Keyfield    select count(*) from divisions;    2
+
+Align VehicleDBGenerator
+    [Documentation]    | Description | test normal veicleDBGenerater of align \ |
+    ...    | Input | 1.input json |
+    ...    | | 2.DB |
+    ...    | Execute | call the command line to process veicleDBGenerater |
+    ...    | Expect result | 1.output json,with status. |
+    ...    | | 2.vehicle_foregrounddb.divisions with data |
+    [Tags]    level 1    normal
+    [Setup]    utilities.Check Environment
+    Log    Log ***************************************************************************************input***************************************************************************************
+    Prepare Snippet/DB/Json for T1/T2/T3/DBgenerator    cp -r ${sfilefortest}/VehicleDBGenerate/align/WorkflowManager/* /opt/ygomi/roadDB/file_storage/WorkflowManager/    mysql -udba -pmysql<${sfilefortest}/VehicleDBGenerate/align/dbbak.sql    cp ${sfilefortest}/VehicleDBGenerate/align/vehicleDBGen-1490154494078484481-1524734492570.json /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenJson/
+    Log    Log ***************************************************************************************execute***************************************************************************************
+    Execute Mysql Command    /opt/ygomi/roadDB/bin/vehicleDBGenerator \ --ijson \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenJson/vehicleDBGen-1490154494078484481-1524734492570.json \ --d \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenDebug \ --ojson \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenDebugResult/result-1490160614406881281-1520582306248.json \ --pcfg \ /opt/ygomi/roadDB/etc/config \ --manual \ --ol ${sOutput}/VehicleDBGenerator
+    Log    Log ***************************************************************************************result check***************************************************************************************
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenDebugResult/result-1490160614406881281-1520582306248.json    "Status"
+    Varify KeyValue    ${0}    @{rKeyValueList}
+    Query ForegroundvehicleDB Keyfield    select count(*) from divisions;    4

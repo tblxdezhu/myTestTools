@@ -1,0 +1,3 @@
+*** Settings ***
+Resource          DB_utilities.txt
+Resource          DB_variables.txt

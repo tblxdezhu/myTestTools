@@ -1,0 +1,54 @@
+*** Settings ***
+Documentation     | Description | test skeleton import function |
+...               | Input | 1.gpsskeleton,roadskeleton |
+...               | Execute | call the command line to process skeleton import |
+...               | Expect result | 1.skeleton import success. |
+...               | | 2.DB contain data. |
+Suite Setup
+Resource          ../Resource/RFresource/System/lib_res_var.txt
+
+*** Test Cases ***
+Gpsskeleton Full Import
+    [Documentation]    | Description | test gpsskeleton full import function |
+    ...    | Input | 1.gpsskeleton |
+    ...    | Execute | call the command line to process skeleton import |
+    ...    | Expect result | 1.gpsskeleton import success. |
+    ...    | | 2.DB contain data. |
+    [Setup]    utilities.Check Environment
+    Log    Log ***************************************************************************************execute***************************************************************************************
+    Execute My Command    /opt/ygomi/roadDB/bin/repairDivision dir ~/autotest/rtv/gpsskeleton/ http://127.0.0.1:8080 idMap.txt sectionID.txt
+    Log    Log ***************************************************************************************result check***************************************************************************************
+    Query ForegroundDB Keyfield    select division_id from divisions;    ${sGpsSkeletonDivision}
+    Query ForegroundDB Keyfield    select division_id from division_trajectory;    ${sGpsSkeletonDivision}
+
+Gpsskeleton Icre Import
+    [Documentation]    | Description | test gpsskeleton incre import function |
+    ...    | Input | 1.gpsskeleton |
+    ...    | Execute | call the command line to process skeleton import |
+    ...    | Expect result | 1.gpsskeleton import success. |
+    ...    | | 2.DB contain data. |
+    [Setup]    utilities.Check Environment
+    Log    Log ***************************************************************************************execute***************************************************************************************
+    Execute My Command    /opt/ygomi/roadDB/bin/repairDivision dir ~/autotest/rtv/gpsskeleton/ http://127.0.0.1:8080 idMap.txt sectionID.txt
+    Execute My Command    curl -X PUT -d '1490154494078484481' 'http://127.0.0.1:8080/history/processing/delete_divisions?mode=1'
+    Execute My Command    /opt/ygomi/roadDB/bin/repairDivision dir ~/autotest/rtv/gpsskeleton/ http://127.0.0.1:8080 idMap.txt sectionID.txt
+    Log    Log ***************************************************************************************result check***************************************************************************************
+    Query ForegroundDB Keyfield    select division_id from divisions where transaction_id in (2,3);    ${sGpsSkeletonIcreDivision}
+    Query ForegroundDB Keyfield    select division_id from division_trajectory \ where transaction_id in (2,3);    ${sGpsSkeletonIcreDivision}
+    Query ForegroundDB Keyfield    select trajectory_type from divisions where transaction_id=3;    1
+
+Roadskeleton Full Import
+    [Documentation]    | Description | test roadskeleton full import function |
+    ...    | Input | 1.roadskeleton |
+    ...    | Execute | call the command line to process skeleton import |
+    ...    | Expect result | 1.roadskeleton import success. |
+    ...    | | 2.DB contain data. |
+    [Setup]    utilities.Check Environment
+    Log    Log ***************************************************************************************execute***************************************************************************************
+    Execute My Command    /opt/ygomi/roadDB/bin/repairDivision dir ~/autotest/rtv/gpsskeleton/ http://127.0.0.1:8080 idMap.txt sectionID.txt
+    Execute My Command    /opt/ygomi/roadDB/bin/repairDivision file ~/autotest/rtv/roadskeleton/roadskeleton.json http://127.0.0.1:8080 idMap.txt sectionID.txt
+    Log    Log ***************************************************************************************result check***************************************************************************************
+    Query ForegroundDB Keyfield    select division_id from divisions;    ${sGpsSkeletonDivision}
+    Query ForegroundDB Keyfield    select division_id from division_trajectory;    ${sGpsSkeletonDivision}
+    Query LandmarkDB Keyfield    select geo_division_ids from divisions;    ${sRoadtoGpsSkeleton}
+    Query LandmarkDB Keyfield    select division_id from divisions;    ${sRoadSkeletonDivision}

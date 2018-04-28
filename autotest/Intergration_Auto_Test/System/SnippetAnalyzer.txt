@@ -1,0 +1,115 @@
+*** Settings ***
+Documentation     | Description | test normal snippetanalyer of slam/align/sdor snippet |
+...               | Input | 1.input json |
+...               | | 2.slam |
+...               | Execute | call the command line to process snippetanalyer |
+...               | Expect result | 1.output json,with type,quality and segment. |
+...               | | 2.traj |
+Suite Setup
+Resource          ../Resource/RFresource/System/lib_res_var.txt
+
+*** Test Cases ***
+Slam Snippet Analyer
+    [Documentation]    | Description | test normal snippetanalyer of slam snippet |
+    ...    | Input | 1.input json |
+    ...    | | 2.slam |
+    ...    | Execute | call the command line to process snippetanalyer |
+    ...    | Expect result | 1.output json,with type,quality and segment. |
+    ...    | | 2.traj |
+    [Tags]    level 1    normal
+    [Setup]    utilities.Check Environment
+    Log    Log ***************************************************************************************input***************************************************************************************
+    Prepare Snippet/DB/Json for T1/T2/T3/DBgenerator    cp ${sfilefortest}/unzip/slam/172707344da4f06410658bf65a93805d_20180309031357_2017-10-25_T_17-00-19.131_GMT.rtv_slam.out00 /opt/ygomi/roadDB/file_storage/WorkflowManager/unzip/    mysql -udba -pmysql<${sfilefortest}/SnippetAnalyzer/slam/dbbak.sql    ls /usr/local/ygomi/roadDB/algo_res/SegmentConfig.json
+    Log    Log ***************************************************************************************execute***************************************************************************************
+    Execute My Command    /opt/ygomi/roadDB/bin/snippetAnalyzer --isnippet /opt/ygomi/roadDB/file_storage/WorkflowManager/unzip/172707344da4f06410658bf65a93805d_20180309031357_2017-10-25_T_17-00-19.131_GMT.rtv_slam.out00 --icfg /usr/local/ygomi/roadDB/algo_res/SegmentConfig.json --of /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json --ogps /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/traj/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.txt
+    Log    Log ***************************************************************************************result check***************************************************************************************
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json    "Type"
+    Varify KeyValue    slam_loc    @{rKeyValueList}
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json    "Quality"
+    Varify KeyValue    ${0}    @{rKeyValueList}
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json    "RefSegmentID"
+    Varify KeyValue    ${346955130}    @{rKeyValueList}
+    Execute My Command    ls /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/traj/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.txt
+
+Align Snippet Analyer
+    [Documentation]    | Description | test normal snippetanalyer of align snippet |
+    ...    | Input | 1.input json |
+    ...    | | 2.align |
+    ...    | | 3.reference |
+    ...    | Execute | call the command line to process snippetanalyer |
+    ...    | Expect result | 1.output json,with type,quality and segment. |
+    ...    | | 2.traj |
+    ...    | | 3.reference |
+    [Tags]    level 1    normal
+    [Setup]    utilities.Check Environment
+    Log    Log ***************************************************************************************input***************************************************************************************
+    Prepare Snippet/DB/Json for T1/T2/T3/DBgenerator    cp ${sfilefortest}/unzip/align/172707344da4f06410658bf65a93805d_20180307092626_2017-10-25_T_17-00-19.131_GMT.rtv_incr_slam.out00 /opt/ygomi/roadDB/file_storage/WorkflowManager/unzip/    mysql -udba -pmysql<${sfilefortest}/SnippetAnalyzer/align/dbbak.sql    ls /usr/local/ygomi/roadDB/algo_res/SegmentConfig.json
+    Log    Log ***************************************************************************************execute***************************************************************************************
+    Execute My Command    /opt/ygomi/roadDB/bin/snippetAnalyzer --isnippet /opt/ygomi/roadDB/file_storage/WorkflowManager/unzip/172707344da4f06410658bf65a93805d_20180307092626_2017-10-25_T_17-00-19.131_GMT.rtv_incr_slam.out00 --icfg /usr/local/ygomi/roadDB/algo_res/SegmentConfig.json --of /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json --ogps /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/traj/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.txt
+    Log    Log ***************************************************************************************result check***************************************************************************************
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json    "Type"
+    Varify KeyValue    slam_loc    @{rKeyValueList}
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json    "Quality"
+    Varify KeyValue    ${0}    @{rKeyValueList}
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json    "RefSegmentID"
+    Varify KeyValue    ${346955130}    @{rKeyValueList}
+    Check Reference    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json    "ReferenceID"    slam_loc
+    Execute My Command    ls /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/traj/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.txt
+
+Slam And Align Snippet Analyer
+    [Documentation]    | Description | test normal snippetanalyer of slam and align snippet |
+    ...    | Input | 1.input json |
+    ...    | | 2.slam and align |
+    ...    | | 3.reference |
+    ...    | Execute | call the command line to process snippetanalyer |
+    ...    | Expect result | 1.output json,with type,quality and segment. |
+    ...    | | 2.traj |
+    ...    | | 3.reference |
+    [Tags]    normal    level 1
+    [Setup]    utilities.Check Environment
+    Log    Log ***************************************************************************************input***************************************************************************************
+    Prepare Snippet/DB/Json for T1/T2/T3/DBgenerator    cp ${sfilefortest}/unzip/align/172707344da4f06410658bf65a93805d_20180307092626_2017-10-25_T_17-00-19.131_GMT.rtv_incr_slam.out00 /opt/ygomi/roadDB/file_storage/WorkflowManager/unzip/ && cp ${sfilefortest}/unzip/slam/172707344da4f06410658bf65a93805d_20180309031357_2017-10-25_T_17-00-19.131_GMT.rtv_slam.out00 /opt/ygomi/roadDB/file_storage/WorkflowManager/unzip/    mysql -udba -pmysql<${sfilefortest}/SnippetAnalyzer/align/dbbak.sql    ls /usr/local/ygomi/roadDB/algo_res/SegmentConfig.json
+    Log    Log ***************************************************************************************execute***************************************************************************************
+    Execute My Command    /opt/ygomi/roadDB/bin/snippetAnalyzer --isnippet /opt/ygomi/roadDB/file_storage/WorkflowManager/unzip/172707344da4f06410658bf65a93805d_20180309031357_2017-10-25_T_17-00-19.131_GMT.rtv_slam.out00 --icfg /usr/local/ygomi/roadDB/algo_res/SegmentConfig.json --of /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json --ogps /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/traj/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.txt && /opt/ygomi/roadDB/bin/snippetAnalyzer --isnippet /opt/ygomi/roadDB/file_storage/WorkflowManager/unzip/172707344da4f06410658bf65a93805d_20180307092626_2017-10-25_T_17-00-19.131_GMT.rtv_incr_slam.out00 --icfg /usr/local/ygomi/roadDB/algo_res/SegmentConfig.json --of /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_inr_slam.out00.json --ogps /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/traj/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_inr_slam.out00.txt
+    Log    Log ***************************************************************************************result check***************************************************************************************
+    #check slam quality and type
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json    "Type"
+    Varify KeyValue    slam_loc    @{rKeyValueList}
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json    "Quality"
+    Varify KeyValue    ${0}    @{rKeyValueList}
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.json    "RefSegmentID"
+    Varify KeyValue    ${346955130}    @{rKeyValueList}
+    Execute My Command    ls /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/traj/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_slam.out00.txt
+    #check slam quality and type and reference
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_inr_slam.out00.json    "Type"
+    Varify KeyValue    slam_loc    @{rKeyValueList}
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_inr_slam.out00.json    "Quality"
+    Varify KeyValue    ${0}    @{rKeyValueList}
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_inr_slam.out00.json    "RefSegmentID"
+    Varify KeyValue    ${346955130}    @{rKeyValueList}
+    Check Reference    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_inr_slam.out00.json    "ReferenceID"    slam_loc
+    Execute My Command    ls /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/traj/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_inr_slam.out00.txt
+
+Sdor Snippet Analyer
+    [Documentation]    | Description | test normal snippetanalyer of sdor snippet |
+    ...    | Input | 1.input json |
+    ...    | | 2.sdor |
+    ...    | | 3.reference |
+    ...    | Execute | call the command line to process snippetanalyer |
+    ...    | Expect result | 1.output json,with type,quality and segment. |
+    ...    | | 2.traj |
+    ...    | | 3.reference |
+    [Tags]    normal    level 1
+    [Setup]    utilities.Check Environment
+    Log    Log ***************************************************************************************input***************************************************************************************
+    Prepare Snippet/DB/Json for T1/T2/T3/DBgenerator    cp ${sfilefortest}/unzip/sdor/c2fd7fb9d18463c15e10a4505a938068_20180307102605_2017-10-25_T_13-23-45.599_GMT.rtv_rt.out00_sdor.out /opt/ygomi/roadDB/file_storage/WorkflowManager/unzip/    mysql -udba -pmysql<${sfilefortest}/SnippetAnalyzer/sdor/dbbak.sql    ls /usr/local/ygomi/roadDB/algo_res/SegmentConfig.json
+    Log    Log ***************************************************************************************execute***************************************************************************************
+    Execute My Command    /opt/ygomi/roadDB/bin/snippetAnalyzer --isnippet /opt/ygomi/roadDB/file_storage/WorkflowManager/unzip/c2fd7fb9d18463c15e10a4505a938068_20180307102605_2017-10-25_T_13-23-45.599_GMT.rtv_rt.out00_sdor.out --icfg /usr/local/ygomi/roadDB/algo_res/SegmentConfig.json --of /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_sdor.out00.json --ogps /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/traj/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_sdor.out00.txt
+    Log    Log ***************************************************************************************result check***************************************************************************************
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_sdor.out00.json    "Type"
+    Varify KeyValue    rg    @{rKeyValueList}
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_sdor.out00.json    "Quality"
+    Varify KeyValue    ${0}    @{rKeyValueList}
+    @{rKeyValueList}    Check Keyvalue    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_sdor.out00.json    "RefSegmentID"
+    Varify KeyValue    ${346955051}    @{rKeyValueList}
+    Check Reference    /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/b8a71eb8cca0ef9ffe4710c45a45ac32_20180115022237_2017-08-04_T_16-19-26.337_GMT.rtv_sdor.out00.json    "ReferenceID"    rg

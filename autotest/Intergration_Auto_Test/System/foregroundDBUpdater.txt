@@ -1,0 +1,55 @@
+*** Settings ***
+Documentation     | Description | test normal foregroundDBUpdater of slam/align snippet |
+...               | Input | 1.DB |
+...               | | 2.input json |
+...               | | 3.snippet |
+...               | | 4.reference |
+...               | Execute | call the command line to process foregroundDBUpdater |
+...               | Expect result | 1.output json |
+...               | | 2.in output json, divisionlist and referencelist |
+...               | | 3.confidence |
+Suite Setup
+Resource          ../Resource/RFresource/System/lib_res_var.txt
+
+*** Test Cases ***
+Slam Updater
+    [Documentation]    | Description | test normal foregroundDBUpdater of slam snippet |
+    ...    | Input | 1.DB |
+    ...    | | 2.input json |
+    ...    | | 3.snippet |
+    ...    | | 4.reference |
+    ...    | Execute | call the command line to process foregroundDBUpdater |
+    ...    | Expect result | 1.output json |
+    ...    | | 2.in output json, divisionlist and referencelist |
+    ...    | | 3.confidence |
+    [Tags]    level 1    normal
+    [Setup]    utilities.Check Environment
+    Log    Log ***************************************************************************************input***************************************************************************************
+    Prepare Snippet/DB/Json for T1/T2/T3/DBgenerator    cp -r ${sfilefortest}/ForegroundDBUpdater/slam/WorkflowManager/* /opt/ygomi/roadDB/file_storage/WorkflowManager/    mysql -udba -pmysql<${sfilefortest}/ForegroundDBUpdater/slam/dbbak.sql    cp ${sfilefortest}/ForegroundDBUpdater/slam/foregroudDBUpdater-1490154494078484481-1524733111397.json /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterInput/
+    Log    Log ***************************************************************************************execute***************************************************************************************
+    Execute My Command    /opt/ygomi/roadDB/bin/foregroundDBUpdater \ --ijson \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterInput/foregroudDBUpdater-1490154494078484481-1524733111397.json \ --d \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterDebug \ --ojson \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterResult/result-1490160610111913985-1520576619328.json \ --pcfg \ /opt/ygomi/roadDB/etc/config \ --model \ normal \ --manual \ --ol ${sOutput}/ForegroundDBUpdater
+    Log    Log ***************************************************************************************result check***************************************************************************************
+    Check Confidence    /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterResult/result-1490160610111913985-1520576619328.json
+    Check Division Length Reference    /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterResult/result-1490160610111913985-1520576619328.json    "DivisionID"    ${sForegroudDbUpdaterDivisionlist1}
+    Check Division Length Reference    /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterResult/result-1490160610111913985-1520576619328.json    "ReferenceID"    ${sForegroudDbUpdaterReference1}
+
+Align Updater
+    [Documentation]    | Description | test normal foregroundDBUpdater of align snippet |
+    ...    | Input | 1.DB |
+    ...    | | 2.input json |
+    ...    | | 3.snippet |
+    ...    | | 4.reference |
+    ...    | Execute | call the command line to process foregroundDBUpdater |
+    ...    | Expect result | 1.output json |
+    ...    | | 2.in output json, divisionlist and referencelist |
+    ...    | | 3.confidence |
+    [Tags]    level 1    normal
+    [Setup]    utilities.Check Environment
+    Log    Log ***************************************************************************************input***************************************************************************************
+    Prepare Snippet/DB/Json for T1/T2/T3/DBgenerator    cp -r ${sfilefortest}/ForegroundDBUpdater/align/WorkflowManager/* /opt/ygomi/roadDB/file_storage/WorkflowManager/    mysql -udba -pmysql<${sfilefortest}/ForegroundDBUpdater/align/dbbak.sql    cp ${sfilefortest}/ForegroundDBUpdater/align/foregroudDBUpdater-1490154494078484481-1524734320645.json /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterInput/
+    Log    Log ***************************************************************************************execute***************************************************************************************
+    Execute My Command    /opt/ygomi/roadDB/bin/foregroundDBUpdater \ --ijson \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterInput/foregroudDBUpdater-1490154494078484481-1524734320645.json \ --d \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterDebug \ --ojson \ /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterResult/result-1490160678831390721-1520581325104.json \ --pcfg \ /opt/ygomi/roadDB/etc/config \ --model \ normal \ --manual \ --ol ${sOutput}/ForegroundDBUpdater
+    Log    Log ***************************************************************************************result check***************************************************************************************
+    Check Confidence    /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterResult/result-1490160678831390721-1520581325104.json
+    Check Division Length Reference    /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterResult/result-1490160678831390721-1520581325104.json    "DivisionID"    ${sForegroudDbUpdaterDivisionlist1}
+    Check Division Length Reference    /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterResult/result-1490160678831390721-1520581325104.json    "ReferenceID"    ${sForegroudDbUpdaterReference1}

@@ -1,0 +1,33 @@
+*** Settings ***
+Library           SSHLibrary
+Library           String
+Library           OperatingSystem
+Library           Collections
+Resource          DB_lib_res_var.txt
+
+*** Keywords ***
+Clean DB Log Files
+    log    =====Prepare DB environment: clean the old files=====
+    # locak port: 22, docker port: 2242
+    Open Connection    ${sVehicleIp}    None    22    5 hours
+    Login    ${sVehicleUser}    ${sVehiclePwd}
+    Execute Command    rm ${sToolPath}/db_log.txt
+    log    =====Prepare DB environment OK=====
+
+Execute DB regression tool
+    log    =====Execute DB regression tool=====
+    ${rc}    Execute Command    cd ${sToolPath} && \ ./db_regression_testing.py | tee db_log.txt    return_stdout=False    return_rc=True
+    Should Be Equal As Integers    ${rc}    0
+    log    =====Execute DB regression tool OK=====
+
+Check DB API results
+    log    =====Checking DB API results=====
+    ${rFailNumber}    Execute Command    cd ${sToolPath} && cat db_log.txt | tail -n 1 \ | awk -F',' '{print $3}' | awk -F'fail' '{print $2}' | awk -F'(' '{print $2}' | awk -F')' '{print $1}'
+    Should Be Equal As Integers    ${rFailNumber}    0
+    log    =====Checking DB API results OK=====
+
+Clear DB
+    log    =====Clear All DB=====
+    ${rc}    Execute Command    cd ${sDBClearPath} && ./allDB_clear.sh    return_stdout=False    return_rc=True
+    Should Be Equal As Integers    ${rc}    0
+    log    =====Clear All DB OK=====

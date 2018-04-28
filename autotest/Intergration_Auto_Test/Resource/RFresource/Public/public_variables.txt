@@ -1,0 +1,71 @@
+*** Variables ***
+${EnvironmentType}    local
+@{gDevicesIp}     10.69.143.202
+@{gDeviceId}      rdb-test-aws-usa-device-2004    rdb-test-aws-usa-device-2005    rdb-test-aws-usa-device-2006
+@{gDevicesUser}    roaddb
+@{gDevicesPasswd}    test1234
+@{gBackendsIp}    10.69.143.202
+@{gBackendsUser}    roaddb
+@{gBackendsPasswd}    test1234
+${gDbApiUrl}      http://${gBackendsIp[0]}:8080
+${gDbApiUrlofDocker}    http://${gBackendsIp[0]}:8080
+@{gOrigResultsPath}    /opt/ygomi/roadDB/file_storage/log    /opt/ygomi/roadDB/log
+${gCloudHostname}    rdb-test-aws-usa-cloud-2002.roaddb.ygomi.com
+${gCloudUser}     roaddb
+${gCloudPasswd}    9SWFORYH
+${gCloudPort}     8883
+@{gSslFiles}      ~/SSL_files/ca.crt    ~/SSL_files/roaddb_device.crt    ~/SSL_files/roaddb_device.pem
+${gTopicSub}      pref/server_queue
+@{gDevicesId}     rdb-test-aws-usa-device-2004    rdb-test-aws-usa-device-2005    rdb-test-aws-usa-device-2006
+${gEncodingType}    1
+${gSshPort}       22
+${gDataDirectory}    /home/roaddb/RDBtestDataForCI
+${gFilesManagerPort}    8081    # FilesManager
+${gDeviceManagerPort}    9010
+@{gPayloadWithBodyKey}    resource    method    code    body
+@{gBodyKeyError}    error_info
+@{gResponseKey}    message_id    device_id    payload    reply_to
+@{gPayloadWithoutBodyKey}    resource    method    code
+@{gEventPayloadKey}    resource    method    event_type    body
+${gEnvPathLib}    /usr/local/ygomi/roadDB/lib
+${gEnvPathBin}    /opt/ygomi/roadDB/bin
+${gEnvPathDb}     /opt/ygomi/roadDB/etc
+${gEnvPathTmpDb}    /tmp/etc/roaddb_agent
+${gFileUploadPort}    8443
+${gFileUploadPath}    /files/uploads
+${gTaskLogDir}    /tmp/roadDB/vehicle/task_log
+${gAlgoResultDir}    /tmp/roadDB/algo_result_dir
+${gV2iLogPath}    /var/log/roadDB/vehicle
+${gDataDir}       /tmp/etc/roaddb_agent
+${gAlgoDummyDir}    /tmp/roadDB/algo_tmp_dummy_dir
+${gPartialDir}    /tmp/roadDB/partial_data_processing
+${gVideoTagGenDir0}    /tmp/roadDB/video_tag_gen_0
+${gVideoRunDir0}    /tmp/roadDB/video_run_0
+${gTmpDir}        /tmp/roadDB
+${gGpsDenDir}     /tmp/roadDB/gps_gen_dir
+${gImuDenDir}     /tmp/roadDB/imu_gen_dir
+${gTrajectoryReportDir}    /tmp/roadDB/trajectory_report_dir
+${gEnvVars}       /opt/ygomi/roadDB/env_vars
+${gAlgoTmpResultDir}    /tmp/roadDB/algo_tmp_result_dir
+${gDBPort}        3306
+${gDBUser}        dba
+${gDBPassWord}    mysql
+${gFileStoragePath}    /opt/ygomi/roadDB/file_storage
+${gUploadPath}    ${gFileStoragePath}/events/uploads
+${gWorkFlowManagerPath}    ${gFileStoragePath}/WorkflowManager
+${gWorkPath}      /opt/ygomi/roadDB/work_path
+${gRTVPath}       /opt/ygomi/roadDB/file_storage/rtv
+${gFWLogPath}     /opt/ygomi/roadDB/file_storage/log
+${gServerLogPath}    /opt/ygomi/roadDB/log/service
+${gJavaToolPath}    /opt/ygomi/roadDB/jar/cmd
+${gToolPath}      /opt/ygomi/roadDB/tool
+${gApacheIp}      10.69.130.22
+${gApacheUser}    citest
+${gApachePassword}    Citest123
+${gLocalResourcesIp}    10.69.141.45
+${gLocalResourcesUser}    roaddb
+${gLocalResourcesPassWord}    test1234
+${gMountLocalFolder}    /home/roaddb/RDBtestDataForCI
+${gMountRemoteFolder}    /RDBtestDataForCI/test_resource
+${gMountLoRemoteFolder}    /SHARE
+${gOrigMountDir}    /var/www/html/RDBtestDataForCI

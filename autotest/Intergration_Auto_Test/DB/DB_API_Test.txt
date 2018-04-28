@@ -1,0 +1,14 @@
+*** Settings ***
+Resource          ../Resource/RFresource/DB/DB_lib_res_var.txt
+
+*** Test Cases ***
+RDB-24579_DB:execute_DB_regression_tool
+    [Documentation]    | Description | Verify all core DB APIs |
+    ...    | Input | none |
+    ...    | Process | Call DB python tool to check all core APIs |
+    ...    | Expect result | Should be all pass in DB test case execution summary |
+    [Tags]    qian.li    normal    level_1
+    Clean DB Log Files
+    Execute DB regression tool
+    Check DB API results
+    [Teardown]    Clear DB

@@ -1,0 +1,7 @@
+*** Settings ***
+Resource          ../../../Public/public_variables.txt
+
+*** Variables ***
+${sDataProcessorrUrl}    http://${gBackendsIp[0]}:${sDataProcessorPort}
+${sDataProcessorPort}    9030
+@{sDataProcessorBackupList}    ${gServerLogPath}/DataProcessor.log    ${gFWLogPath}

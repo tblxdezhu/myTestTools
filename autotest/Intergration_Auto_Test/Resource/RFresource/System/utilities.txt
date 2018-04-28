@@ -1,0 +1,215 @@
+*** Settings ***
+Library           SSHLibrary
+Library           String
+Library           string
+Library           OperatingSystem
+Resource          variables.txt
+Library           Collections
+Library           DatabaseLibrary
+
+*** Keywords ***
+Login Server
+    [Arguments]    ${pLogin_IP}=${sIP}    ${pLogin_user}=${sUser}    ${pLogin_password}=${sPassword}    ${pLogin_port}=${sPort}
+    log    ${pLogin_IP}
+    Close All Connections
+    Open Connection    ${pLogin_IP}    None    ${pLogin_port}    5 hours
+    Login    ${pLogin_user}    ${pLogin_password}
+
+Execute My Command
+    [Arguments]    ${pCommand}
+    ${cmd_split}    Split String    ${pCommand}    ${SPACE}
+    ${cmd_type}    Set Variable    ${cmd_split[0]}
+    ${cmd}    Run Keyword If    "${cmd_type}" == "rm" and "${sOsType}" == "ubuntu"    Set Variable    sudo ${pCommand}
+    ...    ELSE    Set Variable    ${pCommand}
+    ${stdout}    ${rc}    Execute Command    ${cmd}    return_stdout=True    return_rc=True
+    log    ${stdout}
+    log    ${rc}
+    ${rStdout}    Set Variable    ${stdout}
+    Should Be Equal As Integers    ${rc}    0    #successed
+    log    ${rStdout}
+    [Return]    ${rStdout}
+
+Execute Mysql Command
+    [Arguments]    ${pCommand}
+    ${stdout}    ${rc}    Execute Command    ${pCommand}    return_stdout=True    return_rc=True
+    Comment    Close Connection
+    log    ${stdout}
+    Should Be Equal    ${rc}    ${0}    #success
+
+Clean Database
+    Execute My Command    cd /opt/ygomi/roadDB/tool/db/clear_db_data && ./allDB_clear.sh
+
+Check Environment
+    #login server
+    Login Server
+    #clean file_storage
+    Execute My Command    rm -rf /opt/ygomi/roadDB/file_storage/WorkflowManager/*
+    Execute My Command    rm -rf /opt/ygomi/roadDB/file_storage/log/*
+    #check work_path
+    Execute My Command    rm -rf /opt/ygomi/roadDB/work_path/WorkflowManager/*
+    Execute Command    mkdir /opt/ygomi/roadDB/work_path/WorkflowManager
+    #clean environment
+    Clean Database
+    #check config
+    ${rStdout}    Execute My Command    ls /opt/ygomi/roadDB/etc/config/ | wc -l
+    Should Be True    ${rStdout}>0
+
+Check Confidence
+    [Arguments]    ${pJsonPath}
+    ${stdout}    Execute My Command    python -mjson.tool ${pJsonPath}
+    ${lines}    Get Lines Containing String    ${stdout}    Confidence
+    ${lines}    Split String    ${lines}    \n
+    : FOR    ${line}    IN    @{lines}
+    \    ${words}    Split String    ${line}
+    \    ${confidence}    Split String    ${words[1]}    "
+    \    log    ${confidence}
+    \    Should Be True    ${confidence[1]}>1
+
+Check Keyvalue
+    [Arguments]    ${pJsonPath}    ${pKeyValue}
+    ${stdout}    Execute My Command    python -mjson.tool ${pJsonPath}
+    ${Value}    Get Lines Containing String    ${stdout}    ${pKeyValue}
+    @{rKeyValueList}    Split String    ${Value}    \n
+    log many    @{rKeyValueList}
+    [Return]    @{rKeyValueList}
+
+Check Reference
+    [Arguments]    ${pJsonPath}    ${pKey}    ${pType}
+    ${reference align}    Create List    @{sReferenceAlign}
+    ${reference sdor}    Create List    @{sReferenceSdor}
+    ${reference get}    Create List
+    ${std_out}    Execute My Command    python -mjson.tool ${pJsonPath}
+    ${references}    Get Lines Containing String    ${std_out}    ${pKey}
+    ${reference}    Split String    ${references}    \n
+    : FOR    ${reference1}    IN    @{reference}
+    \    ${reference2}    Split String    ${reference1}
+    \    ${reference NO}    Split String    ${reference2[1]}    "
+    \    LOG    ${reference NO[1]}
+    \    Append To List    ${reference get}    ${reference NO[1]}
+    \    Log    ${reference get}
+    Run Keyword If    '${pType}' == 'slam_loc'    Lists Should Be Equal    ${reference align}    ${reference get}
+    ...    ELSE IF    '${ptype}' == 'rg'    Lists Should Be Equal    ${reference sdor}    ${reference get}
+    ...    ELSE    Log    ${ptype}
+
+Check Alignmerger Status
+    [Arguments]    ${pJsonPath}    ${pKeyValue}    ${pValue1}    ${pValue2}
+    ${alignment status}    Create List
+    ${stdout}    Execute My Command    python -mjson.tool ${pJsonPath}
+    ${lines}    Get Lines Containing String    ${stdout}    ${pKeyValue}
+    ${lines}    Split String    ${lines}    \n
+    : FOR    ${line}    IN    @{lines}
+    \    ${words}    Split String    ${line}
+    \    ${key}    Split String    ${words[1]}    "
+    \    log    ${key}
+    \    Append To List    ${alignment status}    ${key[1]}
+    Should Contain Any    @{alignment status}    ${pValue1}    ${pValue2}
+
+Check Division Length Reference
+    [Arguments]    ${pJsonPath}    ${pKey}    ${pForegroundDBMerger}
+    ${divisionlists}    Create List
+    ${std_out}    Execute My Command    python -mjson.tool ${pJsonPath}
+    ${division}    Get Lines Containing String    ${std_out}    ${pKey}
+    ${key}    Split String    ${division}    \n
+    : FOR    ${divisionForm}    IN    @{key}
+    \    ${divisions}    Split String    ${divisionForm}
+    \    ${division}    Split String    ${divisions[1]}    "
+    \    LOG    ${division[1]}
+    \    Append To List    ${divisionlists}    ${division[1]}
+    \    Log    ${divisionlists}
+    Lists Should Be Equal    ${pForegroundDBMerger}    ${divisionlists}
+
+Prepare Work Path And Snippet
+    [Arguments]    ${pCopySnippet}
+    #prepare path for T1
+    Execute Command    mkdir -p /opt/ygomi/roadDB/file_storage/WorkflowManager/unzip/
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/json/
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/SnippetAnalyzer/traj/
+    #prepare path for T20
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/ForegroundDBMerger/foregroundDbMergerJson
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/ForegroundDBMerger/foregroundDbMergerDebug/debug-1520564939346-2
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/ForegroundDBMerger/foregroundDbMergerDebug/debug-1520578465515-5
+    #prepare path for T21
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterInput
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterResult
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/foregroudDbUpdaterDebug
+    #prepare path for T3
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/ForegroundDBMerger/logicInfoExtractorJson
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/ForegroundDBMerger/logicInfoExtractorDebug
+    #prepare path for VehicleDBGenerator
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenJson
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenDebugResult
+    Execute Command    mkdir -p /opt/ygomi/roadDB/work_path/WorkflowManager/VehicleDBGenerate/vehicleDBGenDebug
+    Execute My Command    ${pCopySnippet}
+
+Query ForegroundDB Keyfield
+    [Arguments]    ${pCommand}    ${sGpsSkeletonDivision}
+    Connect To Database    pymysql    foregrounddb    dba    mysql    ${sIP}    3306
+    @{DivisionList}    Query    ${pCommand}
+    Log Many    @{DivisionList}
+    Disconnect From Database
+    @{FormatDivisionList}    create list
+    : FOR    ${Division}    IN    @{DivisionList}
+    \    ${DivisionString[0]}    Convert To String    ${Division[0]}
+    \    append to list    ${FormatDivisionList}    ${DivisionString[0]}
+    Log    ${FormatDivisionList}
+    Log    ${sGpsSkeletonDivision}
+    Lists Should Be Equal    ${sGpsSkeletonDivision}    ${FormatDivisionList}
+
+Query LandmarkDB Keyfield
+    [Arguments]    ${pCommand}    ${sRoadSkeletonDivision}
+    Connect To Database    pymysql    landmarkdb    dba    mysql    ${sIP}    3306
+    @{DivisionList}    Query    ${pCommand}
+    Log Many    @{DivisionList}
+    Disconnect From Database
+    @{FormatDivisionList}    create list
+    : FOR    ${Division}    IN    @{DivisionList}
+    \    ${DivisionString[0]}    Convert To String    ${Division[0]}
+    \    append to list    ${FormatDivisionList}    ${DivisionString[0]}
+    Log    ${FormatDivisionList}
+    Log    ${sRoadSkeletonDivision}
+    Lists Should Be Equal    ${sRoadSkeletonDivision}    ${FormatDivisionList}
+
+Query ForegroundvehicleDB Keyfield
+    [Arguments]    ${pCommand}    ${pKey}
+    Connect To Database    pymysql    vehicle_foregrounddb    dba    mysql    ${sIP}    3306
+    @{result}    Query    ${pCommand}
+    Log Many    @{result}
+    Disconnect From Database
+    @{Formatresult}    create list
+    : FOR    ${results}    IN    @{result}
+    \    append to list    ${Formatresult}    ${Results[0]}
+    Log    ${Results[0]}
+    Log    ${Formatresult}
+    Log    ${pKey}
+    Should Be Equal As Integers    ${pKey}    ${Formatresult[0]}
+
+Query CoreDB Keyfield
+    [Arguments]    ${pCommand}    ${pKey}
+    Connect To Database    pymysql    coredb    dba    mysql    ${sIP}    3306
+    @{result}    Query    ${pCommand}
+    Log Many    @{result}
+    Disconnect From Database
+    @{Formatresult}    create list
+    : FOR    ${results}    IN    @{result}
+    \    append to list    ${Formatresult}    ${Results[0]}
+    Log    ${Results[0]}
+    Log    ${Formatresult}
+    Log    ${pKey}
+    Should Be Equal As Integers    ${pKey}    ${Formatresult[0]}
+
+Prepare Snippet/DB/Json for T1/T2/T3/DBgenerator
+    [Arguments]    ${pData}    ${pDBdata}    ${pJson}
+    #prepare reference and snippet
+    Prepare Work Path And Snippet    ${pData}
+    #prepare DB
+    Execute Mysql Command    ${pDBdata}
+    #prepare json file,T1 check SegmentConfig.json
+    Execute My Command    ${pJson}
+
+Varify KeyValue
+    [Arguments]    ${pValue}    @{pKeyValueList}
+    : FOR    ${KeyValue}    IN    @{pKeyValueList}
+    \    ${words}    Split String    ${KeyValue}
+    \    ${key}    Split String    ${words[1]}    "
+    \    log    ${key}
+    \    Should Be Equal As Strings    ${key[1]}    ${pValue}
