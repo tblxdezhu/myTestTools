@@ -1,2 +1,0 @@
-*** Settings ***
-Resource          Data-Processor_utilities.txt

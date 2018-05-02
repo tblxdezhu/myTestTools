@@ -1,7 +1,0 @@
-*** Variables ***
-${sVehicleIp}     10.69.143.202    # IP of AWS:10.69.143.61
-${sVehicleUser}    roaddb
-${sVehiclePwd}    test1234    # password of AWS: test1234
-${sToolPath}      /opt/ygomi/roadDB/tool/db/db_regression_test_tool
-${sDBClearPath}    /opt/ygomi/roadDB/tool/db/clear_db_data    # later will be changed
-${sType}          LOCAL
