@@ -9,6 +9,7 @@ import os
 import sys
 import json
 from optparse import OptionParser
+import datetime
 
 
 def config_from_json(config_file, keyword):
@@ -65,3 +66,10 @@ def rtv2gpggagps(rtv_path, gpgga_path, extractor_path):
     rtv2gpggagps_cmd = ' '.join(rtv2gpggagps_cmd_list)
     print rtv2gpggagps_cmd
     os.system(rtv2gpggagps_cmd)
+
+
+def cal_time(init_time, str_time):
+    dt_init = datetime.datetime.strptime(init_time, "%H:%M:%S")
+    dt = datetime.datetime.strptime(str_time, "%H:%M:%S")
+    hour, minute, second = dt.hour, dt.minute, dt.second
+    return str((dt_init + datetime.timedelta(hours=hour, minutes=minute, seconds=second)).time())
