@@ -38,7 +38,7 @@ import os
 def cal_md5(file_for_cal):
     md5 = os.popen("md5sum " + file_for_cal).readlines()
     print md5
-    return md5[0].strip("\n")
+    return md5
 
 
 if __name__ == '__main__':
@@ -54,10 +54,15 @@ if __name__ == '__main__':
     print file_path
     with open(file_path, 'r') as f:
         texts = f.readlines()
+        print texts
         dic_lib = {}
-        for text in texts:
-            print text
+        for text in texts[1:]:
             if "=>" in text:
-                dic_lib[text.split("=>")[0].strip("\n")] = cal_md5(text.split("=>")[1].strip("\n"))
-                lib_path = text.split("=>")[1].strip("\n")
+                print text.split("=>")[1].strip("\n").split("(")[0]
+                result = os.popen("md5sum "+text.split("=>")[1].strip("\n").split("(")[0]).readlines()
+                print result
+
+                dic_lib[text.split("=>")[0].strip("\n")] = result
+                # lib_path = text.split("=>")[1].strip("\n")
         print dic_lib
+

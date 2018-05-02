@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="15a4eae9-2c9f-4b62-a618-65c9c4af48b1" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Analyse/cal_rmse.py" beforeDir="false" afterPath="$PROJECT_DIR$/Analyse/cal_rmse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reports/SLAM_Performance_alignment.html" beforeDir="false" afterPath="$PROJECT_DIR$/Reports/SLAM_Performance_alignment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reports/SLAM_Performance_rt.html" beforeDir="false" afterPath="$PROJECT_DIR$/Reports/SLAM_Performance_rt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reports/SLAM_Performance_slam.html" beforeDir="false" afterPath="$PROJECT_DIR$/Reports/SLAM_Performance_slam.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Run/Xrun_ZSLAM_in_debug.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run/Xrun_ZSLAM_in_debug.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autotest/rdb-test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autotest/script/robot-xml-converter" beforeDir="false" afterPath="$PROJECT_DIR$/autotest/script/robot-xml-converter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ccdemo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/slam_test_config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/slam_test_config_coreFunc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/myPull.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/myPull.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/test.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/myTestTools$switch_case.coverage" NAME="switch_case Coverage Results" MODIFIED="1524123318871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test" />
+    <SUITE FILE_PATH="coverage/myTestTools$function.coverage" NAME="function Coverage Results" MODIFIED="1524209790616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test" />
+    <SUITE FILE_PATH="coverage/myTestTools$order_abc.coverage" NAME="order_abc Coverage Results" MODIFIED="1524218588012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Test" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.3659821">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="bibao.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Test/bibao.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="391">
+                  <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="create_rdb_2_0_html_tmp.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/autotest/script/robot-xml-converter/create_rdb_2_0_html_tmp.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="29">
+                  <caret line="113" column="26" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
+                  <folding>
+                    <element signature="e#0#13#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="tmp.json" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/tools/tmp.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="442">
+                  <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Intergration_ubuntu.testcase.tmp" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/autotest/tmp_files/Intergration_ubuntu.testcase.tmp">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="send_rf_log.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/tools/send_rf_log.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1344">
+                  <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+                  <folding>
+                    <element signature="e#167#176#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="PowerShell File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>and processes nums</find>
+      <find>START</find>
+      <find>2017</find>
+      <find>swap/undistorted</find>
+      <find>os.path</find>
+      <find>imu</find>
+      <find>undistorted</find>
+      <find>alignment</find>
+      <find>print</find>
+      <find>.rtv</find>
+      <find>data_standard</find>
+      <find>open</find>
+      <find>popen</find>
+      <find>rtv</find>
+      <find />
+      <find>Framework</find>
+      <find>Test Cases Robot Framework Log</find>
+      <find>logger</find>
+      <find>ivoc</find>
+      <find>exist</find>
+      <find>path.join</find>
+      <find>deivce_type</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>.rtv ./gm_0315/</replace>
+      <replace>aws s3 ls s3://ygomi-delivery-us-east-1/gm-us-east-1-ygomi/swap/undistorted/</replace>
+      <replace>swap</replace>
+      <replace>\n</replace>
+      <replace>.rtv ./ &amp;&amp;</replace>
+      <replace>gps</replace>
+      <replace>.imu</replace>
+      <replace>data</replace>
+      <replace>intersection</replace>
+      <replace>imu</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/slam_test_config_coreFunc.json" />
+        <option value="$PROJECT_DIR$/slam_test_config_dailytest.json" />
+        <option value="$PROJECT_DIR$/tools/paramiko.py" />
+        <option value="$PROJECT_DIR$/tools/send_email.py" />
+        <option value="$PROJECT_DIR$/slam_test.py" />
+        <option value="$PROJECT_DIR$/gm.json" />
+        <option value="$PROJECT_DIR$/ccdemo.json" />
+        <option value="$PROJECT_DIR$/tools/send_rtv_as_num.py" />
+        <option value="$PROJECT_DIR$/tools/scpfromimu.py" />
+        <option value="$PROJECT_DIR$/tools/collect_kml.py" />
+        <option value="$PROJECT_DIR$/configs/slam_test_config_batch.json" />
+        <option value="$PROJECT_DIR$/configs/slam_test_config_michigen_0326.json" />
+        <option value="$PROJECT_DIR$/tools/kml2data.py" />
+        <option value="$PROJECT_DIR$/tools/func.py" />
+        <option value="$PROJECT_DIR$/Analyse/cal_rmse.py" />
+        <option value="$PROJECT_DIR$/Analyse/slam_test_report.py" />
+        <option value="$PROJECT_DIR$/common.json" />
+        <option value="$PROJECT_DIR$/Analyse/result_analyse.py" />
+        <option value="$PROJECT_DIR$/tools/test.py" />
+        <option value="&lt;00b15eaf-62b6-485a-9b05-d3ee3cd42456&gt;/new_repo/core/algorithm_vehicle_slam/example/debug/cal_md5sum.py" />
+        <option value="$PROJECT_DIR$/tools/2.json" />
+        <option value="$PROJECT_DIR$/tools/1.json" />
+        <option value="$PROJECT_DIR$/slam_test_config.json" />
+        <option value="$PROJECT_DIR$/tools/tmp" />
+        <option value="$USER_HOME$/Desktop/merge_html_2_0_v2.py" />
+        <option value="$PROJECT_DIR$/tools/send_bamboo_log.py" />
+        <option value="$PROJECT_DIR$/../../send_rf_log.py" />
+        <option value="$PROJECT_DIR$/shells/compile_debug.ps1" />
+        <option value="$PROJECT_DIR$/shells/learn_shell.sh" />
+        <option value="&lt;6afe0a26-225d-4fc3-8276-918d93cfcbce&gt;/source/compile_debug.sh" />
+        <option value="$USER_HOME$/Desktop/slam_test_config_dailytest.json" />
+        <option value="$PROJECT_DIR$/Test/switch_case.py" />
+        <option value="$PROJECT_DIR$/Test/function.py" />
+        <option value="$PROJECT_DIR$/Test/order.py" />
+        <option value="$PROJECT_DIR$/Test/order_abc.py" />
+        <option value="$PROJECT_DIR$/Test/order_func.py" />
+        <option value="$PROJECT_DIR$/Test/decorator.py" />
+        <option value="$PROJECT_DIR$/Run/Xrun_ZSLAM_in_debug.py" />
+        <option value="$PROJECT_DIR$/shells/compile_debug.sh" />
+        <option value="$PROJECT_DIR$/Test/bibao.py" />
+        <option value="$PROJECT_DIR$/Run/run_SLAM_in_debug.py" />
+        <option value="$PROJECT_DIR$/tools/myPull.sh" />
+        <option value="$PROJECT_DIR$/autotest/script/robot-xml-converter/create_rdb_2_0_html_tmp.py" />
+        <option value="$PROJECT_DIR$/autotest/tmp_files/.table.tmp" />
+        <option value="$PROJECT_DIR$/autotest/script/robot-xml-converter/test.table.json" />
+        <option value="$PROJECT_DIR$/tools/send_rf_log.py" />
+        <option value="$PROJECT_DIR$/tools/tmp.json" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="-1920" />
+    <option name="y" value="-68" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="myTestTools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myTestTools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myTestTools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myTestTools" type="462c0819:PsiDirectoryNode" />
+              <item name="autotest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myTestTools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myTestTools" type="462c0819:PsiDirectoryNode" />
+              <item name="autotest" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myTestTools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myTestTools" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/test1/Documents/tools/myTestTools/slam_test_config_dailytest.json" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/tools/2.json" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/configs" />
+      <recent name="$PROJECT_DIR$/RF_configs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tools" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.bibao">
+    <configuration name="bibao" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="slam_test_tools" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/bibao.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="decorator" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="slam_test_tools" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/decorator.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="function" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="slam_test_tools" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/function.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="order_abc" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="slam_test_tools" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/order_abc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="switch_case" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="slam_test_tools" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test/switch_case.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.function" />
+      <item itemvalue="Python.switch_case" />
+      <item itemvalue="Python.order_abc" />
+      <item itemvalue="Python.decorator" />
+      <item itemvalue="Python.bibao" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.bibao" />
+        <item itemvalue="Python.decorator" />
+        <item itemvalue="Python.order_abc" />
+        <item itemvalue="Python.function" />
+        <item itemvalue="Python.switch_case" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="15a4eae9-2c9f-4b62-a618-65c9c4af48b1" name="Default" comment="" />
+      <created>1520835518959</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1520835518959</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1920" y="-68" width="1920" height="1080" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1569247" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5021299" side_tool="true" weight="0.23780487" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.18431772" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32917705" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.22606924" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.4978701" visible="true" weight="0.26374745" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.25292864" />
+      <window_info anchor="bottom" id="File Transfer" order="8" weight="0.3299389" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" x="0" y="0" width="430" height="880" id="Documentation" order="6" side_tool="true" weight="0.2140575" />
+      <window_info anchor="right" id="Database" order="4" weight="0.18317358" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="5" weight="0.32960597" />
+      <window_info anchor="bottom" id="Find" order="1" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/tools/tmp" />
+    <entry file="file://$PROJECT_DIR$/../../send_rf_log.py" />
+    <entry file="file://$USER_HOME$/Desktop/common.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="754">
+          <caret line="29" column="11" lean-forward="true" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/merge_html_2_0_v2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14653">
+          <caret line="665" column="50" lean-forward="true" selection-start-line="665" selection-start-column="50" selection-end-line="665" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/1.json" />
+    <entry file="file://$PROJECT_DIR$/../../compare_diff_env/testLink_build.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2732" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shells/learn_shell.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-265">
+          <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/send_email.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-573">
+          <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/scpfromimu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/check_slam.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7194">
+          <caret line="417" lean-forward="true" selection-start-line="417" selection-end-line="417" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/google map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="25" column="67" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/slam_test_config_dailytest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="30" column="59" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/slam_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="674">
+          <caret line="69" column="35" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run/run_SLAM_in_debug_vi_learn.py" />
+    <entry file="file://$PROJECT_DIR$/tools/paramiko.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="16" column="15" lean-forward="true" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/cal_md5sum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1090" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/check_kml_between_V1.2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3134" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Analyse/cal_rmse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Analyse/result_analyse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4039">
+          <caret line="239" column="23" selection-start-line="239" selection-start-column="23" selection-end-line="239" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Analyse/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/switch_case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1950">
+          <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/order.py" />
+    <entry file="file://$PROJECT_DIR$/tools/log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="28" lean-forward="true" selection-start-line="18" selection-start-column="34" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/kml2data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6136">
+          <caret line="239" column="21" lean-forward="true" selection-start-line="239" selection-start-column="21" selection-end-line="239" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/order_func.py" />
+    <entry file="file://$PROJECT_DIR$/Run/Xrun_ZSLAM_in_debug.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1070">
+          <caret line="75" column="19" lean-forward="true" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/decorator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/order_abc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/random.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15686">
+          <caret line="893" selection-start-line="893" selection-end-line="893" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/collect_kml.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="54" column="73" selection-start-line="54" selection-start-column="73" selection-end-line="54" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Analyse/slam_test_report.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5961">
+          <caret line="268" selection-start-line="268" selection-end-line="268" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/slam_test_config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shells/compile_debug.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run/run_SLAM_in_debug.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4153">
+          <caret line="457" column="28" lean-forward="true" selection-start-line="457" selection-start-column="28" selection-end-line="457" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/func.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="63" column="28" lean-forward="true" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/myPull.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="9" column="34" lean-forward="true" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../test_results/autotest/script/robot-xml-converter/create_rdb_2_0_html_tmp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="118" selection-start-line="118" selection-end-line="118" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/tmp_files/.testcase.tmp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/script/robot-xml-converter/test.table.tmp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/script/robot-xml-converter/create_rdb_2_0_html_tmp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="113" column="26" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/script/robot-xml-converter/test.table.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="95" column="19" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/bibao.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/tmp_files/.table.tmp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/tmp_files/.env.tmp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/tmp_files/Intergration_ubuntu.env.tmp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/tmp_files/Intergration_ubuntu.table.tmp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/tmp_files/Intergration_ubuntu.testcase.tmp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="55" column="29" lean-forward="true" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/tmp.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/send_rf_log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1344">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#167#176#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

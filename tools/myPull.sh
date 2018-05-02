@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 
-#mkdir ~/bin
-#PATH=~/bin:$PATH
-#curl https://s3.amazonaws.com/ygomi-hub-rdb/3rd/repo > ~/bin/repo
-#chmod a+x ~/bin/repo
-
-echo "START PULL THE CODE"
-mkdir sourcescode
-cd sourcescode
-repo init -u ssh://git@stash.ygomi.com:7999/rc/manifest.git -b master
-repo sync
-
-cd core
-git clone ssh://git@stash.ygomi.com:7999/rc/algorithm_sam.git
+cp 9248846917406821454.bin ../queryout/
+cp 9248846917406821495.bin ../queryout/
+cp 9248846917406821489.bin ../queryout/
+cp 9248846917406821490.bin ../queryout/
+cp 9248846917406821491.bin ../queryout/
+cp 9248846917406821492.bin ../queryout/
+cp 9248846917406822229.bin ../queryout/
+cp 9248846917406822230.bin ../queryout/
+cp 9248846917406822230.bin ../queryout/
+cp 9248846917406820480.bin ../queryout/
+cp 9248846917406822177.bin ../queryout/

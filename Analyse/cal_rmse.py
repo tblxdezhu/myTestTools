@@ -21,5 +21,7 @@ if __name__ == '__main__':
     a = range(100)
     b = []
     for i in a:
-        b.append(i + random.random())
+        # b.append(i + random.random())
+        b.append(i + random.random()*2)
     print rmse(a, b, 100)
+    print b
