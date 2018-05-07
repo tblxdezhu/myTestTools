@@ -11,6 +11,7 @@
 
 import os
 import sys
+sys.path.append("..")
 from optparse import OptionParser
 import json
 import commands
@@ -22,6 +23,9 @@ import traceback
 import logging
 import datetime
 import coloredlogs
+from tools import Xsend_email
+from tools import func
+# import tools
 
 def vehcile_slam(o_path,i_config):
     pool = Pool(3)
@@ -57,7 +61,7 @@ def run_cmd(rtv,imu,gps,path,in_config):
     os.chdir(path)
     exe=os.path.join('/home',name,'source/core/algorithm_vehicle/vehicle/offlineSLAM/bin/ZSLAMExe')
     config=os.path.join('/home',name,'source/core/algorithm_vehicle/vehicle/offlineSLAM/config',in_config)
-    run_cmd_list = [exe,'--rtv',rtv,'--iimu',imu,'--igps',gps,'--ip',config,'--ic',path,'--d',path]
+    run_cmd_list = [exe,'--rtv',rtv,'--iimu',imu,'--igps',gps,'--ip',config,'--ic',path,'--d',path,'--begin 0 --total 50']
     run_cmds=' '.join(run_cmd_list)
     print run_cmds
     b=os.system(run_cmds)
@@ -89,5 +93,7 @@ if __name__ == '__main__':
     imus=get_files('*.imu',in_path)
     # gps = os.path.join('/home',name,'myTestTools/Run/a.txt')
     vehcile_slam(out_path,config)
+    ip=func.get_ip()
+    Xsend_email.send_email(ip)
     #print rtvs
     #print imus
