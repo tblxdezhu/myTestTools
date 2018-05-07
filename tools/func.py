@@ -78,9 +78,8 @@ def cal_time(init_time, str_time):
     return str((dt_init + datetime.timedelta(hours=hour, minutes=minute, seconds=second)).time())
 
 def get_ip():
-    s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-    return socket.inet_ntoa(fcntl.ioctl(
-        s.fileno(),
-        0x8915,
-        struct.pack('256s','eth0'[:15])
-    )[20:24])
+    all_ip = os.popen('/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6 | awk \'{print $2}\' | tr -d \"addr:\"').read()
+    ip_list = all_ip.split('\n')
+    for ip in ip_list:
+        if '10.69' in ip:
+            return  ip
