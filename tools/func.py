@@ -10,6 +10,9 @@ import sys
 import json
 from optparse import OptionParser
 import datetime
+import socket
+import fcntl
+import struct
 
 
 def config_from_json(config_file, keyword):
@@ -73,3 +76,11 @@ def cal_time(init_time, str_time):
     dt = datetime.datetime.strptime(str_time, "%H:%M:%S")
     hour, minute, second = dt.hour, dt.minute, dt.second
     return str((dt_init + datetime.timedelta(hours=hour, minutes=minute, seconds=second)).time())
+
+def get_ip():
+    s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+        s.fileno(),
+        0x8915,
+        struct.pack('256s','eth0'[:15])
+    )[20:24])
