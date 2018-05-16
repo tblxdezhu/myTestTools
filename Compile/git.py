@@ -15,7 +15,7 @@ sys.path.append("..")
 import tools.log  # noqa
 import tools.func  # noqa
 import tools.send_email  # noqa
-# from tools import log
+from tools import log
 
 CONFIG = {
     "mode": "debug",  # release/debug
