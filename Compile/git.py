@@ -12,10 +12,12 @@ import traceback
 import commands
 
 sys.path.append("..")
-import tools.log  # noqa
-import tools.func  # noqa
-import tools.send_email  # noqa
+# import tools.log  # noqa
+# import tools.func  # noqa
+# import tools.send_email  # noqa
 from tools import log
+from tools import func
+from tools import send_email
 
 CONFIG = {
     "mode": "debug",  # release/debug
@@ -129,16 +131,16 @@ def pull(config_file):
     # TODO git模块增加debug模式
     try:
         global logger
-        logger = tools.log.Logger(
+        logger = log.Logger(
             log_name="compile.log", logger="test").get_log()
         global code_path
-        code_path = tools.func.config_from_json(
+        code_path = func.config_from_json(
             config_file, "run_config")["sourcecode_path"]
         global flags
         flags = []
     except Exception, e:
         logger.error("read config error @git_pull")
-        tools.send_email.send_email()
+        send_email.send_email()
     else:
         if not code_path.endswith("/"):
             code_path += "/"
