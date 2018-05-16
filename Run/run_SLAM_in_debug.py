@@ -22,7 +22,7 @@ import coloredlogs
 
 sys.path.append("..")
 from tools import func
-from tools import log
+# from tools import log
 
 
 class MyException(Exception):
