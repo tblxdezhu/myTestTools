@@ -9,7 +9,7 @@
 import sys
 import os
 # from Analyse import slam_test_report
-from Compile import git
+from Compile import mygit
 from Run import run_SLAM_in_debug
 from tools import func
 from tools import log
@@ -35,7 +35,7 @@ import datetime
 def main():
     script_mode, config_file, output_path, debug_switch = func.get_parser()
     if func.config_from_json(config_file, 'run_config')["compile code"] == "ON":
-        if git.pull(config_file):
+        if mygit.pull(config_file):
             send_email.send_email(config_file, 'msg')
             os.chdir(sys.path[0])
             cases_set_dict = func.config_from_json(config_file, "cases_config")
