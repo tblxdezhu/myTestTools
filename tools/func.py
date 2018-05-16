@@ -10,6 +10,9 @@ import sys
 import json
 from optparse import OptionParser
 import datetime
+import socket
+import fcntl
+import struct
 
 
 def config_from_json(config_file, keyword):
@@ -73,3 +76,10 @@ def cal_time(init_time, str_time):
     dt = datetime.datetime.strptime(str_time, "%H:%M:%S")
     hour, minute, second = dt.hour, dt.minute, dt.second
     return str((dt_init + datetime.timedelta(hours=hour, minutes=minute, seconds=second)).time())
+
+def get_ip():
+    all_ip = os.popen('/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6 | awk \'{print $2}\' | tr -d \"addr:\"').read()
+    ip_list = all_ip.split('\n')
+    for ip in ip_list:
+        if '10.69' in ip:
+            return  ip
