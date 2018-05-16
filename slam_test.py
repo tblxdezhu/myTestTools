@@ -9,7 +9,7 @@
 import sys
 import os
 # from Analyse import slam_test_report
-# from Compile import git
+from Compile import git
 from Run import run_SLAM_in_debug
 from tools import func
 from tools import log
