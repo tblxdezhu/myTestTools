@@ -22,8 +22,6 @@ import coloredlogs
 
 sys.path.append("..")
 from tools import func
-# from tools import log
-
 
 class MyException(Exception):
     def __init__(self, err=""):
