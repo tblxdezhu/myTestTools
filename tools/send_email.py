@@ -26,12 +26,12 @@ def _format_addr(s):
         addr.encode('utf-8') if isinstance(addr, unicode) else addr))
 
 
-def send_email(config_file, mode):
+def send_email(config_file, mode,ip):
     # TODO 发送编译失败邮件，附上编译log
     from_addr = "zhenxuan.xu@ygomi.com"
     to_addr = func.config_from_json(config_file, "run_config")["email"]
     if mode == 'msg':
-        msg = MIMEText('批量测试已经完成，请检查10.74.24.35\n自动发送，请勿回复', 'plain', 'utf-8')
+        msg = MIMEText('批量测试已经完成，请检查'+ip+'\n自动发送，请勿回复', 'plain', 'utf-8')
         msg['Subject'] = Header(
             u'Notifications for automated tests', 'utf-8').encode()
     else:

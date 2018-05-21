@@ -14,6 +14,7 @@ from Run import run_SLAM_in_debug
 from tools import func
 from tools import log
 from tools import send_email
+from tools import Xsend_email
 import time
 import coloredlogs
 import datetime
@@ -69,7 +70,8 @@ def main():
                                       "branch"] + "_" + k)
         run_SLAM_in_debug.main_flow(
             cases_set_dict[k], logger, script_mode, config_file, output_path, debug_switch, output_dir)
-    send_email.send_email(config_file, "msg")
+    send_email.send_email(config_file, "msg",func.get_ip())
+    # Xsend_email.send_email(func.get_ip())
 
 
 if __name__ == '__main__':
