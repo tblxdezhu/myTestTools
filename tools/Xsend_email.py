@@ -23,10 +23,9 @@ def _format_addr(s):
         addr.encode('utf-8') if isinstance(addr, unicode) else addr))
 
 
-def send_email(ip):
+def send_email(ip,to_addr):
     # TODO 发送编译失败邮件，附上编译log
     from_addr = "zixing.deng@ygomi.com"
-    to_addr = ['zixing.deng@ygomi.com','zhenxuan.xu@ygomi.com','lili.zheng@ygomi.com']
     # if mode == 'msg':
     msg = MIMEText('批量测试已经完成，请检查'+ip+'\n自动发送，请勿回复', 'plain', 'utf-8')
     msg['Subject'] = Header(
