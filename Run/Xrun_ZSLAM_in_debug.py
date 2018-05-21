@@ -28,18 +28,17 @@ from tools import func
 # import tools
 
 def vehcile_slam(o_path,i_config):
-    pool = Pool(3)
+    pool = Pool(process)
     for rtv in rtvs:
         imu=rtv[:-3]+'imu'
         if imu in imus:
             date_time=str(datetime.datetime.now().month)+'_'+str(datetime.datetime.now().day)
-            output_dir = os.path.join(o_path, date_time + '_' + os.path.basename(rtv).strip(".rtv"))
-            #print  os.path.basename(rtv)
-            #print os.path.join(path,os.path.basename(rtv).strip(".rtv"))
+            output_dir = os.path.join(o_path, date_time + '_' +config_from_json("owner")+'_'+config_from_json("branch"),os.path.basename(rtv).strip(".rtv"))
+            print output_dir
             if os.path.exists(output_dir):
                 continue
             else:
-                os.mkdir(output_dir)
+                os.makedirs(output_dir)
                 gps= os.path.basename(rtv).strip(".rtv")+'.txt'
                 # os.system('touch '+output_dir+gps)
                 # os.chdir(output_dir)
@@ -61,7 +60,7 @@ def run_cmd(rtv,imu,gps,path,in_config):
     os.chdir(path)
     exe=os.path.join('/home',name,'source/core/algorithm_vehicle/vehicle/offlineSLAM/bin/ZSLAMExe')
     config=os.path.join('/home',name,'source/core/algorithm_vehicle/vehicle/offlineSLAM/config',in_config)
-    run_cmd_list = [exe,'--rtv',rtv,'--iimu',imu,'--igps',gps,'--ip',config,'--ic',path,'--d',path,'--begin 0 --total 50']
+    run_cmd_list = [exe,'--rtv',rtv,'--iimu',imu,'--igps',gps,'--ip',config,'--ic',path,'--d',path]
     run_cmds=' '.join(run_cmd_list)
     print run_cmds
     b=os.system(run_cmds)
@@ -85,15 +84,38 @@ def get_parser():
     return options.name, options.in_path, options.out_path, options.config
 
 
+def config_from_json(keyword):
+    """
+
+    :param config_file:
+    :param keyword:
+    :return:
+    """
+    with open("../X_Zslam_test_config.json", 'r') as cf:
+        configs = json.load(cf)[keyword]
+    return configs
+
+
+
+
+
+
 if __name__ == '__main__':
     global name
+    global process
     # global gps
-    name,in_path,out_path,config=get_parser()
+    # name,in_path,out_path,config=get_parser()
+    name = config_from_json("computer name")
+    process = config_from_json("process")
+    in_path = config_from_json("input_path")
     rtvs=get_files('*.rtv',in_path)
     imus=get_files('*.imu',in_path)
+    out_path = config_from_json("output_path")
     # gps = os.path.join('/home',name,'myTestTools/Run/a.txt')
+    config = config_from_json("config")
     vehcile_slam(out_path,config)
     ip=func.get_ip()
-    Xsend_email.send_email(ip)
+    email_to = config_from_json("email")
+    Xsend_email.send_email(ip,email_to)
     #print rtvs
     #print imus
