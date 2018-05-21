@@ -1,0 +1,10 @@
+{
+  "computer name":"user",
+  "owner":"zixing",
+  "email":["zixing.deng@ygomi.com","zhenxuan.xu@ygomi.com"],
+  "branch":"master",
+  "config":"config65.yaml",
+  "process":3,
+  "input_path":"/home/user/Downloads/rtv/ZslamData/test_ccdemo",
+  "output_path":"/home/user/outputs/ZSLAMtest"
+}
