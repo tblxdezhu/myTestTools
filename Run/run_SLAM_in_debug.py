@@ -23,6 +23,7 @@ import coloredlogs
 sys.path.append("..")
 from tools import func
 
+
 class MyException(Exception):
     def __init__(self, err=""):
         Exception.__init__(self, err)
@@ -199,6 +200,11 @@ class WorkFlow(Preparation):
         logger.info("[%s] serverExampleSLAM_cmd:%s",
                     mode, serverExampleSLAM_cmd)
         execute_cmd(serverExampleSLAM_cmd, debug_switch)
+        backup_db_cmd_list = ["cp -r", os.path.join(self.serverExampleSLAM_build_path, 'section_out'),
+                              os.path.join(self.output_path, mode)]
+        backup_db_cmd = ' '.join(backup_db_cmd_list)
+        logger.info("[%s] Start backup DB:%s", mode, backup_db_cmd)
+        execute_cmd(backup_db_cmd, debug_switch)
 
     def query(self, gpgga_path):
         """
