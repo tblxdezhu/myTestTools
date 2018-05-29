@@ -300,7 +300,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, path, server_path, if_raw_g
         logger.info("mkdir %s", path)
         parameter_list = [exec_file, '--ip', ip, '--ic', ic, '--ivg', rtv, '--iimu', imu, '--igps', gps,
                           '--tmp', path,
-                          '--ol', path, '--d', path, '--oqlt', path, '--osp', os.path.join(
+                          '--ol', path, '--d', path,'--osp', os.path.join(
                 path, 'slam.out'), '--ivid',
                           '170ca9d4e6b40738',
                           '--ort', os.path.join(path, 'rt.out'), '--idb', idb]
