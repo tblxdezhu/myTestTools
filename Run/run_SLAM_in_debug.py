@@ -191,6 +191,7 @@ class WorkFlow(Preparation):
         """
         logger.warning("START SERVER PROCESS: %s", mode)
         mode_type = {'slam': '1', 'alignment': '2', 'alignment2': '2'}
+        mode_file_type = {"slam": "maplist.txt", "alignment": "inclist.txt", "alignment2": "inclist.txt"}
         self.serverExampleSLAM_build_path = os.path.dirname(self.exec_path[1])
         copy_files(os.path.join(self.output_path, mode),
                    self.serverExampleSLAM_build_path, mode)
@@ -202,9 +203,17 @@ class WorkFlow(Preparation):
         execute_cmd(serverExampleSLAM_cmd, debug_switch)
         backup_db_cmd_list = ["cp -r", os.path.join(self.serverExampleSLAM_build_path, 'section_out'),
                               os.path.join(self.output_path, mode)]
+        backup_section_db_list = ["cp -r", os.path.join(self.serverExampleSLAM_build_path, 'section_db'),
+                                  os.path.join(self.output_path, mode)]
         backup_db_cmd = ' '.join(backup_db_cmd_list)
+        backup_db_cmd_section_db = ' '.join(backup_section_db_list)
+        backup_list_list = ["cp ", os.path.join(self.serverExampleSLAM_build_path, mode_file_type[mode]),
+                            os.path.join(self.output_path, mode)]
+        backup_list_cmd = ' '.join(backup_list_list)
         logger.info("[%s] Start backup DB:%s", mode, backup_db_cmd)
         execute_cmd(backup_db_cmd, debug_switch)
+        execute_cmd(backup_db_cmd_section_db, debug_switch)
+        execute_cmd(backup_list_cmd, debug_switch)
 
     def query(self, gpgga_path):
         """
@@ -300,7 +309,7 @@ def run_slam(mode, exec_file, ip, ic, rtv, imu, gps, path, server_path, if_raw_g
         logger.info("mkdir %s", path)
         parameter_list = [exec_file, '--ip', ip, '--ic', ic, '--ivg', rtv, '--iimu', imu, '--igps', gps,
                           '--tmp', path,
-                          '--ol', path, '--d', path,'--osp', os.path.join(
+                          '--ol', path, '--d', path, '--osp', os.path.join(
                 path, 'slam.out'), '--ivid',
                           '170ca9d4e6b40738',
                           '--ort', os.path.join(path, 'rt.out'), '--idb', idb]
